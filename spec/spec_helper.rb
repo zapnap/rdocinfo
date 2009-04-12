@@ -3,6 +3,7 @@ require 'sinatra'
 require 'spec'
 require 'spec/interop/test'
 require 'rack/test'
+require 'mocha'
 require 'rspec_hpricot_matchers'
 
 # set test environment
@@ -18,6 +19,8 @@ require File.dirname(__FILE__) + '/factories'
 DataMapper.setup(:default, "sqlite3::memory:")
 
 Spec::Runner.configure do |config|
+  config.mock_with(:mocha)
+
   # include additional matchers
   config.include(RspecHpricotMatchers)
 

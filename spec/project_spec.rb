@@ -9,13 +9,17 @@ describe 'Project' do
     @project.should be_valid
   end
 
+  it 'should have an rdoc url' do
+    @project.rdoc_url.should == '/projects/zapnap/simplepay'
+  end
+
   it 'should have a clone url' do
     @project.clone_url.should == 'git://github.com/zapnap/simplepay.git'
   end
 
   describe 'validations' do
     before(:each) do
-      @project.stub!(:update_rdoc).and_return(true)
+      @project.stubs(:update_rdoc).returns(true)
     end
 
     it 'should require a name' do
@@ -48,8 +52,8 @@ describe 'Project' do
     before(:each) do
       @rdoc_dir = File.expand_path(File.dirname(__FILE__) + '/spec/rdoc')
       @tmp_dir = File.expand_path(File.dirname(__FILE__) + '/spec/tmp')
-      @project.stub!(:rdoc_dir).and_return(@rdoc_dir)
-      @project.stub!(:clone_dir).and_return(@tmp_dir)
+      @project.stubs(:rdoc_dir).returns(@rdoc_dir)
+      @project.stubs(:clone_dir).returns(@tmp_dir)
       FileUtils.rm_rf @rdoc_dir
       FileUtils.rm_rf @tmp_dir
     end
@@ -65,7 +69,7 @@ describe 'Project' do
     end
 
     it 'should auto-generate after save' do
-      @project.should_receive(:update_rdoc)
+      @project.expects(:update_rdoc)
       @project.save
     end
   end

@@ -10,7 +10,7 @@ describe 'Application' do
   before(:each) do
     Project.all.destroy!
     @project = Factory.build(:project)
-    @project.stub!(:update_rdoc).and_return(true)
+    @project.stubs(:update_rdoc).returns(true)
     @project.save
   end
 
@@ -22,12 +22,42 @@ describe 'Application' do
     end
   end
 
+  describe 'new' do
+    it 'should have a form for project submission' do
+      get '/projects/new'
+      last_response.should be_ok
+      last_response.body.should have_tag('form[@action=/projects]')
+    end
+  end
+
+  describe 'create' do
+    before(:each) do
+      Project.any_instance.stubs(:update_rdoc).returns(true)
+    end
+
+    it 'should create a new project' do
+      lambda {
+        post '/projects', :owner => 'zapnap', :name => 'isbn_validation'
+      }.should change(Project, :count).by(1)
+    end
+
+    it 'should redirect to the rdoc' do
+      post '/projects', :owner => 'zapnap', :name => 'isbn_validation'
+      follow_redirect!
+      last_request.url.should match(/.*projects\/zapnap\/isbn_validation$/)
+    end
+  end
+
   describe 'post-commit hook' do
     it 'should retrieve the appropriate project' do
-      Project.should_receive(:first).with(:url => 'http://github.com/zapnap/simplepay').and_return(@project)
-      @project.should_receive(:update_rdoc).and_return(true)
-      post '/projects', :payload => json_data
-      last_response.should be_ok
+      Project.expects(:first).with(:url => 'http://github.com/zapnap/simplepay').returns(@project)
+      @project.expects(:update_rdoc).returns(true)
+      post '/projects/update', :payload => json_data
+      last_response.status.should == 202
+    end
+
+    it 'should auto-create a project' do
+      pending
     end
   end
 

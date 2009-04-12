@@ -32,6 +32,10 @@ class Project
     clone_repo && RDoc::RDoc.new.document(["--op=#{rdoc_dir}", "--quiet"]) && clean_repo
   end
 
+  def rdoc_url
+    "/projects/#{owner}/#{name}"
+  end
+
   private
 
   def clone_repo
