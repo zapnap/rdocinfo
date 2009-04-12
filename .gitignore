@@ -1,2 +1,4 @@
 *.db
 log/*.log
+tmp/*
+public/projects/*

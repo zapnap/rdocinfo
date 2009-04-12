@@ -6,6 +6,7 @@ require 'dm-aggregates'
 require 'haml'
 require 'json'
 require 'ostruct'
+require 'rdoc'
 require 'rdoc/rdoc'
 
 require 'sinatra' unless defined?(Sinatra)

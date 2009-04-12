@@ -25,11 +25,13 @@ class Project
   end
 
   def rdoc_dir
-    "#{SiteConfig.public_dir}/#{owner}/#{name}"
+    "#{SiteConfig.public_dir}/projects/#{owner}/#{name}"
   end
 
   def update_rdoc
-    clone_repo && RDoc::RDoc.new.document(["--op=#{rdoc_dir}", "--quiet"]) && clean_repo
+    clone_repo
+    RDoc::RDoc.new.document(["--op=#{rdoc_dir}", "--include=#{clone_dir}", "--template=darkfish", "--quiet"])
+    clean_repo
   end
 
   def rdoc_url
