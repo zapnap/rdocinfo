@@ -1,0 +1,6 @@
+%h2 Projects
+%ul.projects
+- @projects.each do |project|
+  %li{:id => "project-#{project.id}"}= project.name
+.new
+  %a{:href => '/projects/new'} Submit a Project

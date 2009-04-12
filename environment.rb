@@ -4,14 +4,14 @@ require 'dm-timestamps'
 require 'dm-validations'
 require 'dm-aggregates'
 require 'haml'
+require 'json'
 require 'ostruct'
 
 require 'sinatra' unless defined?(Sinatra)
 
 configure do
   SiteConfig = OpenStruct.new(
-                 :title => 'Your Application Name',
-                 :author => 'Your Name',
+                 :title => 'RDocs Aplenty',
                  :url_base => 'http://localhost:4567/'
                )
 
