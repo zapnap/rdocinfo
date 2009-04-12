@@ -50,8 +50,8 @@ describe 'Project' do
 
   describe 'rdoc generation' do
     before(:each) do
-      @rdoc_dir = File.expand_path(File.dirname(__FILE__) + '/spec/rdoc')
-      @tmp_dir = File.expand_path(File.dirname(__FILE__) + '/spec/tmp')
+      @rdoc_dir = File.expand_path(File.dirname(__FILE__) + '/rdoc')
+      @tmp_dir = File.expand_path(File.dirname(__FILE__) + '/tmp')
       @project.stubs(:rdoc_dir).returns(@rdoc_dir)
       @project.stubs(:clone_dir).returns(@tmp_dir)
       FileUtils.rm_rf @rdoc_dir
