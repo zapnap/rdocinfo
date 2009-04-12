@@ -9,7 +9,9 @@ describe 'Application' do
   
   before(:each) do
     Project.all.destroy!
-    @project = Factory(:project)
+    @project = Factory.build(:project)
+    @project.stub!(:update_rdoc).and_return(true)
+    @project.save
   end
 
   describe 'index' do
@@ -20,19 +22,18 @@ describe 'Application' do
     end
   end
 
-  describe 'project pages' do
-    it 'should show the project rdoc' do
-      get "/projects/#{@project.id}"
+  describe 'post-commit hook' do
+    it 'should retrieve the appropriate project' do
+      Project.should_receive(:first).with(:url => 'http://github.com/zapnap/simplepay').and_return(@project)
+      @project.should_receive(:update_rdoc).and_return(true)
+      post '/projects', :payload => json_data
       last_response.should be_ok
     end
   end
 
-  describe 'post-commit hook' do
-    before(:each) do
-    end
+  private
 
-    it 'should retrieve the appropriate project' do
-      pending
-    end
+  def json_data
+    File.read("#{File.dirname(__FILE__)}/example.json")
   end
 end

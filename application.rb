@@ -24,14 +24,9 @@ end
   end
 end
 
-# project rdocs
-get '/projects/:id' do
-  @project = Project.get(params[:id])
-  haml :rdoc
-end
-
 # post-receive hook for github
-post '/projects/update' do
-  push = JSON.parse(params[:payload])
-  "I got some JSON: #{push.inspect}" 
+post '/projects' do
+  json = JSON.parse(params[:payload])
+  @project = Project.first(:url => json['repository']['url'])
+  @project.update_rdoc
 end
