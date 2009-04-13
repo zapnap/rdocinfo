@@ -109,3 +109,26 @@ ul.projects li.highlight a {
   border: 1px solid #222;
   background: #CCC;
 }
+.explanation {
+  width: 600px;
+}
+.label {
+  font-weight: bold;
+  color: #666;
+}
+.field {
+  margin-bottom: 0.5em;
+}
+input.button {
+  font-size: 1em;
+  font-weight: bold;
+  background: #EEE;
+  color: #666;
+  border: 1px solid #CCC;
+  padding: 0.5em;
+}
+input.highlight {
+  color: #222;
+  background: #CCC;
+  border: 1px solid #222;
+}

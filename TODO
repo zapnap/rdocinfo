@@ -1,6 +1,5 @@
-* style new project submission form
 * fix weird yard/rdoc --include problem
 * auto-create project with post commit hook
+* project list pagination
 * "working" spinner display for new project creation
 * refactor Project#update_rdoc
-* project list pagination
