@@ -49,11 +49,17 @@ describe 'Application' do
   end
 
   describe 'post-commit hook' do
-    it 'should retrieve the appropriate project' do
+    it 'should update the specified project' do
       Project.expects(:first).with(:url => 'http://github.com/zapnap/simplepay').returns(@project)
-      @project.expects(:update_rdoc).returns(true)
+      @project.expects(:update_attributes).with(:commit_hash => 'de8251ff97ee194a289832576287d6f8ad74e3d0').returns(true)
       post '/projects/update', :payload => json_data
       last_response.status.should == 202
+    end
+
+    it 'should return 404 if the project does not exist' do
+      Project.expects(:first).returns(nil)
+      post '/projects/update', :payload => json_data
+      last_response.status.should == 404
     end
 
     it 'should auto-create a project' do

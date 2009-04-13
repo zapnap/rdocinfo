@@ -6,6 +6,7 @@ class Project
   property :owner,       String
   property :url,         String, :length => 255
   property :description, String, :length => 255
+  property :commit_hash, String
   property :created_at,  DateTime
   property :updated_at,  DateTime
 

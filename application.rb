@@ -46,9 +46,12 @@ end
 # post-receive hook for github
 post '/projects/update' do
   json = JSON.parse(params[:payload])
-  @project = Project.first(:url => json['repository']['url'])
-  @project.update_rdoc
-  status 202
+  if @project = Project.first(:url => json['repository']['url'])
+    @project.update_attributes(:commit_hash => json['after'])
+    status 202
+  else
+    status 404
+  end
 end
 
 # project rdoc container
