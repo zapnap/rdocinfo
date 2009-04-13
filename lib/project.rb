@@ -64,7 +64,7 @@ class Project
   def check_remote
     RestClient.get("http://github.com/api/v1/json/#{owner}/#{name}/commits/master") unless owner.nil? || name.nil?
     true
-  rescue RestClient::RequestFailed
+  rescue RestClient::RequestFailed, RestClient::ResourceNotFound
     [false, "Name must refer to a valid GitHub repository"]
   end
 

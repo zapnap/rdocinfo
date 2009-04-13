@@ -1,5 +1,4 @@
 * fix weird yard/rdoc --include problem
-* does project already exist? if so, suggest it
 * auto-create project with post commit hook
 * project list pagination
 * "working" spinner display for new project creation

@@ -5,15 +5,22 @@
 
   %p By adding this hook, our documentation will automatically regenerate whenever you push updates to your code.
 
+- unless @project.errors.empty?
+  .errors
+    .title The following errors occurred!
+    %ul
+      - @project.errors.full_messages.each do |error|
+        %li.error= error
+
 %form{:action => '/projects', :method => 'post'}
   .owner
     .label
       %label{:for => 'owner'} GitHub User
     .field
-      %input{:type => 'text', :name => 'owner'}
+      %input{:type => 'text', :name => 'owner', :value => @project.owner}
   .name
     .label
       %label{:for => 'name'} Project Name
     .field
-      %input{:type => 'text', :name => 'name'}
+      %input{:type => 'text', :name => 'name', :value => @project.name}
   %input.button{:type => 'submit', :value => 'Submit'}

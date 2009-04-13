@@ -132,3 +132,17 @@ input.highlight {
   background: #CCC;
   border: 1px solid #222;
 }
+.errors {
+  border: 1px solid #666;
+  background: #FFEAE8;
+  color: #666;
+  margin: 1em 0;
+  width: 600px;
+}
+.errors .title {
+  border-bottom: 1px solid #666;
+  background: #222;
+  color: #CCC;
+  font-weight: bold;
+  padding: 0.5em;
+}
