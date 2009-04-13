@@ -31,15 +31,10 @@ class Project
   end
 
   def update_rdoc
-    # TODO: --main=README to display README if it exists? other options?
-    # should we always (only?) check the lib directory?
+    # TODO: refactor target
     clone_repo
     pwd = Dir.pwd
     Dir.chdir(clone_dir)
-
-    #options << "-f" << "html" << "-T" << "hanna" << "--inline-source"
-    #options << "-i" << "*/**/*.rb" << "-o" << "#{rdoc_dir}" << "--quiet"
-    #RDoc::RDoc.new.document(options)
 
     unless readme = Dir['README*'].first
       open('README', 'w') {}
