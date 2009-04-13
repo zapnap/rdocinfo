@@ -18,18 +18,22 @@ class Project
     update_rdoc
   end
 
+  # GitHub clone URL for this project
   def clone_url
     "#{url.gsub('http://', 'git://')}.git"
   end
 
+  # local directory for project cloning
   def clone_dir
     "#{SiteConfig.tmp_dir}/#{owner}/#{name}"
   end
 
+  # directory where documentation is generated
   def rdoc_dir
     "#{SiteConfig.public_dir}/projects/#{owner}/#{name}"
   end
 
+  # regenerate the documentation for this project
   def update_rdoc
     # TODO: refactor target
     clone_repo
@@ -50,6 +54,7 @@ class Project
     clean_repo
   end
 
+  # public URL where documentation for this project is viewable
   def rdoc_url
     "/projects/#{owner}/#{name}"
   end
