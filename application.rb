@@ -22,6 +22,7 @@ end
 # project index
 ['/', '/projects'].each do |action|
   get action do
+    @title = 'Featured Projects'
     @projects = Project.all
     haml :index
   end
@@ -29,12 +30,14 @@ end
 
 # new project
 get '/projects/new' do
+  @title = 'New Project'
   @project = Project.new
   haml :new
 end
 
 # create project
 post '/projects' do
+  @title = 'New Project'
   @project = Project.new(:name => params[:name], :owner => params[:owner], :url => "http://github.com/#{params[:owner]}/#{params[:name]}")
   if @project.save
     redirect @project.rdoc_url
