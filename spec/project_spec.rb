@@ -46,6 +46,12 @@ describe 'Project' do
       @project.should_not be_valid
       @project.errors[:url].should include("Url is already taken")
     end
+    
+    it 'should require a valid github repository' do
+      @project.name = 'blahblahblahblahblah'
+      @project.should_not be_valid
+      @project.errors[:name].should include("Name must refer to a valid GitHub repository")
+    end
   end
 
   describe 'rdoc generation' do

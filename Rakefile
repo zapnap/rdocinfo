@@ -28,7 +28,7 @@ end
 namespace :gems do
   desc 'Install required gems'
   task :install do
-    required_gems = %w{ sinatra haml json rack-test dm-core dm-validations dm-aggregates
+    required_gems = %w{ sinatra haml json rack-test dm-core dm-validations dm-aggregates rest-client
                         mocha rspec rspec_hpricot_matchers thoughtbot-factory_girl yard }
     required_gems.each { |required_gem| system "sudo gem install #{required_gem}" }
   end

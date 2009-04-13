@@ -12,6 +12,7 @@ class Project
 
   validates_present :name, :owner, :url
   validates_is_unique :url
+  validates_with_method :name, :method => :check_remote
 
   after :save do
     update_rdoc
@@ -59,6 +60,13 @@ class Project
   end
 
   private
+
+  def check_remote
+    RestClient.get("http://github.com/api/v1/json/#{owner}/#{name}/commits/master") unless owner.nil? || name.nil?
+    true
+  rescue RestClient::RequestFailed
+    [false, "Name must refer to a valid GitHub repository"]
+  end
 
   def clone_repo
     `git clone #{clone_url} #{clone_dir}`

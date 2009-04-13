@@ -5,6 +5,7 @@ require 'dm-timestamps'
 require 'dm-validations'
 require 'dm-aggregates'
 require 'json'
+require 'rest_client'
 require 'ostruct'
 
 require 'yard'
