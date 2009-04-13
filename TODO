@@ -3,3 +3,4 @@
 * auto-create project with post commit hook
 * "working" spinner display for new project creation
 * refactor Project#update_rdoc
+* project list pagination
