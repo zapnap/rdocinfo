@@ -29,8 +29,27 @@ class Project
   end
 
   def update_rdoc
+    # TODO: --main=README to display README if it exists? other options?
+    # should we always (only?) check the lib directory?
     clone_repo
-    RDoc::RDoc.new.document(["--op=#{rdoc_dir}", "--include=#{clone_dir}", "--template=darkfish", "--quiet"])
+    pwd = Dir.pwd
+    Dir.chdir(clone_dir)
+
+    #options << "-f" << "html" << "-T" << "hanna" << "--inline-source"
+    #options << "-i" << "*/**/*.rb" << "-o" << "#{rdoc_dir}" << "--quiet"
+    #RDoc::RDoc.new.document(options)
+
+    unless readme = Dir['README*'].first
+      open('README', 'w') {}
+      readme = 'README'
+    end
+
+    options = []
+    options << "-d" << rdoc_dir << "-q" << "-r" << readme
+    options << "-b" << "#{clone_dir}/.yardoc"
+    YARD::CLI::Yardoc.run(*options)
+
+    Dir.chdir(pwd)
     clean_repo
   end
 

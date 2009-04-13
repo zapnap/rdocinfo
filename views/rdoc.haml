@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %title= @title || SiteConfig.title
+    %link{:href => '/main.css', :rel => 'stylesheet', :type => 'text/css'}
+  %body
+    .page
+      .header
+        .title
+          %a{:href => '/'} rdoc.info
+          %span.separator ::
+          %a{:href => @project.url}= @project.name
+      .container
+        %iframe{:src => "#{@project.rdoc_url}/index.html", :height => '100%'}

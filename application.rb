@@ -39,7 +39,6 @@ post '/projects' do
   if @project.save
     redirect @project.rdoc_url
   else
-    puts "#{@project.errors.full_messages}"
     haml :new
   end
 end
@@ -50,4 +49,10 @@ post '/projects/update' do
   @project = Project.first(:url => json['repository']['url'])
   @project.update_rdoc
   status 202
+end
+
+# project rdoc container
+get '/projects/:owner/:name' do
+  @project = Project.first(:owner => params[:owner], :name => params[:name])
+  haml :rdoc, :layout => false
 end

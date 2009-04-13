@@ -44,7 +44,7 @@ describe 'Application' do
     it 'should redirect to the rdoc' do
       post '/projects', :owner => 'zapnap', :name => 'isbn_validation'
       follow_redirect!
-      last_request.url.should match(/.*projects\/zapnap\/isbn_validation$/)
+      last_request.url.should match(/.*projects\/zapnap\/isbn_validation.*$/)
     end
   end
 
