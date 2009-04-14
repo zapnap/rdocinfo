@@ -1,4 +1,4 @@
-= SanLorenzo
+= RdocInfo
 
 A simple Sinatra web service that hosts rdocs for GitHub-based projects. Accepts updates from post-commit hooks and regenerates as needed.
 
