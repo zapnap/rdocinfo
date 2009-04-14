@@ -8,16 +8,14 @@ require 'json'
 require 'rest_client'
 require 'ostruct'
 
-require 'yard'
-
 require 'sinatra' unless defined?(Sinatra)
 
 configure do
   SiteConfig = OpenStruct.new(
-                 :title      => 'rdoc.info',
-                 :public_dir => "#{File.expand_path(File.dirname(__FILE__))}/public",
-                 :tmp_dir    => "#{File.expand_path(File.dirname(__FILE__))}/tmp",
-                 :url_base   => 'http://localhost:4567/'
+                 :title    => 'rdoc.info',
+                 :rdoc_dir => "#{File.expand_path(File.dirname(__FILE__))}/public/projects",
+                 :tmp_dir  => "#{File.expand_path(File.dirname(__FILE__))}/tmp",
+                 :url_base => 'http://localhost:4567/'
                )
 
   DataMapper.setup(:default, "sqlite3:///#{File.expand_path(File.dirname(__FILE__))}/#{Sinatra::Base.environment}.db")

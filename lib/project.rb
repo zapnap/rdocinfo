@@ -30,7 +30,7 @@ class Project
 
   # directory where documentation is generated
   def rdoc_dir
-    "#{SiteConfig.public_dir}/projects/#{owner}/#{name}"
+    "#{SiteConfig.rdoc_dir}/#{owner}/#{name}"
   end
 
   # regenerate the documentation for this project
@@ -45,10 +45,9 @@ class Project
       readme = 'README'
     end
 
-    options = []
-    options << "-d" << rdoc_dir << "-q" << "-r" << readme
-    options << "-b" << "#{clone_dir}/.yardoc"
-    YARD::CLI::Yardoc.run(*options)
+    # shell out to yardoc to generate documentation
+    # TODO: validate output
+    `yardoc -d #{rdoc_dir} -r #{readme} -q`
 
     Dir.chdir(pwd)
     clean_repo

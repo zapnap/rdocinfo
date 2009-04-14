@@ -34,6 +34,13 @@ namespace :gems do
   end
 end
 
+desc 'Resets the database and all project docs'
+task :clean => :environment do
+  Project.all.destroy!
+  FileUtils.rm_rf SiteConfig.tmp_dir
+  FileUtils.rm_rf SiteConfig.rdoc_dir
+end
+
 task :environment do
   require 'environment'
 end
