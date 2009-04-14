@@ -24,6 +24,11 @@ class DocBuilder
     @readme_file ||= generate_readme_file
   end
 
+  # Does generated documentation exist?
+  def exists?
+    File.exists?("#{rdoc_dir}/index.html")
+  end
+
   # Generate RDocs for the specified project
   def self.generate(project)
     self.new(project).generate

@@ -47,5 +47,11 @@ describe 'DocBuilder' do
       File.stubs(:open).returns(nil) # don't actually write the file
       @doc.readme_file.should == 'README' # generated
     end
+
+    it 'should exist on disk' do
+      @doc.exists?.should be_false
+      @doc.generate
+      @doc.exists?.should be_true
+    end
   end
 end
