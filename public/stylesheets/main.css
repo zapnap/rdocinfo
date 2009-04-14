@@ -53,6 +53,24 @@ p {
   font-weight: bold;
   text-decoration: underline;
 }
+.centerbox {
+  width: 500px;
+  padding: 0 1em;
+  font-size: 1.1em;
+  line-height: 1.5;
+  margin: 4em auto 0;
+  border: 4px solid #666;
+  background-color: #222;
+  color: #ccc;
+}
+.centerbox p a {
+  color: #fff;
+}
+.centerbox .title {
+  font-weight: bold;
+  margin-top: 0.5em;
+  color: #D8FA3C;
+}
 a, span.name {
   color: #D8FA3C;
   font-weight: bold;
@@ -95,13 +113,17 @@ ul.projects li.highlight a {
 }
 .main .welcome {
   float: right;
-  width: 400px;
+  width: 440px;
   padding: 0 1em;
   font-size: 1.1em;
   line-height: 1.5;
   margin: 1em 1em 0 0;
-  border: 2px solid #666;
+  border: 4px solid #666;
   background-color: #eee;
+}
+.main .welcome img {
+  float: right;
+  margin: 0 10px 0 20px;
 }
 .main a {
   font-weight: bold;

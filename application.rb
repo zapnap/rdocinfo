@@ -7,9 +7,18 @@ configure do
 end
 
 error do
-  e = request.env['sinatra.error']
-  Kernel.puts e.backtrace.join("\n")
-  'Application error'
+  @error = request.env['sinatra.error']
+  Kernel.puts @error.backtrace.join("\n")
+
+  @title = 'Server Error'
+  status(500)
+  haml(:error)
+end
+
+not_found do
+  @title = 'File Not Found'
+  status(404)
+  haml(:not_found)
 end
 
 helpers do
