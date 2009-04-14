@@ -13,17 +13,16 @@ error do
 end
 
 helpers do
-  def flash
-    session[:flash] = {} if session[:flash] && session[:flash].class != Hash
-    session[:flash] ||= {}
-  end
+  include Merb::PaginationHelper
 end
 
 # project index
-['/', '/projects'].each do |action|
+['/', '/projects', '/page/:page'].each do |action|
   get action do
     @title = 'Featured Projects'
-    @projects = Project.all
+    @pages, @projects = Project.paginated(:order => [:created_at.desc],
+                                          :per_page => SiteConfig.per_page,
+                                          :page => (params[:page] || 1).to_i)
     haml :index
   end
 end

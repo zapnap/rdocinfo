@@ -2,5 +2,9 @@
   - @projects.each do |project|
     %li.project{:id => "project-#{project.id}"}
       %a{:href => project.rdoc_url}= "#{project.owner} / #{project.name}"
+
+= paginate((params[:page] || 1).to_i, @pages, :default_css => false)
+
 .new.button
   %a{:href => '/projects/new'} New Project
+

@@ -1,6 +1,8 @@
 class Project
   include DataMapper::Resource
 
+  is_paginated
+
   property :id,          Serial
   property :name,        String
   property :owner,       String

@@ -146,3 +146,24 @@ input.highlight {
   font-weight: bold;
   padding: 0.5em;
 }
+.paginated {
+  margin-top: 1em;
+  font-weight: bold;
+  color: #AAA;
+  font-size: 0.8em;
+}
+.paginated ul, .paginated ul li {
+  display: inline;
+  margin: 0 3px;
+  padding: 0;
+} 
+.paginated ul li.current_page {
+  color: #222;
+  border-bottom: 2px solid #222;
+}
+.paginated a:hover {
+  margin: 0;
+  color: #222;
+  text-decoration: none;
+  border-bottom: 2px solid #222;
+}

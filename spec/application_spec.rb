@@ -16,9 +16,16 @@ describe 'Application' do
 
   describe 'index' do
     it 'should show a list of projects' do
-      get '/'
+      get '/projects'
       last_response.should be_ok
       last_response.body.should have_tag("li#project-#{@project.id}")
+    end
+
+    it 'should retrieve the second page of results' do
+      Project.expects(:paginated).with(:order => [:created_at.desc],
+                                       :per_page => SiteConfig.per_page,
+                                       :page => 2).returns([3, [@project]])
+      get '/page/2'
     end
   end
 
