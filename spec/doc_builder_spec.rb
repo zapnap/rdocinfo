@@ -38,11 +38,14 @@ describe 'DocBuilder' do
     end
 
     it 'should choose a README file' do
-      pending
+      Dir.expects(:[]).returns(['README.rdoc'])
+      @doc.readme_file.should == 'README.rdoc'
     end
 
     it 'should create an empty README file if one cannot be found' do
-      pending
+      Dir.expects(:[]).returns([])
+      File.stubs(:open).returns(nil) # don't actually write the file
+      @doc.readme_file.should == 'README' # generated
     end
   end
 end

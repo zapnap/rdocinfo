@@ -39,7 +39,7 @@ class DocBuilder
 
   def generate_readme_file
     unless file = Dir['README*'].first
-      open('README', 'w') {}
+      File.open('README', 'w') {}
       file = 'README'
     end
 

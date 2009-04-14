@@ -3,7 +3,7 @@ require 'sinatra'
 require 'environment'
 
 configure do
-  set :views, "#{File.dirname(__FILE__)}/views"
+  set(:views, "#{File.dirname(__FILE__)}/views")
 end
 
 error do
@@ -23,7 +23,7 @@ end
     @pages, @projects = Project.paginated(:order => [:created_at.desc],
                                           :per_page => SiteConfig.per_page,
                                           :page => (params[:page] || 1).to_i)
-    haml :index
+    haml(:index)
   end
 end
 
@@ -31,7 +31,7 @@ end
 get '/projects/new' do
   @title = 'New Project'
   @project = Project.new
-  haml :new
+  haml(:new)
 end
 
 # create project
@@ -41,7 +41,7 @@ post '/projects' do
   if @project.save
     redirect @project.rdoc_url
   else
-    haml :new
+    haml(:new)
   end
 end
 
@@ -64,6 +64,9 @@ end
 
 # project rdoc container
 get '/projects/:owner/:name' do
-  @project = Project.first(:owner => params[:owner], :name => params[:name])
-  haml :rdoc, :layout => false
+  if @project = Project.first(:owner => params[:owner], :name => params[:name])
+    haml(:rdoc, :layout => false)
+  else
+    status(404)
+  end
 end

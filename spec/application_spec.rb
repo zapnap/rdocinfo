@@ -38,10 +38,6 @@ describe 'Application' do
   end
 
   describe 'create' do
-    before(:each) do
-      Project.any_instance.stubs(:update_rdoc).returns(true)
-    end
-
     it 'should create a new project' do
       lambda {
         post '/projects', :owner => 'zapnap', :name => 'isbn_validation'
@@ -74,6 +70,23 @@ describe 'Application' do
     it 'should return 403 if unable to create the project' do
       post '/projects/update', :payload => '{}'
       last_response.status.should == 403
+    end
+  end
+
+  describe 'show' do
+    before(:each) do
+      @project.save
+    end
+
+    it 'should display rdocs for the specified project' do
+      get '/projects/zapnap/simplepay'
+      last_response.should be_ok
+      last_response.body.should have_tag('div.title a', :text => @project.name)
+    end
+
+    it 'should return 404 if the project does not exist' do
+      get '/projects/abcdefghijklmonop/qrstuvwxyz'
+      last_response.status.should == 404
     end
   end
 
