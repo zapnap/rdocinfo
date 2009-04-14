@@ -2,7 +2,8 @@ require "#{File.dirname(__FILE__)}/spec_helper"
 
 describe 'Project' do
   before(:each) do
-    @project = Project.new(valid_attributes)
+    Project.all.destroy!
+    @project = Factory.build(:project)
   end
 
   it 'should be valid' do
@@ -19,7 +20,7 @@ describe 'Project' do
 
   describe 'validations' do
     before(:each) do
-      @project.stubs(:update_rdoc).returns(true)
+      @project.stubs(:doc).returns(@doc = stub_everything('DocBuilder'))
     end
 
     it 'should require a name' do
@@ -42,7 +43,7 @@ describe 'Project' do
 
     it 'should require a unique url' do
       @project.save
-      @project = Project.new(valid_attributes)
+      @project = Factory.build(:project)
       @project.should_not be_valid
       @project.errors[:url].should include("Url is already taken")
     end
@@ -54,37 +55,14 @@ describe 'Project' do
     end
   end
 
-  describe 'rdoc generation' do
-    before(:each) do
-      @rdoc_dir = File.expand_path(File.dirname(__FILE__) + '/rdoc')
-      @tmp_dir = File.expand_path(File.dirname(__FILE__) + '/tmp')
-      @project.stubs(:rdoc_dir).returns(@rdoc_dir)
-      @project.stubs(:clone_dir).returns(@tmp_dir)
-      FileUtils.rm_rf @rdoc_dir
-      FileUtils.rm_rf @tmp_dir
-    end
-
-    it 'should place rdoc in public directory' do
-      @project.update_rdoc
-      File.exists?("#{@rdoc_dir}/index.html").should be_true
-    end
-
-    it 'should clean clone directory after build' do
-      @project.update_rdoc
-      File.exists?("#{@tmp_dir}}").should be_false
-    end
-
-    it 'should auto-generate after save' do
-      @project.expects(:update_rdoc)
-      @project.save
-    end
+  it 'should have a document builder' do
+    DocBuilder.expects(:new).with(@project)
+    @project.doc
   end
 
-  private
-
-  def valid_attributes
-    { :name  => 'simplepay',
-      :owner => 'zapnap',
-      :url   => 'http://github.com/zapnap/simplepay' }
+  it 'should auto-generate docs after save' do
+    @project.stubs(:doc).returns(@doc = stub_everything('DocBuilder'))
+    @doc.expects(:generate)
+    @project.save
   end
 end

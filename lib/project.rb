@@ -17,42 +17,18 @@ class Project
   validates_with_method :name, :method => :check_remote
 
   after :save do
-    update_rdoc
+    # generate updated project docs
+    self.doc.generate
+  end
+
+  # documentation builder for this project
+  def doc
+    DocBuilder.new(self)
   end
 
   # GitHub clone URL for this project
   def clone_url
     "#{url.gsub('http://', 'git://')}.git"
-  end
-
-  # local directory for project cloning
-  def clone_dir
-    "#{SiteConfig.tmp_dir}/#{owner}/#{name}"
-  end
-
-  # directory where documentation is generated
-  def rdoc_dir
-    "#{SiteConfig.rdoc_dir}/#{owner}/#{name}"
-  end
-
-  # regenerate the documentation for this project
-  def update_rdoc
-    # TODO: refactor target
-    clone_repo
-    pwd = Dir.pwd
-    Dir.chdir(clone_dir)
-
-    unless readme = Dir['README*'].first
-      open('README', 'w') {}
-      readme = 'README'
-    end
-
-    # shell out to yardoc to generate documentation
-    # TODO: validate output
-    `yardoc -d #{rdoc_dir} -r #{readme} -q`
-
-    Dir.chdir(pwd)
-    clean_repo
   end
 
   # public URL where documentation for this project is viewable
@@ -67,13 +43,5 @@ class Project
     true
   rescue RestClient::RequestFailed, RestClient::ResourceNotFound
     [false, "Name must refer to a valid GitHub repository"]
-  end
-
-  def clone_repo
-    `git clone #{clone_url} #{clone_dir}`
-  end
-
-  def clean_repo
-    `rm -rf #{clone_dir}`
   end
 end

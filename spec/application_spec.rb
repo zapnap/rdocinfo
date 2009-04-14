@@ -9,8 +9,8 @@ describe 'Application' do
   
   before(:each) do
     Project.all.destroy!
+    Project.any_instance.stubs(:doc).returns(@doc = stub_everything('DocBuilder'))
     @project = Factory.build(:project)
-    @project.stubs(:update_rdoc).returns(true)
     @project.save
   end
 
