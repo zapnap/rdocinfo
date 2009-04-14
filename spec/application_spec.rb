@@ -63,14 +63,17 @@ describe 'Application' do
       last_response.status.should == 202
     end
 
-    it 'should return 404 if the project does not exist' do
-      Project.expects(:first).returns(nil)
-      post '/projects/update', :payload => json_data
-      last_response.status.should == 404
+    it 'should auto-create the project' do
+      Project.all.destroy!
+      lambda {
+        post '/projects/update', :payload => json_data
+      }.should change(Project, :count).by(1)
+      last_response.status.should == 202
     end
 
-    it 'should auto-create a project' do
-      pending
+    it 'should return 403 if unable to create the project' do
+      post '/projects/update', :payload => '{}'
+      last_response.status.should == 403
     end
   end
 

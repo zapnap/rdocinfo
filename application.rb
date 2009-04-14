@@ -48,11 +48,17 @@ end
 # post-receive hook for github
 post '/projects/update' do
   json = JSON.parse(params[:payload])
-  if @project = Project.first(:url => json['repository']['url'])
+  if json['repository'] && @project = Project.first(:url => json['repository']['url'])
     @project.update_attributes(:commit_hash => json['after'])
-    status 202
+    status(202)
   else
-    status 404
+    # create project
+    if (repository = json['repository']) && (owner = repository['owner'])
+      @project = Project.new(:name => repository['name'], :owner => owner['name'], :url => repository['url'])
+      @project.save ? status(202) : status(403)
+    else
+      status(403)
+    end
   end
 end
 
