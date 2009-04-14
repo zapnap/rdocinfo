@@ -1,7 +1,15 @@
+- if params[:page].nil? || params[:page].to_i == 1
+  .welcome
+    %p Welcome to <span class='callout'>rdoc.info</span>, your source for open source Ruby documentation.
+    %img{:src => '/images/cthulhu.png', :width => 150, :height => 138, :style => 'float: right;'}
+    %p We create swanky online API docs from the freshest <a href='http://github.com'>GitHub</a> projects so you don't have to. Also, we're <span class='callout'>Cthulhu-approved</span>.
+    %p Problems or suggestions? <a href='#' rel='info/rdoc.info' class='email'>contact us</a>
+
 %ul.projects
   - @projects.each do |project|
     %li.project{:id => "project-#{project.id}"}
       %a{:href => project.rdoc_url}= "#{project.owner} / #{project.name}"
+.clear
 
 = paginate((params[:page] || 1).to_i, @pages, :default_css => false)
 

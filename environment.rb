@@ -18,7 +18,7 @@ configure do
                  :rdoc_dir => "#{File.expand_path(File.dirname(__FILE__))}/public/projects",
                  :tmp_dir  => "#{File.expand_path(File.dirname(__FILE__))}/tmp",
                  :url_base => 'http://localhost:4567/',
-                 :per_page => 20
+                 :per_page => 15
                )
 
   DataMapper.setup(:default, "sqlite3:///#{File.expand_path(File.dirname(__FILE__))}/#{Sinatra::Base.environment}.db")

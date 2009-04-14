@@ -4,6 +4,7 @@
 * "working" spinner display for new project creation
 * rdoc generation validation (what if it doesn't generate for some reason?)
 
+* translate markdown / textile READMEs
 * index pages for individual project owners
 * refactor Project#update_rdoc
 

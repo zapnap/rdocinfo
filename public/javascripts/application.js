@@ -3,4 +3,8 @@ $(document).ready(function() {
     function() { $(this).addClass('highlight'); },
     function() { $(this).removeClass('highlight'); }
   );
+  $('a.email').each(function(){
+    e = this.rel.replace('/','@');
+    this.href = 'mailto:' + e;
+  });
 });
