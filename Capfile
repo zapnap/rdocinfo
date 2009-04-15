@@ -28,11 +28,8 @@ namespace :deploy do
   end
 
   task :after_update_code, :roles => [:app] do
-    sudo "rm #{release_path}/environment.rb"
-    sudo "ln -s #{shared_path}/config/environment.rb #{release_path}/environment.rb"
-
-    sudo "ln -s #{shared_path}/log #{release_path}/log"
-    sudo "ln -s #{shared_path}/tmp #{release_path}/tmp"
-    sudo "ln -s #{shared_path}/system/projects #{release_path}/public/projects"
+    run "rm #{release_path}/environment.rb"
+    run "ln -s #{shared_path}/config/environment.rb #{release_path}/environment.rb"
+    run "ln -s #{shared_path}/assets/projects #{release_path}/public/projects"
   end
 end
