@@ -79,13 +79,39 @@ describe 'Application' do
     end
 
     it 'should display rdocs for the specified project' do
+      @project.doc.expects(:exists?).returns(true)
       get '/projects/zapnap/simplepay'
       last_response.should be_ok
       last_response.body.should have_tag('div.title a', :text => @project.name)
     end
 
+    it 'should display a work in progress page if the rdocs have not been built yet' do
+      @project.doc.expects(:exists?).returns(false)
+      get '/projects/zapnap/simplepay'
+      last_response.should be_ok
+      last_response.body.should have_tag('div.progress')
+    end
+
     it 'should return 404 if the project does not exist' do
       get '/projects/abcdefghijklmonop/qrstuvwxyz'
+      last_response.status.should == 404
+    end
+  end
+
+  describe 'build status' do
+    before(:each) do
+      @project.save
+    end
+
+    it 'should return success if the project rdoc has been built'  do
+      @project.doc.expects(:exists?).returns(true)
+      get '/projects/zapnap/simplepay/status'
+      last_response.status.should == 205
+    end
+
+    it 'should return 404 if the project rdocs do not exist' do
+      @project.doc.expects(:exists?).returns(false)
+      get '/projects/zapnap/simplepay/status'
       last_response.status.should == 404
     end
   end

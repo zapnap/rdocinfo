@@ -1,4 +1,6 @@
 *.db
+*.log
 log/*.log
 tmp/*
 public/projects/*
+.yardoc

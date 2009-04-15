@@ -10,3 +10,7 @@ Dependencies and all configuration is done in <tt>environment.rb</tt>. Your data
 
   rake db:migrate
   ruby application.rb
+
+== Credits
+
+RdocInfo is (c) 2009 Nick Plante (http://github.com/zapnap). See License file for details. Asynchronous processing stuffs is ripped from Spork by Ron Evans (http://github.com/deadprogrammer).

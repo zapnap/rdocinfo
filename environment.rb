@@ -9,6 +9,7 @@ require 'merb-pagination'
 require 'json'
 require 'rest_client'
 require 'ostruct'
+require 'logger'
 
 require 'sinatra' unless defined?(Sinatra)
 
@@ -18,7 +19,8 @@ configure do
                  :rdoc_dir => "#{File.expand_path(File.dirname(__FILE__))}/public/projects",
                  :tmp_dir  => "#{File.expand_path(File.dirname(__FILE__))}/tmp",
                  :url_base => 'http://localhost:4567/',
-                 :per_page => 15
+                 :per_page => 15,
+                 :task_log => "#{File.expand_path(File.dirname(__FILE__))}/task.log"
                )
 
   DataMapper.setup(:default, "sqlite3:///#{File.expand_path(File.dirname(__FILE__))}/#{Sinatra::Base.environment}.db")

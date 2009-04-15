@@ -74,8 +74,27 @@ end
 # project rdoc container
 get '/projects/:owner/:name' do
   if @project = Project.first(:owner => params[:owner], :name => params[:name])
-    haml(:rdoc, :layout => false)
+    if @project.doc.exists?
+      haml(:rdoc, :layout => false)
+    else
+      @title = @project.name
+      haml(:working)
+    end
   else
     status(404)
   end
+end
+
+# status inquiry
+get '/projects/:owner/:name/status' do
+  if (@project = Project.first(:owner => params[:owner], :name => params[:name])) && @project.doc.exists?
+    status(205) # reset content
+  else
+    status(404) # work in progress, content not available yet
+  end
+end
+
+get '/test' do
+  @title = 'test'
+  haml :working
 end

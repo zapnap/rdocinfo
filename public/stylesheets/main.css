@@ -61,13 +61,14 @@ p {
   margin: 4em auto 0;
   border: 4px solid #666;
   background-color: #222;
-  color: #ccc;
+  color: #CCC;
 }
 .centerbox p a {
-  color: #fff;
+  color: #FFF;
 }
 .centerbox .title {
   font-weight: bold;
+  text-align: center;
   margin-top: 0.5em;
   color: #D8FA3C;
 }
@@ -202,6 +203,19 @@ input.highlight {
   color: #222;
   text-decoration: none;
   border-bottom: 2px solid #222;
+}
+.progress {
+  width: 255px;
+  height: 70px;
+  margin: 0 auto;
+}
+.progress .box {
+  width: 25px;
+  height: 25px;
+  background: #D8FA3C;
+  border: 3px solid #666;
+  float: left;
+  margin: 0 10px;
 }
 .clear { clear: both; }
 
