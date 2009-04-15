@@ -6,12 +6,7 @@ class DocBuilder
 
   # Generate RDocs for the project
   def generate
-    cmd = "cd #{clone_dir} && yardoc -d #{rdoc_dir} -r #{readme_file} -q"
-    if Sinatra::Base.environment == :test
-      setup { `#{cmd}` }
-    else
-      asynch_setup { `#{cmd}` }
-    end
+    (Sinatra::Base.environment == :test) ? run_yardoc : run_yardoc_asynch
   end
 
   # Local tmp directory used for project cloning
@@ -22,11 +17,6 @@ class DocBuilder
   # Local directory where rdocs will be generated
   def rdoc_dir
     "#{SiteConfig.rdoc_dir}/#{@project.owner}/#{@project.name}"
-  end
-
-  # Readme file for RDoc output
-  def readme_file
-    @readme_file ||= generate_readme_file
   end
 
   # Does generated documentation exist?
@@ -41,20 +31,22 @@ class DocBuilder
 
   private
 
-  def asynch_setup(&block)
-    spock = Spork.spork(:logger => logger) do
-      setup(&block)
-    end
+  def run_yardoc
+    clone_repo
+    `yardoc -d #{rdoc_dir} -r #{readme_file} -q`
+    clean_repo
   end
 
-  def setup(&block)
-    clone_repo
-    yield
-    clean_repo
+  def run_yardoc_asynch
+    Spork.spork(:logger => logger) { run_yardoc }
   end
 
   def logger
     @logger ||= Logger.new(SiteConfig.task_log)
+  end
+
+  def readme_file
+    @readme_file ||= generate_readme_file
   end
 
   def generate_readme_file
@@ -68,6 +60,7 @@ class DocBuilder
 
   def clone_repo
     `git clone #{@project.clone_url} #{clone_dir}`
+    Dir.chdir(clone_dir)
   end
 
   def clean_repo

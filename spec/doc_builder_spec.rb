@@ -37,15 +37,17 @@ describe 'DocBuilder' do
       File.exists?("#{@tmp_dir}}").should be_false
     end
 
+    # TODO: refactor target (private method)
     it 'should choose a README file' do
       Dir.expects(:[]).returns(['README.rdoc'])
-      @doc.readme_file.should == 'README.rdoc'
+      @doc.send(:readme_file).should == 'README.rdoc'
     end
 
+    # TODO: refactor target (private method)
     it 'should create an empty README file if one cannot be found' do
       Dir.expects(:[]).returns([])
       File.stubs(:open).returns(nil) # don't actually write the file
-      @doc.readme_file.should == 'README' # generated
+      @doc.send(:readme_file).should == 'README' # generated
     end
 
     it 'should exist on disk' do
