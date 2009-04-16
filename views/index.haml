@@ -8,7 +8,7 @@
 %ul.projects
   - @projects.each do |project|
     %li.project{:id => "project-#{project.id}"}
-      %a{:href => project.rdoc_url}= "#{project.owner} / #{project.name}"
+      %a{:href => project.doc_url}= "#{project.owner} / #{project.name}"
 .clear
 
 = paginate((params[:page] || 1).to_i, @pages, :default_css => false)

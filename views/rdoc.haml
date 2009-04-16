@@ -9,10 +9,10 @@
         .title
           %a{:href => '/'} rdoc.info
           %span.separator ::
-          %a{:href => @project.rdoc_url}= @project.name
+          %a{:href => @project.doc_url}= @project.name
         .info
           = "Generated at #{@project.updated_at.strftime('%D %T %Z')}"
           = "from #{@project.commit_hash}" unless @project.commit_hash.nil?
           %a{:href => @project.url} [src]
       .container
-        %iframe{:src => "#{@project.rdoc_url}/index.html", :height => '100%'}
+        %iframe{:src => "#{@project.doc.rdoc_url}/index.html", :height => '100%'}

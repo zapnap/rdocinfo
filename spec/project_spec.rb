@@ -10,8 +10,8 @@ describe 'Project' do
     @project.should be_valid
   end
 
-  it 'should have an rdoc url' do
-    @project.rdoc_url.should == '/projects/zapnap/simplepay'
+  it 'should have a public doc url' do
+    @project.doc_url.should == '/projects/zapnap/simplepay'
   end
 
   it 'should have a clone url' do

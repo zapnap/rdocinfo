@@ -2,5 +2,5 @@
 *.log
 log/*.log
 tmp/*
-public/projects/*
+public/rdoc/*
 .yardoc

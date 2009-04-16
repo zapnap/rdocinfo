@@ -30,6 +30,6 @@ namespace :deploy do
   task :after_update_code, :roles => [:app] do
     run "rm #{release_path}/environment.rb"
     run "ln -s #{shared_path}/config/environment.rb #{release_path}/environment.rb"
-    run "ln -s #{shared_path}/assets/projects #{release_path}/public/projects"
+    run "ln -s #{shared_path}/assets/rdoc #{release_path}/public/rdoc"
   end
 end

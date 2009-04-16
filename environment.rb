@@ -16,8 +16,9 @@ require 'sinatra' unless defined?(Sinatra)
 configure do
   SiteConfig = OpenStruct.new(
                  :title    => 'rdoc.info',
-                 :rdoc_dir => "#{File.expand_path(File.dirname(__FILE__))}/public/projects",
-                 :tmp_dir  => "#{File.expand_path(File.dirname(__FILE__))}/tmp",
+                 :rdoc_url => '/rdoc',
+                 :rdoc_dir => "#{File.expand_path(File.dirname(__FILE__))}/public/rdoc",
+                 :tmp_dir  => "#{File.expand_path(File.dirname(__FILE__))}/tmp/projects",
                  :url_base => 'http://localhost:4567/',
                  :per_page => 15,
                  :task_log => "#{File.expand_path(File.dirname(__FILE__))}/task.log"

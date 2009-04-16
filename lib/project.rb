@@ -32,7 +32,7 @@ class Project
   end
 
   # public URL where documentation for this project is viewable
-  def rdoc_url
+  def doc_url
     "/projects/#{owner}/#{name}"
   end
 

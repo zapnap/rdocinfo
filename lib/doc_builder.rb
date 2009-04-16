@@ -19,6 +19,10 @@ class DocBuilder
     "#{SiteConfig.rdoc_dir}/#{@project.owner}/#{@project.name}"
   end
 
+  def rdoc_url
+    "#{SiteConfig.rdoc_url}/#{@project.owner}/#{@project.name}"
+  end
+
   # Does generated documentation exist?
   def exists?
     File.exists?("#{rdoc_dir}/index.html")

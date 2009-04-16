@@ -10,6 +10,10 @@ describe 'DocBuilder' do
     @tmp_dir = File.expand_path(File.dirname(__FILE__) + '/tmp')
   end
 
+  it 'should have an rdoc url' do
+    @doc.rdoc_url.should == "#{SiteConfig.rdoc_url}/zapnap/simplepay"
+  end
+
   it 'should have an rdoc dir' do
     @doc.rdoc_dir.should == "#{SiteConfig.rdoc_dir}/zapnap/simplepay"
   end
