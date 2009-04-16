@@ -1,9 +1,9 @@
 .explanation
-  %p Are we missing documentation for your favorite Ruby project? Use the following form to submit a request and we'll add it immediately. Note that we currently only support projects hosted on <a href='http://github.com'>GitHub</a>. If you're the project author, make sure to add the following post-commit hook:
+  %p Are we missing documentation for your favorite Ruby library? Use the following form to submit a request and we'll add it immediately. Note that we currently only support projects hosted on <a href='http://github.com'>GitHub</a>. Or if you're the project author, simply add the following post-commit hook:
 
   %code http://rdoc.info/projects/update
 
-  %p By adding this hook, our documentation will automatically regenerate whenever you push updates to your code.
+  %p By adding this hook, our documentation will automatically regenerate<sup><a href='#note'>1</a></sup> whenever you push updates to your code.
 
 - unless @project.errors.empty?
   .errors
@@ -24,3 +24,6 @@
     .field
       %input{:type => 'text', :name => 'name', :value => @project.name}
   %input.button{:type => 'submit', :value => 'Submit'}
+
+.explanation.small
+  %p <a name='note'>1.</a> We proudly use Loren Segal's <a href='http://github.com/lsegal/yard'>YARD</a> library to generate documentation. This means that you can take advantage of meta <tt>@tags</tt> alongside regular code. If you'd like to customize the classes that we index, create a <tt>.document</tt> file in the root directory of your GitHub project. Each line of the file should contain a file or pattern to include (default: <tt>lib/**/*.rb</tt>).

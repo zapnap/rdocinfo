@@ -152,6 +152,14 @@ ul.projects li.highlight a {
 .explanation {
   width: 600px;
 }
+.small {
+  font-size: 0.7em; 
+  color: #666;
+}
+.explanation.small {
+  margin-top: 4em;
+  border-top: 1px dotted #666;
+}
 .label {
   font-weight: bold;
   color: #666;
