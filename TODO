@@ -7,3 +7,5 @@
 * index pages for individual project owners
 * indicate if post-commit hook is installed for a project
 * docs for different branches / tags?
+
+* custom yard template (anti-frames?)
