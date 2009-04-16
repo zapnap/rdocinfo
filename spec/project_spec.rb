@@ -18,6 +18,11 @@ describe 'Project' do
     @project.clone_url.should == 'git://github.com/zapnap/simplepay.git'
   end
 
+  it 'should have a truncated hash' do
+    @project.commit_hash = '2ceae37d5ddb27afd6c970fbe13248e83b8b0c6f'
+    @project.truncated_hash.should == '2ceae37d...'
+  end
+
   describe 'validations' do
     before(:each) do
       @project.stubs(:doc).returns(@doc = stub_everything('DocBuilder'))

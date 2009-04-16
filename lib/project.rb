@@ -36,6 +36,11 @@ class Project
     "/projects/#{owner}/#{name}"
   end
 
+  # truncate commit hash for display
+  def truncated_hash
+    (commit_hash || '').slice(0, 8) + '...'
+  end
+
   private
 
   def check_remote
