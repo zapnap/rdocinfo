@@ -7,4 +7,7 @@ $(document).ready(function() {
     e = this.rel.replace('/','@');
     this.href = 'mailto:' + e;
   });
+  $('form').submit(function() { 
+    $(':button',this).attr('disabled','disabled');
+  });
 });
