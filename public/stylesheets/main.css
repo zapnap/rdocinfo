@@ -53,6 +53,9 @@ p {
   font-weight: bold;
   text-decoration: underline;
 }
+sup {
+  font-size: 0.6em;
+}
 .centerbox {
   width: 500px;
   padding: 0 1em;
