@@ -37,7 +37,7 @@ class DocBuilder
 
   def run_yardoc
     clone_repo
-    `yardoc -d #{rdoc_dir} -r #{readme_file} -q`
+    `yardoc -d #{rdoc_dir} -r #{readme_file} -q #{included_files}`
     clean_repo
   end
 
@@ -47,6 +47,15 @@ class DocBuilder
 
   def logger
     @logger ||= Logger.new(SiteConfig.task_log)
+  end
+
+  def included_files
+    if File.exists?('.document')
+      files = File.read('.document')
+      files.split(/$\n?/).join(' ')
+    else
+      'lib/**/*.rb'
+    end
   end
 
   def readme_file

@@ -54,10 +54,30 @@ describe 'DocBuilder' do
       @doc.send(:readme_file).should == 'README' # generated
     end
 
+    # TODO: refactor target (private method)
+    it 'should use a .document file to specify included files' do
+      data = dot_document_data
+      File.expects(:exists?).returns(true)
+      File.stubs(:read).returns(data)
+      @doc.send(:included_files).should == 'README.rdoc lib/**/*.rb History.txt MIT-LICENSE.txt'
+    end
+
+    # TODO: refactor target (private method)
+    it 'should default to including all files in lib' do
+      File.expects(:exists?).returns(false)
+      @doc.send(:included_files).should == 'lib/**/*.rb'
+    end
+
     it 'should exist on disk' do
       @doc.exists?.should be_false
       @doc.generate
       @doc.exists?.should be_true
     end
+  end
+
+  private
+
+  def dot_document_data
+    File.read("#{File.dirname(__FILE__)}/example.document")
   end
 end
