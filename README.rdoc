@@ -1,6 +1,6 @@
 = RdocInfo
 
-A simple Sinatra-based web service that hosts rdocs for GitHub-based projects. Accepts updates from post-commit hooks and regenerates as needed.
+A simple Sinatra-based web service that hosts rdocs for GitHub-based projects. Accepts updates from post-commit hooks and regenerates as needed. Public service is hosted at http://rdoc.info
 
 == Configuration
 
@@ -11,3 +11,6 @@ Dependencies and all configuration is done in <tt>environment.rb</tt>. Your data
   rake db:migrate
   ruby application.rb
 
+== Contribute
+
+All contributions are welcome. See <tt>TODO</tt> for a list of specific features that have been requested or discussed.
