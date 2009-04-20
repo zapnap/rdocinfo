@@ -5,10 +5,11 @@
 
 * use a queue for handling document generation tasks
 * search API contents across projects?
-* index pages for individual project owners
+* index pages for individual project owners?
 * indicate if post-commit hook is installed for a project
 * docs for different branches / tags / releases
 
 * cache the crap out of everything (100% page cached)
+* auto-generate docs if they don't exist and have been requested
 * push it all to gh-pages for docs.github.com?
 * custom yard template (anti-frames?)
