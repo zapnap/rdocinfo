@@ -1,7 +1,6 @@
 * rdoc generation validation (what if it doesn't generate for some reason?)
 * translate markdown / textile READMEs
 * search interface for projects 
-* add an 'update' button to force doc update (if not post-commit enabled)
 
 * use a queue for handling document generation tasks
 * search API contents across projects?
