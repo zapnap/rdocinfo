@@ -228,5 +228,10 @@ input.highlight {
   float: left;
   margin: 0 10px;
 }
+form.inline {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
 .clear { clear: both; }
 

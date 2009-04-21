@@ -94,7 +94,12 @@ get '/projects/:owner/:name/status' do
   end
 end
 
-get '/test' do
-  @title = 'test'
-  haml :working
+# update pre-existing documentation
+put '/projects/:owner/:name' do
+  if @project = Project.first(:owner => params[:owner], :name => params[:name])
+    @project.update_attributes(:updated_at => Time.now) # touch and auto-generate
+    redirect @project.doc_url
+  else
+    status(404)
+  end
 end

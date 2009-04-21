@@ -116,6 +116,24 @@ describe 'Application' do
     end
   end
 
+  describe 'update' do
+    before(:each) do
+      @project.save
+    end
+
+    it 'should regenerate current documentation for the project' do
+      @project.doc.expects(:generate)
+      put '/projects/zapnap/simplepay'
+      follow_redirect!
+      last_request.url.should match(/.*projects\/zapnap\/simplepay.*$/)
+    end
+
+    it 'should return 404 if the project is not found' do
+      get '/projects/abcdefghijklmnopqrstuvwxyz'
+      last_response.status.should == 404
+    end
+  end
+
   private
 
   def json_data
