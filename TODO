@@ -1,14 +1,18 @@
-* rdoc generation validation (what if it doesn't generate for some reason?)
+Priority 1
 * translate markdown / textile READMEs
 * search interface for projects 
 
-* use a queue for handling document generation tasks
-* search API contents across projects?
+Priority 2
 * index pages for individual project owners?
-* indicate if post-commit hook is installed for a project
+* indicate in list if post-commit hook is installed for a project
 * docs for different branches / tags / releases
+* use a proper queue for handling document generation tasks
 
+Priority 3
 * cache the crap out of everything (100% page cached)
 * auto-generate docs if they don't exist and have been requested
 * push it all to gh-pages for docs.github.com?
+
+Priority 4
 * custom yard template (anti-frames?)
+* search API contents across projects?
