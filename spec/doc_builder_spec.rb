@@ -59,13 +59,13 @@ describe 'DocBuilder' do
       data = dot_document_data
       File.expects(:exists?).returns(true)
       File.stubs(:read).returns(data)
-      @doc.send(:included_files).should == 'README.rdoc lib/**/*.rb History.txt MIT-LICENSE.txt'
+      @doc.send(:included_files).should == '-q README.rdoc lib/**/*.rb History.txt MIT-LICENSE.txt'
     end
 
     # TODO: refactor target (private method)
     it 'should default to including all files in lib' do
       File.expects(:exists?).returns(false)
-      @doc.send(:included_files).should == 'lib/**/*.rb'
+      @doc.send(:included_files).should == ''
     end
 
     it 'should exist on disk' do
