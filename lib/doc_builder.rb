@@ -85,13 +85,14 @@ class DocBuilder
   end
   
   def init_pages
-    Dir.chdir(rdoc_dir)
+    FileUtils::mkdir_p SiteConfig.rdoc_dir
+    Dir.chdir(SiteConfig.rdoc_dir)
     return unless `sudo su - docs -c 'git status'` =~ /Not a git repository/
     `sudo su - docs -c 'git clone git@github.com:docs/docs.github.com.git'`
   end
   
   def push_pages
-    Dir.chdir(rdoc_dir)
+    Dir.chdir(SiteConfig.rdoc_dir)
     `sudo su - docs -c 'git add .'`
     `sudo su - docs -c 'git commit -a -m "Updating documentation for #{@project.owner}/#{@project.name}"'`
     `sudo su - docs -c 'git push origin master'`
