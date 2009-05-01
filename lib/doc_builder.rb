@@ -87,8 +87,8 @@ class DocBuilder
   def init_pages
     FileUtils::mkdir_p SiteConfig.rdoc_dir
     Dir.chdir(SiteConfig.rdoc_dir)
-    return unless `sudo su - docs -c 'git status'` =~ /Not a git repository/
-    `sudo su - docs -c 'chdir #{SiteConfig.rdoc_dir}; git init'
+    return unless `sudo su - docs -c 'chdir #{SiteConfig.rdoc_dir}; git status'` =~ /Not a git repository/
+    `sudo su - docs -c 'chdir #{SiteConfig.rdoc_dir}; git init'`
     `sudo su - docs -c 'chdir #{SiteConfig.rdoc_dir}; git remote add origin git@github.com:docs/docs.github.com.git'`
     `sudo su - docs -c 'chdir #{SiteConfig.rdoc_dir}; git pull origin master'`
   end
