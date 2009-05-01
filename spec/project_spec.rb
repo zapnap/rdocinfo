@@ -58,6 +58,19 @@ describe 'Project' do
       @project.should_not be_valid
       @project.errors[:name].should include("Name must refer to a valid GitHub repository")
     end
+    
+    it 'should not allow non-ascii characters in the name' do
+      @project.name = 'haxor?you=ls+-al+/'
+      @project.should_not be_valid
+      @project.errors[:name].should include("Name contains disallowed characters")
+    end
+
+    it 'should not allow non-ascii characters in the owner' do
+      @project.owner = 'haxor?you=ls+-al+/'
+      @project.should_not be_valid
+      @project.errors[:owner].should include("Owner contains disallowed characters")
+    end
+
   end
 
   it 'should have a document builder' do

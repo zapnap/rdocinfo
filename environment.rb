@@ -17,7 +17,7 @@ configure do
   SiteConfig = OpenStruct.new(
                  :title    => 'rdoc.info',
                  :rdoc_url => '/rdoc',
-                 :rdoc_dir => "#{File.expand_path(File.dirname(__FILE__))}/public/rdoc",
+                 :rdoc_dir => "#{File.expand_path(File.dirname(__FILE__))}/rdoc",
                  :tmp_dir  => "#{File.expand_path(File.dirname(__FILE__))}/tmp/projects",
                  :url_base => 'http://localhost:4567/',
                  :per_page => 15,

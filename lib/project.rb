@@ -14,6 +14,8 @@ class Project
 
   validates_present :name, :owner, :url
   validates_is_unique :url
+  validates_with_method :owner, :method => :reject_non_ascii_owner_chars
+  validates_with_method :name, :method => :reject_non_ascii_name_chars
   validates_with_method :name, :method => :check_remote
 
   after :save do
@@ -42,6 +44,16 @@ class Project
   end
 
   private
+
+  def reject_non_ascii_owner_chars
+    return [false, "Owner contains disallowed characters"] if owner =~ /[^0-9A-Za-z\-\_]/
+    true
+  end
+
+  def reject_non_ascii_name_chars
+    return [false, "Name contains disallowed characters"] if name =~ /[^0-9A-Za-z\-\_]/
+    true
+  end
 
   def check_remote
     RestClient.get("http://github.com/api/v1/json/#{owner}/#{name}/commits/master") unless owner.nil? || name.nil?
