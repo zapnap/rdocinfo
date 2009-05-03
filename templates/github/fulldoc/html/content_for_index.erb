@@ -1,0 +1,3 @@
+<div class="section docstring readme">
+  <p><a href="<%= readme_file ? 'readme.html' : url_for(Registry.all(:module, :class).sort_by {|o| o.path }.first) %>">Click here to go to the title page</a>.</p>
+</div>

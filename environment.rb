@@ -15,13 +15,15 @@ require 'sinatra' unless defined?(Sinatra)
 
 configure do
   SiteConfig = OpenStruct.new(
-                 :title    => 'rdoc.info',
-                 :rdoc_url => '/rdoc',
-                 :rdoc_dir => "#{File.expand_path(File.dirname(__FILE__))}/rdoc",
-                 :tmp_dir  => "#{File.expand_path(File.dirname(__FILE__))}/tmp/projects",
-                 :url_base => 'http://localhost:4567/',
-                 :per_page => 15,
-                 :task_log => "#{File.expand_path(File.dirname(__FILE__))}/task.log"
+                 :title         => 'rdoc.info',
+                 :rdoc_url      => '/rdoc',
+                 :template      => 'github',
+                 :templates_dir => "#{File.expand_path(File.dirname(__FILE__))}/templates",
+                 :rdoc_dir      => "#{File.expand_path(File.dirname(__FILE__))}/rdoc",
+                 :tmp_dir       => "#{File.expand_path(File.dirname(__FILE__))}/tmp/projects",
+                 :url_base      => 'http://localhost:4567/',
+                 :per_page      => 15,
+                 :task_log      => "#{File.expand_path(File.dirname(__FILE__))}/task.log"
                )
 
   DataMapper.setup(:default, "sqlite3:///#{File.expand_path(File.dirname(__FILE__))}/#{Sinatra::Base.environment}.db")

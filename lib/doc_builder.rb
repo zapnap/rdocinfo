@@ -19,6 +19,11 @@ class DocBuilder
   def rdoc_dir
     "#{SiteConfig.rdoc_dir}/#{@project.owner}/#{@project.name}"
   end
+  
+  # Local directory where the yard template is kept
+  def template_dir
+   "#{SiteConfig.templates_dir}/#{SiteConfig.template}"
+  end
 
   def rdoc_url
     "#{SiteConfig.rdoc_url}/#{@project.owner}/#{@project.name}"
@@ -35,11 +40,12 @@ class DocBuilder
   end
 
   private
-
+   
+  # Eventually we can include GH_BRANCH, GH_VERSION, and GH_DESCRIPTION 
   def run_yardoc
     init_pages
     clone_repo
-    `yardoc -d #{rdoc_dir} -r #{readme_file} #{included_files}`
+    `GH_USER=#{@project.owner} GH_PROJECT=#{@project.name} yardoc -d #{rdoc_dir} -t #{SiteConfig.template} -p #{template_dir}/fulldoc -e #{template_dir}/helpers.rb -r #{readme_file} #{included_files}`
     clean_repo
     push_pages
   end
@@ -51,7 +57,7 @@ class DocBuilder
   def logger
     @logger ||= Logger.new(SiteConfig.task_log)
   end
-
+  
   def included_files
     if File.exists?('.document')
       files = File.read('.document')
@@ -95,6 +101,7 @@ class DocBuilder
   
   def push_pages
     Dir.chdir(SiteConfig.rdoc_dir)
+    `git pull origin master`
     `git add .`
     `git commit -a -m "Updating documentation for #{@project.owner}/#{@project.name}"`
     `git push origin master`

@@ -1,0 +1,20 @@
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="description" content="<%= $github[:description] %>">
+
+<title>GitHub Documentation - <%= $github[:user] %>/<%= $github[:project] %></title>
+
+<link rel="stylesheet" href="<%= url_for(css_file) %>" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="<%= url_for(css_syntax_file) %>" type="text/css" charset="utf-8" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://github.com/opensearch.xml" title="GitHub">
+<link rel="fluid-icon" href="http://github.com/fluidicon.png" title="GitHub">
+<link href="http://assets0.github.com/stylesheets/bundle.css" media="screen" rel="stylesheet" type="text/css">
+<link href="http://github.com/feeds/<%= $github[:user] %>/commits/<%= $github[:project] %>/master" rel="alternate" title="Recent Commits to <%= $github[:project] %>:master" type="application/atom+xml">
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://assets3.github.com/javascripts/bundle.js"></script>              
+<script src="<%= url_for(js_app_file) %>" type="text/javascript" charset="utf-8"></script>
+
+<style type="text/css">
+  #repo_menu { border-bottom: 5px solid #ccc; margin-bottom: 1.5em; }
+  #repo_sub_menu { display: none; }
+</style>

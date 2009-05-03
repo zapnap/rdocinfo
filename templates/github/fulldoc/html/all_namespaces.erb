@@ -1,0 +1,15 @@
+<div id="nav" class="namespaces standard_form">
+  <h1>All Modules / Classes</h1>
+  <ul>
+  <% for obj in YARD::Registry.all(:module, :class).sort_by {|o| o.path } %>
+    <li><%= linkify(obj) %> <em>(<%= obj.type %>)</em></li>
+  <% end %>
+  </ul>
+  <div class="actions">
+    <div class="right">
+      <label>
+        <input type="button" value="Close" id="close_facebox"/>
+      </label>
+    </div>
+  </div>
+</div>
