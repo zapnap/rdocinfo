@@ -45,7 +45,9 @@ class DocBuilder
   def run_yardoc
     init_pages
     clone_repo
-    `GH_USER=#{@project.owner} GH_PROJECT=#{@project.name} yardoc -d #{rdoc_dir} -t #{SiteConfig.template} -p #{template_dir}/fulldoc -e #{template_dir}/helpers.rb -r #{readme_file} #{included_files}`
+    command = "GH_USER=#{@project.owner} GH_PROJECT=#{@project.name} yardoc -d #{rdoc_dir} -t #{SiteConfig.template} -p #{template_dir}/fulldoc -e #{template_dir}/helpers.rb -r #{readme_file} #{included_files}"
+    logger.puts command
+    logger.puts `#{command}`
     clean_repo
     push_pages
   end

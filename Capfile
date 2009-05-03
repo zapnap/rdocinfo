@@ -17,7 +17,7 @@ set :deploy_via, :remote_cache
 default_run_options[:pty] = true
 
 # scm settings
-set :repository, "git@github.com:zapnap/rdocinfo.git"
+set :repository, "git://github.com/zapnap/rdocinfo.git"
 set :scm, "git"
 set :branch, "master"
 set :git_enable_submodules, 1
