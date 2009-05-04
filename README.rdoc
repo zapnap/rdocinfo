@@ -4,7 +4,7 @@ A simple Sinatra-based web service that hosts rdocs for GitHub-based projects. A
 
 == Configuration
 
-Dependencies and all configuration is done in <tt>environment.rb</tt>. Your database is also set up here. DataMapper will use sqlite3 by default. Tests use the sqlite3-memory adapter (no configuration needed).
+Dependencies and all configuration is done in <tt>environment.rb</tt>. Your database is also set up here. DataMapper will use sqlite3 by default. Tests use the sqlite3-memory adapter (no configuration needed). NOTE that for docs to be generated you need to first install Jeff Rafter's fork of YARD -- see http://github.com/jeffrafter/yard
 
 == Getting Started
 
