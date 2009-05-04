@@ -1,0 +1,633 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>lsegal's yard - Class: YARD::Tags::Library - GitHub Documentation</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="description" content="">
+
+<link rel="search" type="application/opensearchdescription+xml" href="http://github.com/opensearch.xml" title="GitHub">
+<link rel="fluid-icon" href="http://github.com/fluidicon.png" title="GitHub">
+<link href="http://assets0.github.com/stylesheets/bundle.css" media="screen" rel="stylesheet" type="text/css">
+<link href="http://github.com/feeds/lsegal/commits/yard/master" rel="alternate" title="Recent Commits to yard:master" type="application/atom+xml">
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://assets3.github.com/javascripts/bundle.js"></script>              
+<script src="../../app.js" type="text/javascript" charset="utf-8"></script>
+
+<style type="text/css">
+  #repo_menu { border-bottom: 5px solid #ccc; margin-bottom: 1.5em; }
+  #repo_sub_menu { display: none; }
+</style>
+    <link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
+  </head>
+  <body>    
+    
+    
+        <div id="main">
+      <div id="header" class="">
+        <div class="site">
+          <div class="logo">
+            <a href="http://github.com/"><img src="http://github.com/images/modules/header/logov3.png" alt="github"></a>
+          </div>          
+          <div class="topsearch">
+            <form action="http://github.com/search" id="top_search_form" method="get">
+              <input class="search" name="q" type="search"> <input value="Search" type="submit">
+            </form>
+            <div class="links">
+              <a href="http://github.com/repositories">Browse</a> | <a href="http://github.com/guides">Guides</a> | <a href="http://github.com/search">Advanced</a>
+            </div>
+          </div>
+        </div>
+      </div>    
+                                                  
+      <div id="repo_menu">
+        <div class="site">
+          <ul>          
+            <li class=""><a href="http://github.com/lsegal/yard/tree/">Source</a></li>
+            <li class=""><a href="http://github.com/lsegal/yard/commits/">Commits</a></li>            
+            <li class=""><a href="http://github.com/lsegal/yard/network">Network</a></li>            
+            <li class=""><a href="http://github.com/lsegal/yard/issues">Issues</a></li>
+            <li class=""><a href="http://wiki.github.com/lsegal/yard">Wiki</a></li>
+            <li class=""><a href="http://github.com/lsegal/yard/graphs">Graphs</a></li>                    
+            <li class="active"><a href="http://docs.github.com/lsegal/yard">Documentation</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="repo_sub_menu">
+        <div class="site">
+          <div class="joiner"></div>      
+        </div>
+      </div>
+
+      <div class="site">  
+        <div id="repos">
+          <div class="repo public">
+            <div class="title">
+              <div class="path">
+                <a href="http://github.com/lsegal">lsegal</a> / <b><a href="http://github.com/lsegal/yard/tree">yard</a></b>        
+                <a id="namespaces_button" rel="lsegal/yard" href="#">
+                  <img class="button" src="http://docs.github.com/namespaces_button.png" alt="Modules and Classes"/>
+                </a>
+                <a id="methods_button" rel="lsegal/yard" href="#">
+                  <img class="button" src="http://docs.github.com/methods_button.png" alt="Methods"/>
+                </a>
+
+                <script type="text/javascript">          
+                $('#namespaces_button').click(function(){
+                  var url="/"+$(this).attr('rel')+"/namespaces/";
+                  $.gitbox(url);
+                  return false;
+                });
+
+                $('#methods_button').click(function(){
+                  var url="/"+$(this).attr('rel')+"/methods/";
+                  $.gitbox(url);
+                  return false;
+                });
+                </script>
+                
+              </div>
+            </div>
+
+            <div class="meta">
+              <table>
+                <tbody>
+                  <tr>
+                    <td class="label">Description:</td>
+                    <td><span id="repository_description" rel="http://github.com/lsegal/yard/edit/update" class="">No description available</span></td>
+                  </tr>              
+                </tbody>
+              </table>
+            </div>
+          </div>
+                                        
+          <div id="content">
+            <div class="wikistyle">
+  <div class="section class YARD_Tags_Library">
+  <h1>Class: YARD::Tags::Library</h1>
+  <div class="section docstring">
+  <p>
+Holds all the registered meta tags. If you want to extend YARD and add a
+new meta tag, you can do it in one of two ways.
+</p>
+<h2>Method #1</h2>
+<p>
+Write your own <tt>tagname_tag</tt> method that takes the raw text as a
+parameter. Example:
+</p>
+<pre class="code">
+  <span class='def def kw'>def</span> <span class='mytag_tag identifier id'>mytag_tag</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span>
+    <span class='Tag constant id'>Tag</span><span class='dot token'>.</span><span class='parse_tag identifier id'>parse_tag</span><span class='lparen token'>(</span><span class='string val'>&quot;mytag&quot;</span><span class='comma token'>,</span> <span class='text identifier id'>text</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+</pre>
+<p>
+This will allow you to use @mytag TEXT to add meta data to classes through
+the docstring. <tt><a href="Tag.html" title="Tag">Tag</a></tt> has a few convenience factory methods to create
+</p>
+<h2>Method #2</h2>
+<p>
+Use <tt>Library::define_tag!</tt> to define a new tag by passing the tag name and
+the factory method to use when creating the tag. These definitions will be
+auto expanded into ruby code similar to what is shown in method #1. If you
+do not provide a factory method to use, it will default to <tt>Tag::parse_tag</tt>
+Example:
+</p>
+<pre class="code">
+  <span class='define_tag identifier id'>define_tag</span> <span class='symbol val'>:param</span><span class='comma token'>,</span> <span class='symbol val'>:with_types_and_name</span>
+  <span class='define_tag identifier id'>define_tag</span> <span class='symbol val'>:author</span>
+</pre>
+<p>
+The first line will expand to the code:
+</p>
+<pre class="code">
+  <span class='def def kw'>def</span> <span class='param_tag identifier id'>param_tag</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span> <span class='Tag constant id'>Tag</span><span class='dot token'>.</span><span class='parse_tag_with_types_and_name identifier id'>parse_tag_with_types_and_name</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span> <span class='end end kw'>end</span>
+</pre>
+<p>
+The second line will expand to:
+</p>
+<pre class="code">
+  <span class='def def kw'>def</span> <span class='author_tag identifier id'>author_tag</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span> <span class='Tag constant id'>Tag</span><span class='dot token'>.</span><span class='parse_tag identifier id'>parse_tag</span><span class='lparen token'>(</span><span class='text identifier id'>text</span><span class='rparen token'>)</span> <span class='end end kw'>end</span>
+</pre>
+
+</div><div class="section attributes">
+  
+    <div class="">
+      <h2>Class Attributes</h2>
+      <table>
+      
+        <tr>
+          <th class="name">default_factory</td>
+          <td class="readwrite">
+            [R<span id='default_factory%3D-class_method'>W</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Sets the attribute <tt>default_factory</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <th class="name">labels</td>
+          <td class="readwrite">
+            [<span id='labels-class_method'>R</span>W] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>labels</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+      
+      </table>
+    </div>
+  
+</div><div class="section constants">
+  
+</div><div class="section constructor">
+<h2>Constructor</h2>
+  <div id="initialize-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>initialize</span><span class='args'>(factory = Library.default_factory)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/tags/library.rb', line 90</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/tags/library.rb#L90">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">90
+91
+92</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='factory identifier id'>factory</span> <span class='assign token'>=</span> <span class='Library constant id'>Library</span><span class='dot token'>.</span><span class='default_factory identifier id'>default_factory</span><span class='rparen token'>)</span>
+  <span class='@factory ivar id'>@factory</span> <span class='assign token'>=</span> <span class='factory identifier id'>factory</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+</div>  <div class="section visibilitygroup">
+      <div class="section methodsummary">
+    <h2>Public Class Method Summary</h2>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#default_factory-class_method">default_factory</span><span class='args'></span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        <p>
+Returns the value of attribute <tt>default_factory</tt>.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#define_tag-class_method">define_tag</span><span class='args'>(label, tag, meth = &quot;&quot;)</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        <p>
+Convenience method to define a new tag using one of <tt><a href="Tag.html" title="Tag">Tag</a></tt>&#8217;s factory
+methods, or the regular <tt>Tag::parse_tag</tt> factory method if none is
+supplied.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#sorted_labels-class_method">sorted_labels</span><span class='args'></span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        <p>
+Sorts the labels lexically by their label name, often used when displaying
+the tags.
+</p>
+
+        
+          <p class='returns'>
+            Returns: 
+              <span class='return_types'>
+                 <tt>Array&lt;Symbol></tt>
+              </span>
+          </p>
+        
+      </td>
+    </tr>
+  
+</table>
+  </div>
+<div class="section methoddetails">
+  <h2>Public Class Method Details</h2>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>default_factory</h3>
+</div><div id="default_factory-class_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>default_factory</span><span class='args'></span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div><div class="section docstring">
+  <p>
+Returns the value of attribute <tt>default_factory</tt>
+</p>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/tags/library.rb', line 36</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/tags/library.rb#L36">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">36
+37
+38</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='default_factory= identifier id'>default_factory=</span><span class='lparen token'>(</span><span class='factory identifier id'>factory</span><span class='rparen token'>)</span>
+  <span class='@default_factory ivar id'>@default_factory</span> <span class='assign token'>=</span> <span class='factory identifier id'>factory</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Class constant id'>Class</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='factory identifier id'>factory</span><span class='dot token'>.</span><span class='new identifier id'>new</span> <span class='colon op'>:</span> <span class='factory identifier id'>factory</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>define_tag</h3>
+</div><div id="define_tag-class_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>define_tag</span><span class='args'>(label, tag, meth = &quot;&quot;)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div><div class="section docstring">
+  <p>
+Convenience method to define a new tag using one of <tt><a href="Tag.html" title="Tag">Tag</a></tt>&#8217;s factory
+methods, or the regular <tt>Tag::parse_tag</tt> factory method if none is
+supplied.
+</p>
+
+</div><div class="section tags">
+  <h2>Meta Tags</h2>
+  <div class="param">
+  <h3>Parameters:</h3>
+  <dl>
+  
+    
+      <dt>
+        <span class='type'>[<tt>#to_s</tt>]</span>
+        <span class='name'>tag</span>
+        
+      </dt>
+      <dd>
+        <span class='desc'><p>
+the tag name to create
+</p>
+</span>
+      </dd>
+    
+  
+  </dl>
+</div>
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/tags/library.rb', line 61</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/tags/library.rb#L61">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">61
+62
+63
+64
+65
+66
+67</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='define_tag identifier id'>define_tag</span><span class='lparen token'>(</span><span class='label identifier id'>label</span><span class='comma token'>,</span> <span class='tag identifier id'>tag</span><span class='comma token'>,</span> <span class='meth identifier id'>meth</span> <span class='assign token'>=</span> <span class='string val'>&quot;&quot;</span><span class='rparen token'>)</span>
+  <span class='class_eval identifier id'>class_eval</span> <span class='string val'>&quot;def \#{tag}_tag(text, raw_text)\nsend_to_factory(\#{tag.inspect}, \#{meth.inspect}, text, raw_text)\nend\n&quot;</span><span class='comma token'>,</span> <span class='__FILE__ __file__ kw'>__FILE__</span><span class='comma token'>,</span> <span class='__LINE__ __line__ kw'>__LINE__</span>
+
+  <span class='@labels ivar id'>@labels</span> <span class='opasgn op'>||=</span> <span class='SymbolHash constant id'>SymbolHash</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='false false kw'>false</span><span class='rparen token'>)</span>
+  <span class='@labels ivar id'>@labels</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='tag identifier id'>tag</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='label identifier id'>label</span><span class='rparen token'>)</span>
+  <span class='tag identifier id'>tag</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>sorted_labels</h3>
+</div><div id="sorted_labels-class_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'><tt>Array&lt;Symbol></tt></span>
+    <span class='name'>sorted_labels</span><span class='args'></span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div><div class="section docstring">
+  <p>
+Sorts the labels lexically by their label name, often used when displaying
+the tags.
+</p>
+
+</div><div class="section tags">
+  <h2>Meta Tags</h2>
+  <div class="param">
+  <h3>Parameters:</h3>
+  <dl>
+  
+  </dl>
+</div><div class="return">
+  <h3>Returns:</h3>
+  <dl>
+  
+    <dt>
+      
+        <span class='type'>[<tt>Array&lt;Symbol></tt>, <tt><a href="../../String.html" title="String">String</a></tt>]</span>
+      
+      
+        <span class='name'></span>
+      
+      
+    </dt>
+    <dd>
+      <span class='desc'><p>
+the sorted labels as an array of the tag name and label
+</p>
+</span>
+    </dd>
+  
+  </dl>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/tags/library.rb', line 51</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/tags/library.rb#L51">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">51
+52
+53</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='sorted_labels identifier id'>sorted_labels</span>
+  <span class='labels identifier id'>labels</span><span class='dot token'>.</span><span class='sort_by identifier id'>sort_by</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='a identifier id'>a</span><span class='bitor op'>|</span> <span class='a identifier id'>a</span><span class='dot token'>.</span><span class='last identifier id'>last</span><span class='dot token'>.</span><span class='downcase identifier id'>downcase</span> <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+</div>
+          </div>
+        </div>
+      </div>  
+                  
+      <div id="footer">
+        <div class="site">
+          <div class="info">
+            <div class="links">
+              <a href="http://github.com/blog/148-github-shirts-now-available">Shirts</a> |
+              <a href="http://github.com/blog">Blog</a> |
+              <a href="http://support.github.com/">Support</a> |
+              <a href="http://github.com/training">Training</a> |
+              <a href="http://github.com/contact">Contact</a> |
+              <a href="http://groups.google.com/group/github/">Google Group</a> |
+              <a href="http://develop.github.com/">API</a> |
+              <a href="http://twitter.com/github">Status</a>
+            </div>
+            <div class="company">
+              <span id="_rrt" title="0.64509s from xc88-s00039">GitHub</span>
+              is <a href="http://logicalawesome.com/">Logical Awesome</a> ©2009 | <a href="http://github.com/site/terms">Terms of Service</a> | <a href="http://github.com/site/privacy">Privacy Policy</a>
+            </div>
+          </div>
+          <div class="sponsor">
+            <a href="http://engineyard.com/"><img src="http://github.com/images/modules/footer/engine_yard_logo.png" alt="Engine Yard"></a>
+            <div>
+              Hosting provided by our<br> partners at Engine Yard
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="coming_soon" style="display: none;">
+        This feature is coming soon.  Sit tight!
+      </div>
+
+      <div id="facebox" style="display: none;">       
+        <div class="popup">         
+          <table>           
+            <tbody>             
+              <tr>               
+                <td class="tl"></td>
+                <td class="b"></td>
+                <td class="tr"></td>             
+              </tr>             
+            <tr>               
+              <td class="b"></td>               
+              <td class="body">                 
+                <div class="content"></div>                 
+                <div class="footer">                   
+                  <a href="#" class="close"><img src="http://github.com/facebox/closelabel.gif" title="close" class="close_image"></a>                 
+                </div>               
+              </td>               
+              <td class="b"></td>             
+            </tr>             
+            <tr>               
+              <td class="bl"></td>
+              <td class="b"></td>
+              <td class="br"></td>             
+            </tr>           
+          </tbody>         
+        </table>       
+      </div>     
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+    var pageTracker = _gat._getTracker("UA-8555229-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+
+  </body>
+</html>

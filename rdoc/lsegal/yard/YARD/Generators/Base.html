@@ -1,0 +1,1336 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>lsegal's yard - Class: YARD::Generators::Base - GitHub Documentation</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="description" content="">
+
+<link rel="search" type="application/opensearchdescription+xml" href="http://github.com/opensearch.xml" title="GitHub">
+<link rel="fluid-icon" href="http://github.com/fluidicon.png" title="GitHub">
+<link href="http://assets0.github.com/stylesheets/bundle.css" media="screen" rel="stylesheet" type="text/css">
+<link href="http://github.com/feeds/lsegal/commits/yard/master" rel="alternate" title="Recent Commits to yard:master" type="application/atom+xml">
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://assets3.github.com/javascripts/bundle.js"></script>              
+<script src="../../app.js" type="text/javascript" charset="utf-8"></script>
+
+<style type="text/css">
+  #repo_menu { border-bottom: 5px solid #ccc; margin-bottom: 1.5em; }
+  #repo_sub_menu { display: none; }
+</style>
+    <link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
+  </head>
+  <body>    
+    
+    
+        <div id="main">
+      <div id="header" class="">
+        <div class="site">
+          <div class="logo">
+            <a href="http://github.com/"><img src="http://github.com/images/modules/header/logov3.png" alt="github"></a>
+          </div>          
+          <div class="topsearch">
+            <form action="http://github.com/search" id="top_search_form" method="get">
+              <input class="search" name="q" type="search"> <input value="Search" type="submit">
+            </form>
+            <div class="links">
+              <a href="http://github.com/repositories">Browse</a> | <a href="http://github.com/guides">Guides</a> | <a href="http://github.com/search">Advanced</a>
+            </div>
+          </div>
+        </div>
+      </div>    
+                                                  
+      <div id="repo_menu">
+        <div class="site">
+          <ul>          
+            <li class=""><a href="http://github.com/lsegal/yard/tree/">Source</a></li>
+            <li class=""><a href="http://github.com/lsegal/yard/commits/">Commits</a></li>            
+            <li class=""><a href="http://github.com/lsegal/yard/network">Network</a></li>            
+            <li class=""><a href="http://github.com/lsegal/yard/issues">Issues</a></li>
+            <li class=""><a href="http://wiki.github.com/lsegal/yard">Wiki</a></li>
+            <li class=""><a href="http://github.com/lsegal/yard/graphs">Graphs</a></li>                    
+            <li class="active"><a href="http://docs.github.com/lsegal/yard">Documentation</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="repo_sub_menu">
+        <div class="site">
+          <div class="joiner"></div>      
+        </div>
+      </div>
+
+      <div class="site">  
+        <div id="repos">
+          <div class="repo public">
+            <div class="title">
+              <div class="path">
+                <a href="http://github.com/lsegal">lsegal</a> / <b><a href="http://github.com/lsegal/yard/tree">yard</a></b>        
+                <a id="namespaces_button" rel="lsegal/yard" href="#">
+                  <img class="button" src="http://docs.github.com/namespaces_button.png" alt="Modules and Classes"/>
+                </a>
+                <a id="methods_button" rel="lsegal/yard" href="#">
+                  <img class="button" src="http://docs.github.com/methods_button.png" alt="Methods"/>
+                </a>
+
+                <script type="text/javascript">          
+                $('#namespaces_button').click(function(){
+                  var url="/"+$(this).attr('rel')+"/namespaces/";
+                  $.gitbox(url);
+                  return false;
+                });
+
+                $('#methods_button').click(function(){
+                  var url="/"+$(this).attr('rel')+"/methods/";
+                  $.gitbox(url);
+                  return false;
+                });
+                </script>
+                
+              </div>
+            </div>
+
+            <div class="meta">
+              <table>
+                <tbody>
+                  <tr>
+                    <td class="label">Description:</td>
+                    <td><span id="repository_description" rel="http://github.com/lsegal/yard/edit/update" class="">No description available</span></td>
+                  </tr>              
+                </tbody>
+              </table>
+            </div>
+          </div>
+                                        
+          <div id="content">
+            <div class="wikistyle">
+  <div class="section class YARD_Generators_Base">
+  <h1>Class: YARD::Generators::Base</h1>
+  <div class="section mixins">
+  <h2>Included Modules</h2>
+  <p><a href="Helpers/BaseHelper.html" title="YARD::Generators::Helpers::BaseHelper">YARD::Generators::Helpers::BaseHelper</a>, <a href="Helpers/FilterHelper.html" title="YARD::Generators::Helpers::FilterHelper">YARD::Generators::Helpers::FilterHelper</a></p>
+</div><div class="section attributes">
+  
+    <div class="">
+      <h2>Instance Attributes</h2>
+      <table>
+      
+        <tr>
+          <th class="name">current_object</td>
+          <td class="readwrite">
+            [<span id='current_object-instance_method'>R</span>W] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>current_object</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <th class="name">format</td>
+          <td class="readwrite">
+            [<span id='format-instance_method'>R</span>W] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>format</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <th class="name">ignore_serializer</td>
+          <td class="readwrite">
+            [<span id='ignore_serializer-instance_method'>R</span>W] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>ignore_serializer</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <th class="name">options</td>
+          <td class="readwrite">
+            [<span id='options-instance_method'>R</span>W] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>options</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <th class="name">serializer</td>
+          <td class="readwrite">
+            [<span id='serializer-instance_method'>R</span>W] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>serializer</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <th class="name">template</td>
+          <td class="readwrite">
+            [<span id='template-instance_method'>R</span>W] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>template</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <th class="name">verifier</td>
+          <td class="readwrite">
+            [<span id='verifier-instance_method'>R</span>W] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>verifier</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+      
+      </table>
+    </div>
+  
+</div><div class="section constants">
+  
+</div><div class="section constructor">
+<h2>Constructor</h2>
+  <div id="initialize-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>initialize</span><span class='args'>(opts = )</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/generators/base.rb', line 79</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/generators/base.rb#L79">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span> <span class='assign token'>=</span> <span class='semicolon token'>;</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='comma token'>,</span> <span class='extra_opts identifier id'>extra_opts</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='opts identifier id'>opts</span> <span class='assign token'>=</span> <span class='SymbolHash constant id'>SymbolHash</span><span class='lbrack token'>[</span>
+    <span class='symbol val'>:format</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:html</span><span class='comma token'>,</span>
+    <span class='symbol val'>:template</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:default</span><span class='comma token'>,</span>
+    <span class='symbol val'>:markup</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='symbol val'>:rdoc</span><span class='comma token'>,</span>
+    <span class='symbol val'>:serializer</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='nil nil kw'>nil</span><span class='comma token'>,</span>
+    <span class='symbol val'>:verifier</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='nil nil kw'>nil</span>
+  <span class='rbrack token'>]</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='extra_opts identifier id'>extra_opts</span><span class='rparen token'>)</span>
+  
+  <span class='@options ivar id'>@options</span> <span class='assign token'>=</span> <span class='opts identifier id'>opts</span>
+  <span class='@format ivar id'>@format</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:format</span><span class='rbrack token'>]</span>
+  <span class='@template ivar id'>@template</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:template</span><span class='rbrack token'>]</span> 
+  <span class='@serializer ivar id'>@serializer</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:serializer</span><span class='rbrack token'>]</span> 
+  <span class='@ignore_serializer ivar id'>@ignore_serializer</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:ignore_serializer</span><span class='rbrack token'>]</span>
+  <span class='@verifier ivar id'>@verifier</span> <span class='assign token'>=</span> <span class='options identifier id'>options</span><span class='lbrack token'>[</span><span class='symbol val'>:verifier</span><span class='rbrack token'>]</span>
+  
+  <span class='extend identifier id'>extend</span> <span class='Helpers constant id'>Helpers</span><span class='colon2 op'>::</span><span class='HtmlHelper constant id'>HtmlHelper</span> <span class='if if_mod kw'>if</span> <span class='format identifier id'>format</span> <span class='eq op'>==</span> <span class='symbol val'>:html</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+</div>  <div class="section visibilitygroup">
+      <div class="section methodsummary">
+    <h2>Public Class Method Summary</h2>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#before_generate-class_method">before_generate</span><span class='args'>(meth)</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#before_generate_filters-class_method">before_generate_filters</span><span class='args'></span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#before_list-class_method">before_list</span><span class='args'>(meth)</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#before_list_filters-class_method">before_list_filters</span><span class='args'></span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#before_section-class_method">before_section</span><span class='args'>(*args)</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#before_section_filters-class_method">before_section_filters</span><span class='args'></span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#register_template_path-class_method">register_template_path</span><span class='args'>(path)</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        <p>
+Convenience method to registering a template path.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#template_paths-class_method">template_paths</span><span class='args'></span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table>
+  </div>
+  <div class="section methodsummary">
+    <h2>Public Instance Method Summary</h2>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#G-instance_method">#G</span><span class='args'>(generator, opts = )</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        <p>
+Creates a generator by adding extra options to the options hash.
+</p>
+
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#generate-instance_method">#generate</span><span class='args'>(*list, &amp;block)</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#generator_name-instance_method">#generator_name</span><span class='args'></span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table><div class="included">
+  
+  <div>
+    <h2>Public Instance Methods Included from <a href="Helpers/BaseHelper.html" title="YARD::Generators::Helpers::BaseHelper">YARD::Generators::Helpers::BaseHelper</a></h2>
+    <p><span class='name'><a href="Helpers/BaseHelper.html#format_object_name_list-instance_method" title="format_object_name_list">format_object_name_list</a></span>, <span class='name'><a href="Helpers/BaseHelper.html#format_object_type-instance_method" title="format_object_type">format_object_type</a></span>, <span class='name'><a href="Helpers/BaseHelper.html#format_types-instance_method" title="format_types">format_types</a></span>, <span class='name'><a href="Helpers/BaseHelper.html#h-instance_method" title="h">h</a></span>, <span class='name'><a href="Helpers/BaseHelper.html#link_object-instance_method" title="link_object">link_object</a></span>, <span class='name'><a href="Helpers/BaseHelper.html#link_url-instance_method" title="link_url">link_url</a></span>, <span class='name'><a href="Helpers/BaseHelper.html#linkify-instance_method" title="linkify">linkify</a></span></p>
+  </div>
+  
+  <div>
+    <h2>Public Instance Methods Included from <a href="Helpers/FilterHelper.html" title="YARD::Generators::Helpers::FilterHelper">YARD::Generators::Helpers::FilterHelper</a></h2>
+    <p><span class='name'><a href="Helpers/FilterHelper.html#is_class%3F-instance_method" title="is_class?">is_class?</a></span>, <span class='name'><a href="Helpers/FilterHelper.html#is_method%3F-instance_method" title="is_method?">is_method?</a></span>, <span class='name'><a href="Helpers/FilterHelper.html#is_module%3F-instance_method" title="is_module?">is_module?</a></span>, <span class='name'><a href="Helpers/FilterHelper.html#is_namespace%3F-instance_method" title="is_namespace?">is_namespace?</a></span></p>
+  </div>
+  
+</div>
+<div class="clear"></div>
+  </div>
+<div class="section methoddetails">
+  <h2>Public Class Method Details</h2>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>before_generate</h3>
+</div><div id="before_generate-class_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>before_generate</span><span class='args'>(meth)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/generators/base.rb', line 41</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/generators/base.rb#L41">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">41
+42
+43</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='before_generate identifier id'>before_generate</span><span class='lparen token'>(</span><span class='meth identifier id'>meth</span><span class='rparen token'>)</span>
+  <span class='before_generate_filters identifier id'>before_generate_filters</span><span class='dot token'>.</span><span class='push identifier id'>push</span><span class='lparen token'>(</span><span class='meth identifier id'>meth</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>before_generate_filters</h3>
+</div><div id="before_generate_filters-class_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>before_generate_filters</span><span class='args'></span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/generators/base.rb', line 45</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/generators/base.rb#L45">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">45
+46
+47</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='before_generate_filters identifier id'>before_generate_filters</span>
+  <span class='@before_generate_filters ivar id'>@before_generate_filters</span> <span class='opasgn op'>||=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>before_list</h3>
+</div><div id="before_list-class_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>before_list</span><span class='args'>(meth)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/generators/base.rb', line 49</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/generators/base.rb#L49">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">49
+50
+51</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='before_list identifier id'>before_list</span><span class='lparen token'>(</span><span class='meth identifier id'>meth</span><span class='rparen token'>)</span>
+  <span class='before_list_filters identifier id'>before_list_filters</span><span class='dot token'>.</span><span class='push identifier id'>push</span><span class='lparen token'>(</span><span class='meth identifier id'>meth</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>before_list_filters</h3>
+</div><div id="before_list_filters-class_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>before_list_filters</span><span class='args'></span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/generators/base.rb', line 53</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/generators/base.rb#L53">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">53
+54
+55</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='before_list_filters identifier id'>before_list_filters</span>
+  <span class='@before_list_filters ivar id'>@before_list_filters</span> <span class='opasgn op'>||=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>before_section</h3>
+</div><div id="before_section-class_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>before_section</span><span class='args'>(*args)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/generators/base.rb', line 27</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/generators/base.rb#L27">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">27
+28
+29
+30
+31
+32
+33
+34
+35</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='before_section identifier id'>before_section</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='eq op'>==</span> <span class='integer val'>1</span>
+    <span class='before_section_filters identifier id'>before_section_filters</span><span class='dot token'>.</span><span class='push identifier id'>push</span> <span class='lbrack token'>[</span><span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='first identifier id'>first</span><span class='rbrack token'>]</span>
+  <span class='elsif elsif kw'>elsif</span> <span class='args identifier id'>args</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='eq op'>==</span> <span class='integer val'>2</span>
+    <span class='before_section_filters identifier id'>before_section_filters</span><span class='dot token'>.</span><span class='push identifier id'>push</span><span class='lparen token'>(</span><span class='args identifier id'>args</span><span class='rparen token'>)</span>
+  <span class='else else kw'>else</span>
+    <span class='raise identifier id'>raise</span> <span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>&quot;before_section takes a generator followed by a Proc/lambda or Symbol referencing the method name&quot;</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>before_section_filters</h3>
+</div><div id="before_section_filters-class_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>before_section_filters</span><span class='args'></span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/generators/base.rb', line 37</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/generators/base.rb#L37">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">37
+38
+39</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='before_section_filters identifier id'>before_section_filters</span>
+  <span class='@before_section_filters ivar id'>@before_section_filters</span> <span class='opasgn op'>||=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>register_template_path</h3>
+</div><div id="register_template_path-class_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>register_template_path</span><span class='args'>(path)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div><div class="section docstring">
+  <p>
+Convenience method to registering a template path. Equivalent to calling:
+</p>
+<pre class="code">
+  <span class='GeneratorName constant id'>GeneratorName</span><span class='dot token'>.</span><span class='template_paths identifier id'>template_paths</span><span class='dot token'>.</span><span class='unshift identifier id'>unshift</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>
+</pre>
+
+</div><div class="section tags">
+  <h2>Meta Tags</h2>
+  <div class="param">
+  <h3>Parameters:</h3>
+  <dl>
+  
+    
+      <dt>
+        <span class='type'>[<tt><a href="../../String.html" title="String">String</a></tt>]</span>
+        <span class='name'>path</span>
+        
+      </dt>
+      <dd>
+        <span class='desc'><p>
+the pathname to look for the template
+</p>
+</span>
+      </dd>
+    
+  
+  </dl>
+</div><div class="see">
+  <h3>See Also:</h3>
+  <dl>
+    <dt></dt>
+    <dd>
+      <span class='desc'>
+        <tt><a href="#template_paths-class_method" title="template_paths">template_paths</a></tt>
+      </span>
+    </dd>
+  </dl>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/generators/base.rb', line 23</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/generators/base.rb#L23">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">23
+24
+25</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='register_template_path identifier id'>register_template_path</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>
+  <span class='template_paths identifier id'>template_paths</span><span class='dot token'>.</span><span class='unshift identifier id'>unshift</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>template_paths</h3>
+</div><div id="template_paths-class_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>template_paths</span><span class='args'></span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/generators/base.rb', line 10</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/generators/base.rb#L10">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">10
+11
+12</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='template_paths identifier id'>template_paths</span>
+  <span class='@@template_paths ivar id'>@@template_paths</span> <span class='opasgn op'>||=</span> <span class='lbrack token'>[</span><span class='TEMPLATE_ROOT constant id'>TEMPLATE_ROOT</span><span class='rbrack token'>]</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+</div><div class="section methoddetails">
+  <h2>Public Instance Method Details</h2>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>G</h3>
+</div><div id="G-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>G</span><span class='args'>(generator, opts = )</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div><div class="section docstring">
+  <p>
+Creates a generator by adding extra options to the options hash.
+</p>
+
+</div><div class="section tags">
+  <h2>Meta Tags</h2>
+  <div class="param">
+  <h3>Parameters:</h3>
+  <dl>
+  
+    
+      <dt>
+        <span class='type'>[<tt>Class</tt>]</span>
+        <span class='name'>generator</span>
+        
+      </dt>
+      <dd>
+        <span class='desc'><p>
+the generator class to use.
+</p>
+</span>
+      </dd>
+    
+  
+    
+      <dt>Options Hash <tt>opts</tt></dt>
+<dd>
+  <div class="option">
+    <table>
+      <tr>
+        <th class="name">Key Name</th>
+        <th class="default">Default Value</th>
+        <th class="type">Accepted Types</th>
+        <th class="desc">Description</th>
+      </tr>
+      
+        <tr>
+          <td class="name">:ignore_serializer</td>
+          <td class="default">
+            
+              <tt>true</tt>
+            
+          </td>
+          <td class="type">[<tt>Boolean</tt>]</td>
+          <td class="desc"><p>
+whether or not the serializer is ignored.
+</p>
+</td>
+        </tr>
+      
+    </table>
+  </div>
+</dd>
+
+    
+  
+  </dl>
+</div>
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/generators/base.rb', line 69</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/generators/base.rb#L69">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">69
+70
+71
+72</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='G constant id'>G</span><span class='lparen token'>(</span><span class='generator identifier id'>generator</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span> <span class='assign token'>=</span> <span class='semicolon token'>;</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='opts identifier id'>opts</span> <span class='assign token'>=</span> <span class='SymbolHash constant id'>SymbolHash</span><span class='lbrack token'>[</span><span class='symbol val'>:ignore_serializer</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='true true kw'>true</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
+  <span class='generator identifier id'>generator</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='options identifier id'>options</span><span class='comma token'>,</span> <span class='opts identifier id'>opts</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>generate</h3>
+</div><div id="generate-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>generate</span><span class='args'>(*list, &amp;block)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/generators/base.rb', line 102</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/generators/base.rb#L102">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='generate identifier id'>generate</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='list identifier id'>list</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='output identifier id'>output</span> <span class='assign token'>=</span> <span class='string val'>&quot;&quot;</span>
+
+  <span class='list identifier id'>list</span> <span class='assign token'>=</span> <span class='list identifier id'>list</span><span class='dot token'>.</span><span class='flatten identifier id'>flatten</span>
+  <span class='@current_object ivar id'>@current_object</span> <span class='assign token'>=</span> <span class='Registry constant id'>Registry</span><span class='dot token'>.</span><span class='root identifier id'>root</span>
+  <span class='return return kw'>return</span> <span class='output identifier id'>output</span> <span class='if if_mod kw'>if</span> <span class='FalseClass constant id'>FalseClass</span> <span class='eqq op'>===</span> <span class='run_before_list identifier id'>run_before_list</span><span class='lparen token'>(</span><span class='list identifier id'>list</span><span class='rparen token'>)</span>
+
+  <span class='serializer identifier id'>serializer</span><span class='dot token'>.</span><span class='before_serialize identifier id'>before_serialize</span> <span class='if if_mod kw'>if</span> <span class='serializer identifier id'>serializer</span> <span class='andop op'>&amp;&amp;</span> <span class='notop op'>!</span><span class='ignore_serializer identifier id'>ignore_serializer</span>
+  
+  <span class='list identifier id'>list</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='object identifier id'>object</span><span class='bitor op'>|</span>
+    <span class='next next kw'>next</span> <span class='unless unless_mod kw'>unless</span> <span class='object identifier id'>object</span> <span class='andop op'>&amp;&amp;</span> <span class='object identifier id'>object</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='CodeObjects constant id'>CodeObjects</span><span class='colon2 op'>::</span><span class='Base constant id'>Base</span><span class='rparen token'>)</span>
+    
+    <span class='objout identifier id'>objout</span> <span class='assign token'>=</span> <span class='string val'>&quot;&quot;</span>
+    <span class='@current_object ivar id'>@current_object</span> <span class='assign token'>=</span> <span class='object identifier id'>object</span>
+
+    <span class='next next kw'>next</span> <span class='if if_mod kw'>if</span> <span class='call_verifier identifier id'>call_verifier</span><span class='lparen token'>(</span><span class='object identifier id'>object</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='FalseClass constant id'>FalseClass</span><span class='rparen token'>)</span>
+    <span class='next next kw'>next</span> <span class='if if_mod kw'>if</span> <span class='run_before_generate identifier id'>run_before_generate</span><span class='lparen token'>(</span><span class='object identifier id'>object</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='FalseClass constant id'>FalseClass</span><span class='rparen token'>)</span>
+    
+    <span class='objout identifier id'>objout</span> <span class='lshft op'>&lt;&lt;</span> <span class='render_sections identifier id'>render_sections</span><span class='lparen token'>(</span><span class='object identifier id'>object</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span> 
+
+    <span class='if if kw'>if</span> <span class='serializer identifier id'>serializer</span> <span class='andop op'>&amp;&amp;</span> <span class='notop op'>!</span><span class='ignore_serializer identifier id'>ignore_serializer</span> <span class='andop op'>&amp;&amp;</span> <span class='notop op'>!</span><span class='objout identifier id'>objout</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+      <span class='serializer identifier id'>serializer</span><span class='dot token'>.</span><span class='serialize identifier id'>serialize</span><span class='lparen token'>(</span><span class='object identifier id'>object</span><span class='comma token'>,</span> <span class='objout identifier id'>objout</span><span class='rparen token'>)</span> 
+    <span class='end end kw'>end</span>
+    <span class='output identifier id'>output</span> <span class='lshft op'>&lt;&lt;</span> <span class='objout identifier id'>objout</span>
+  <span class='end end kw'>end</span>
+  
+  <span class='if if kw'>if</span> <span class='serializer identifier id'>serializer</span> <span class='andop op'>&amp;&amp;</span> <span class='notop op'>!</span><span class='ignore_serializer identifier id'>ignore_serializer</span>
+    <span class='serializer identifier id'>serializer</span><span class='dot token'>.</span><span class='after_serialize identifier id'>after_serialize</span><span class='lparen token'>(</span><span class='output identifier id'>output</span><span class='rparen token'>)</span> 
+  <span class='end end kw'>end</span>
+  <span class='output identifier id'>output</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>generator_name</h3>
+</div><div id="generator_name-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>generator_name</span><span class='args'></span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/generators/base.rb', line 98</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/generators/base.rb#L98">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">98
+99
+100</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='generator_name identifier id'>generator_name</span>
+  <span class='self self kw'>self</span><span class='dot token'>.</span><span class='class identifier id'>class</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='split identifier id'>split</span><span class='lparen token'>(</span><span class='string val'>&quot;::&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='last identifier id'>last</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/Generator$/</span><span class='comma token'>,</span> <span class='string val'>''</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='downcase identifier id'>downcase</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+</div>
+          </div>
+        </div>
+      </div>  
+                  
+      <div id="footer">
+        <div class="site">
+          <div class="info">
+            <div class="links">
+              <a href="http://github.com/blog/148-github-shirts-now-available">Shirts</a> |
+              <a href="http://github.com/blog">Blog</a> |
+              <a href="http://support.github.com/">Support</a> |
+              <a href="http://github.com/training">Training</a> |
+              <a href="http://github.com/contact">Contact</a> |
+              <a href="http://groups.google.com/group/github/">Google Group</a> |
+              <a href="http://develop.github.com/">API</a> |
+              <a href="http://twitter.com/github">Status</a>
+            </div>
+            <div class="company">
+              <span id="_rrt" title="0.64509s from xc88-s00039">GitHub</span>
+              is <a href="http://logicalawesome.com/">Logical Awesome</a> ©2009 | <a href="http://github.com/site/terms">Terms of Service</a> | <a href="http://github.com/site/privacy">Privacy Policy</a>
+            </div>
+          </div>
+          <div class="sponsor">
+            <a href="http://engineyard.com/"><img src="http://github.com/images/modules/footer/engine_yard_logo.png" alt="Engine Yard"></a>
+            <div>
+              Hosting provided by our<br> partners at Engine Yard
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="coming_soon" style="display: none;">
+        This feature is coming soon.  Sit tight!
+      </div>
+
+      <div id="facebox" style="display: none;">       
+        <div class="popup">         
+          <table>           
+            <tbody>             
+              <tr>               
+                <td class="tl"></td>
+                <td class="b"></td>
+                <td class="tr"></td>             
+              </tr>             
+            <tr>               
+              <td class="b"></td>               
+              <td class="body">                 
+                <div class="content"></div>                 
+                <div class="footer">                   
+                  <a href="#" class="close"><img src="http://github.com/facebox/closelabel.gif" title="close" class="close_image"></a>                 
+                </div>               
+              </td>               
+              <td class="b"></td>             
+            </tr>             
+            <tr>               
+              <td class="bl"></td>
+              <td class="b"></td>
+              <td class="br"></td>             
+            </tr>           
+          </tbody>         
+        </table>       
+      </div>     
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+    var pageTracker = _gat._getTracker("UA-8555229-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+
+  </body>
+</html>

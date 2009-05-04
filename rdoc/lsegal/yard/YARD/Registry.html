@@ -1,0 +1,1341 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>lsegal's yard - Class: YARD::Registry - GitHub Documentation</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="description" content="">
+
+<link rel="search" type="application/opensearchdescription+xml" href="http://github.com/opensearch.xml" title="GitHub">
+<link rel="fluid-icon" href="http://github.com/fluidicon.png" title="GitHub">
+<link href="http://assets0.github.com/stylesheets/bundle.css" media="screen" rel="stylesheet" type="text/css">
+<link href="http://github.com/feeds/lsegal/commits/yard/master" rel="alternate" title="Recent Commits to yard:master" type="application/atom+xml">
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://assets3.github.com/javascripts/bundle.js"></script>              
+<script src="../app.js" type="text/javascript" charset="utf-8"></script>
+
+<style type="text/css">
+  #repo_menu { border-bottom: 5px solid #ccc; margin-bottom: 1.5em; }
+  #repo_sub_menu { display: none; }
+</style>
+    <link rel="stylesheet" href="../style.css" type="text/css" charset="utf-8" />
+  </head>
+  <body>    
+    
+    
+        <div id="main">
+      <div id="header" class="">
+        <div class="site">
+          <div class="logo">
+            <a href="http://github.com/"><img src="http://github.com/images/modules/header/logov3.png" alt="github"></a>
+          </div>          
+          <div class="topsearch">
+            <form action="http://github.com/search" id="top_search_form" method="get">
+              <input class="search" name="q" type="search"> <input value="Search" type="submit">
+            </form>
+            <div class="links">
+              <a href="http://github.com/repositories">Browse</a> | <a href="http://github.com/guides">Guides</a> | <a href="http://github.com/search">Advanced</a>
+            </div>
+          </div>
+        </div>
+      </div>    
+                                                  
+      <div id="repo_menu">
+        <div class="site">
+          <ul>          
+            <li class=""><a href="http://github.com/lsegal/yard/tree/">Source</a></li>
+            <li class=""><a href="http://github.com/lsegal/yard/commits/">Commits</a></li>            
+            <li class=""><a href="http://github.com/lsegal/yard/network">Network</a></li>            
+            <li class=""><a href="http://github.com/lsegal/yard/issues">Issues</a></li>
+            <li class=""><a href="http://wiki.github.com/lsegal/yard">Wiki</a></li>
+            <li class=""><a href="http://github.com/lsegal/yard/graphs">Graphs</a></li>                    
+            <li class="active"><a href="http://docs.github.com/lsegal/yard">Documentation</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="repo_sub_menu">
+        <div class="site">
+          <div class="joiner"></div>      
+        </div>
+      </div>
+
+      <div class="site">  
+        <div id="repos">
+          <div class="repo public">
+            <div class="title">
+              <div class="path">
+                <a href="http://github.com/lsegal">lsegal</a> / <b><a href="http://github.com/lsegal/yard/tree">yard</a></b>        
+                <a id="namespaces_button" rel="lsegal/yard" href="#">
+                  <img class="button" src="http://docs.github.com/namespaces_button.png" alt="Modules and Classes"/>
+                </a>
+                <a id="methods_button" rel="lsegal/yard" href="#">
+                  <img class="button" src="http://docs.github.com/methods_button.png" alt="Methods"/>
+                </a>
+
+                <script type="text/javascript">          
+                $('#namespaces_button').click(function(){
+                  var url="/"+$(this).attr('rel')+"/namespaces/";
+                  $.gitbox(url);
+                  return false;
+                });
+
+                $('#methods_button').click(function(){
+                  var url="/"+$(this).attr('rel')+"/methods/";
+                  $.gitbox(url);
+                  return false;
+                });
+                </script>
+                
+              </div>
+            </div>
+
+            <div class="meta">
+              <table>
+                <tbody>
+                  <tr>
+                    <td class="label">Description:</td>
+                    <td><span id="repository_description" rel="http://github.com/lsegal/yard/edit/update" class="">No description available</span></td>
+                  </tr>              
+                </tbody>
+              </table>
+            </div>
+          </div>
+                                        
+          <div id="content">
+            <div class="wikistyle">
+  <div class="section class YARD_Registry">
+  <h1>Class: YARD::Registry</h1>
+  <div class="section mixins">
+  <h2>Included Modules</h2>
+  <p>Singleton</p>
+</div><div class="section attributes">
+  
+    <div class="">
+      <h2>Class Attributes</h2>
+      <table>
+      
+        <tr>
+          <th class="name">objects</td>
+          <td class="readwrite">
+            [<span id='objects-class_method'>R</span>W] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>objects</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+      
+      </table>
+    </div>
+  
+    <div class="">
+      <h2>Instance Attributes</h2>
+      <table>
+      
+        <tr>
+          <th class="name">namespace</td>
+          <td class="readwrite">
+            [<span id='namespace-instance_method'>R</span><span id='namespace%3D-instance_method'>W</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Sets the attribute <tt>namespace</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <th class="name">proxy_types</td>
+          <td class="readwrite">
+            [<span id='proxy_types-instance_method'>R</span>W] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>proxy_types</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <th class="name">yardoc_file</td>
+          <td class="readwrite">
+            [<span id='yardoc_file-instance_method'>R</span><span id='yardoc_file%3D-instance_method'>W</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Sets the attribute <tt>yardoc_file</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+      
+      </table>
+    </div>
+  
+</div><div class="section constants">
+  <div class="thisclass">
+  <h2>Constants</h2>
+  <dl>
+    
+      <dt id="DEFAULT_YARDOC_FILE-constant">DEFAULT_YARDOC_FILE</dt>
+      <dd>&quot;.yardoc&quot;</dd>
+    
+  </dl>
+</div>
+
+</div><div class="section constructor">
+<h2>Constructor</h2>
+  <div id="initialize-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>initialize</span><span class='args'></span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/registry.rb', line 91</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/registry.rb#L91">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">91
+92
+93
+94</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span>
+  <span class='@yardoc_file ivar id'>@yardoc_file</span> <span class='assign token'>=</span> <span class='DEFAULT_YARDOC_FILE constant id'>DEFAULT_YARDOC_FILE</span>
+  <span class='clear identifier id'>clear</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+</div>  <div class="section visibilitygroup">
+      <div class="section methodsummary">
+    <h2>Public Class Method Summary</h2>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#clear-class_method">clear</span><span class='args'></span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#method_missing-class_method">method_missing</span><span class='args'>(meth, *args, &amp;block)</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table>
+  </div>
+  <div class="section methodsummary">
+    <h2>Public Instance Method Summary</h2>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#all-instance_method">#all</span><span class='args'>(*types)</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#at-instance_method">#at</span><span class='args'>(path)</span>
+        <span class='block'></span>
+        
+          <span class='alias'>#[]</span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#clear-instance_method">#clear</span><span class='args'></span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#delete-instance_method">#delete</span><span class='args'>(object)</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#load-instance_method">#load</span><span class='args'>(files = [], reload = false)</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#load_yardoc-instance_method">#load_yardoc</span><span class='args'>(file = yardoc_file)</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#paths-instance_method">#paths</span><span class='args'></span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#register-instance_method">#register</span><span class='args'>(object)</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#resolve-instance_method">#resolve</span><span class='args'>(namespace, name, proxy_fallback = false)</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#root-instance_method">#root</span><span class='args'></span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#save-instance_method">#save</span><span class='args'>(file = yardoc_file)</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table>
+  </div>
+<div class="section methoddetails">
+  <h2>Public Class Method Details</h2>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>clear</h3>
+</div><div id="clear-class_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>clear</span><span class='args'></span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/registry.rb', line 23</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/registry.rb#L23">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">23
+24
+25
+26</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='clear identifier id'>clear</span>
+  <span class='instance identifier id'>instance</span><span class='dot token'>.</span><span class='clear identifier id'>clear</span> 
+  <span class='objects identifier id'>objects</span><span class='dot token'>.</span><span class='clear identifier id'>clear</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>method_missing</h3>
+</div><div id="method_missing-class_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>method_missing</span><span class='args'>(meth, *args, &amp;block)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/registry.rb', line 15</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/registry.rb#L15">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">15
+16
+17
+18
+19
+20
+21</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='method_missing identifier id'>method_missing</span><span class='lparen token'>(</span><span class='meth identifier id'>meth</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='instance identifier id'>instance</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span> <span class='meth identifier id'>meth</span>
+    <span class='instance identifier id'>instance</span><span class='dot token'>.</span><span class='send identifier id'>send</span><span class='lparen token'>(</span><span class='meth identifier id'>meth</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='args identifier id'>args</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='else else kw'>else</span>
+    <span class='super super kw'>super</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+</div><div class="section methoddetails">
+  <h2>Public Instance Method Details</h2>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>all</h3>
+</div><div id="all-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>all</span><span class='args'>(*types)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/registry.rb', line 62</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/registry.rb#L62">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='all identifier id'>all</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='types identifier id'>types</span><span class='rparen token'>)</span>
+  <span class='namespace identifier id'>namespace</span><span class='dot token'>.</span><span class='values identifier id'>values</span><span class='dot token'>.</span><span class='select identifier id'>select</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='obj identifier id'>obj</span><span class='bitor op'>|</span> 
+    <span class='if if kw'>if</span> <span class='types identifier id'>types</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span>
+      <span class='obj identifier id'>obj</span> <span class='neq op'>!=</span> <span class='Registry constant id'>Registry</span><span class='dot token'>.</span><span class='root identifier id'>root</span>
+    <span class='else else kw'>else</span>
+      <span class='obj identifier id'>obj</span> <span class='neq op'>!=</span> <span class='Registry constant id'>Registry</span><span class='dot token'>.</span><span class='root identifier id'>root</span> <span class='andop op'>&amp;&amp;</span>
+        <span class='types identifier id'>types</span><span class='dot token'>.</span><span class='any? fid id'>any?</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='type identifier id'>type</span><span class='bitor op'>|</span> 
+          <span class='type identifier id'>type</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Symbol constant id'>Symbol</span><span class='rparen token'>)</span> <span class='question op'>?</span> <span class='obj identifier id'>obj</span><span class='dot token'>.</span><span class='type identifier id'>type</span> <span class='eq op'>==</span> <span class='type identifier id'>type</span> <span class='colon op'>:</span> <span class='obj identifier id'>obj</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='type identifier id'>type</span><span class='rparen token'>)</span>
+        <span class='end end kw'>end</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>at</h3>
+</div><div id="at-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>at</span><span class='args'>(path)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+<p class="aliases">
+  <span class="aka">Also known as:</span>
+  
+    <tt id="%5B%5D-instance_method">[]</tt>
+  
+</p>
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/registry.rb', line 79</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/registry.rb#L79">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">79</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='at identifier id'>at</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span> <span class='path identifier id'>path</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='empty? fid id'>empty?</span> <span class='integer val'>? </span><span class='root identifier id'>root</span> <span class='colon op'>:</span> <span class='namespace identifier id'>namespace</span><span class='lbrack token'>[</span><span class='path identifier id'>path</span><span class='rbrack token'>]</span> <span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>clear</h3>
+</div><div id="clear-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>clear</span><span class='args'></span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/registry.rb', line 85</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/registry.rb#L85">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">85
+86
+87
+88
+89</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='clear identifier id'>clear</span>
+  <span class='@namespace ivar id'>@namespace</span> <span class='assign token'>=</span> <span class='SymbolHash constant id'>SymbolHash</span><span class='dot token'>.</span><span class='new identifier id'>new</span>
+  <span class='@namespace ivar id'>@namespace</span><span class='lbrack token'>[</span><span class='symbol val'>:root</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='CodeObjects constant id'>CodeObjects</span><span class='colon2 op'>::</span><span class='RootObject constant id'>RootObject</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='nil nil kw'>nil</span><span class='comma token'>,</span> <span class='symbol val'>:root</span><span class='rparen token'>)</span>
+  <span class='@proxy_types ivar id'>@proxy_types</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>delete</h3>
+</div><div id="delete-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>delete</span><span class='args'>(object)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/registry.rb', line 83</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/registry.rb#L83">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">83</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='object identifier id'>object</span><span class='rparen token'>)</span> <span class='namespace identifier id'>namespace</span><span class='dot token'>.</span><span class='delete identifier id'>delete</span><span class='lparen token'>(</span><span class='object identifier id'>object</span><span class='dot token'>.</span><span class='path identifier id'>path</span><span class='rparen token'>)</span> <span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>load</h3>
+</div><div id="load-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>load</span><span class='args'>(files = [], reload = false)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/registry.rb', line 32</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/registry.rb#L32">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='load identifier id'>load</span><span class='lparen token'>(</span><span class='files identifier id'>files</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='reload identifier id'>reload</span> <span class='assign token'>=</span> <span class='false false kw'>false</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='files identifier id'>files</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
+    <span class='if if kw'>if</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='exists? fid id'>exists?</span><span class='lparen token'>(</span><span class='yardoc_file identifier id'>yardoc_file</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='notop op'>!</span><span class='reload identifier id'>reload</span>
+      <span class='load_yardoc identifier id'>load_yardoc</span>
+    <span class='else else kw'>else</span>
+      <span class='size identifier id'>size</span> <span class='assign token'>=</span> <span class='namespace identifier id'>namespace</span><span class='dot token'>.</span><span class='size identifier id'>size</span>
+      <span class='YARD constant id'>YARD</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='files identifier id'>files</span><span class='rparen token'>)</span>
+      <span class='save identifier id'>save</span> <span class='if if_mod kw'>if</span> <span class='namespace identifier id'>namespace</span><span class='dot token'>.</span><span class='size identifier id'>size</span> <span class='gt op'>&gt;</span> <span class='size identifier id'>size</span>
+    <span class='end end kw'>end</span>
+    <span class='true true kw'>true</span>
+  <span class='elsif elsif kw'>elsif</span> <span class='files identifier id'>files</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='String constant id'>String</span><span class='rparen token'>)</span>
+    <span class='load_yardoc identifier id'>load_yardoc</span><span class='lparen token'>(</span><span class='files identifier id'>files</span><span class='rparen token'>)</span>
+    <span class='true true kw'>true</span>
+  <span class='else else kw'>else</span>
+    <span class='raise identifier id'>raise</span> <span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>&quot;Must take a list of files to parse or the .yardoc file to load.&quot;</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>load_yardoc</h3>
+</div><div id="load_yardoc-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>load_yardoc</span><span class='args'>(file = yardoc_file)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/registry.rb', line 50</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/registry.rb#L50">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">50
+51
+52
+53
+54
+55</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='load_yardoc identifier id'>load_yardoc</span><span class='lparen token'>(</span><span class='file identifier id'>file</span> <span class='assign token'>=</span> <span class='yardoc_file identifier id'>yardoc_file</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='false false kw'>false</span> <span class='unless unless_mod kw'>unless</span> <span class='File constant id'>File</span><span class='dot token'>.</span><span class='exists? fid id'>exists?</span><span class='lparen token'>(</span><span class='file identifier id'>file</span><span class='rparen token'>)</span>
+  <span class='ns identifier id'>ns</span><span class='comma token'>,</span> <span class='pt identifier id'>pt</span> <span class='assign token'>=</span> <span class='mult op'>*</span><span class='Marshal constant id'>Marshal</span><span class='dot token'>.</span><span class='load identifier id'>load</span><span class='lparen token'>(</span><span class='IO constant id'>IO</span><span class='dot token'>.</span><span class='read identifier id'>read</span><span class='lparen token'>(</span><span class='file identifier id'>file</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+  <span class='namespace identifier id'>namespace</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='ns identifier id'>ns</span><span class='rparen token'>)</span>
+  <span class='proxy_types identifier id'>proxy_types</span><span class='dot token'>.</span><span class='update identifier id'>update</span><span class='lparen token'>(</span><span class='pt identifier id'>pt</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>paths</h3>
+</div><div id="paths-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>paths</span><span class='args'></span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/registry.rb', line 75</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/registry.rb#L75">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">75
+76
+77</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='paths identifier id'>paths</span>
+  <span class='namespace identifier id'>namespace</span><span class='dot token'>.</span><span class='keys identifier id'>keys</span><span class='dot token'>.</span><span class='map identifier id'>map</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='k identifier id'>k</span><span class='bitor op'>|</span> <span class='k identifier id'>k</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span> <span class='rbrace token'>}</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>register</h3>
+</div><div id="register-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>register</span><span class='args'>(object)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/registry.rb', line 96</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/registry.rb#L96">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">96
+97
+98
+99</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='register identifier id'>register</span><span class='lparen token'>(</span><span class='object identifier id'>object</span><span class='rparen token'>)</span>
+  <span class='return return kw'>return</span> <span class='if if_mod kw'>if</span> <span class='object identifier id'>object</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='CodeObjects constant id'>CodeObjects</span><span class='colon2 op'>::</span><span class='Proxy constant id'>Proxy</span><span class='rparen token'>)</span>
+  <span class='namespace identifier id'>namespace</span><span class='lbrack token'>[</span><span class='object identifier id'>object</span><span class='dot token'>.</span><span class='path identifier id'>path</span><span class='rbrack token'>]</span> <span class='assign token'>=</span> <span class='object identifier id'>object</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>resolve</h3>
+</div><div id="resolve-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>resolve</span><span class='args'>(namespace, name, proxy_fallback = false)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/registry.rb', line 101</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/registry.rb#L101">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='resolve identifier id'>resolve</span><span class='lparen token'>(</span><span class='namespace identifier id'>namespace</span><span class='comma token'>,</span> <span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='proxy_fallback identifier id'>proxy_fallback</span> <span class='assign token'>=</span> <span class='false false kw'>false</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='namespace identifier id'>namespace</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='CodeObjects constant id'>CodeObjects</span><span class='colon2 op'>::</span><span class='Proxy constant id'>Proxy</span><span class='rparen token'>)</span>
+    <span class='return return kw'>return</span> <span class='proxy_fallback identifier id'>proxy_fallback</span> <span class='question op'>?</span> <span class='CodeObjects constant id'>CodeObjects</span><span class='colon2 op'>::</span><span class='Proxy constant id'>Proxy</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='namespace identifier id'>namespace</span><span class='comma token'>,</span> <span class='name identifier id'>name</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='nil nil kw'>nil</span>
+  <span class='end end kw'>end</span>
+  
+  <span class='namespace identifier id'>namespace</span> <span class='assign token'>=</span> <span class='root identifier id'>root</span> <span class='if if_mod kw'>if</span> <span class='namespace identifier id'>namespace</span> <span class='eq op'>==</span> <span class='symbol val'>:root</span> <span class='orop op'>||</span> <span class='notop op'>!</span><span class='namespace identifier id'>namespace</span>
+
+  <span class='newname identifier id'>newname</span> <span class='assign token'>=</span> <span class='name identifier id'>name</span><span class='dot token'>.</span><span class='to_s identifier id'>to_s</span><span class='dot token'>.</span><span class='gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='dregexp node'>/^#{CodeObjects::ISEP}/</span><span class='comma token'>,</span> <span class='string val'>''</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='name identifier id'>name</span> <span class='match op'>=~</span> <span class='dregexp node'>/^#{CodeObjects::NSEP}/</span>
+    <span class='lbrack token'>[</span><span class='name identifier id'>name</span><span class='comma token'>,</span> <span class='newname identifier id'>newname</span><span class='lbrack token'>[</span><span class='float val'>2</span><span class='dot2 op'>..</span><span class='integer val'>-1</span><span class='rbrack token'>]</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='n identifier id'>n</span><span class='bitor op'>|</span>
+      <span class='return return kw'>return</span> <span class='at identifier id'>at</span><span class='lparen token'>(</span><span class='n identifier id'>n</span><span class='rparen token'>)</span> <span class='if if_mod kw'>if</span> <span class='at identifier id'>at</span><span class='lparen token'>(</span><span class='n identifier id'>n</span><span class='rparen token'>)</span>
+    <span class='end end kw'>end</span>
+  <span class='else else kw'>else</span>
+    <span class='while while kw'>while</span> <span class='namespace identifier id'>namespace</span>
+      <span class='lbrack token'>[</span><span class='CodeObjects constant id'>CodeObjects</span><span class='colon2 op'>::</span><span class='NSEP constant id'>NSEP</span><span class='comma token'>,</span> <span class='CodeObjects constant id'>CodeObjects</span><span class='colon2 op'>::</span><span class='ISEP constant id'>ISEP</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='s identifier id'>s</span><span class='bitor op'>|</span>
+        <span class='path identifier id'>path</span> <span class='assign token'>=</span> <span class='newname identifier id'>newname</span>
+        <span class='if if kw'>if</span> <span class='namespace identifier id'>namespace</span> <span class='neq op'>!=</span> <span class='root identifier id'>root</span>
+          <span class='path identifier id'>path</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='namespace identifier id'>namespace</span><span class='dot token'>.</span><span class='path identifier id'>path</span><span class='comma token'>,</span> <span class='newname identifier id'>newname</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='s identifier id'>s</span><span class='rparen token'>)</span>
+        <span class='end end kw'>end</span>
+        <span class='found identifier id'>found</span> <span class='assign token'>=</span> <span class='at identifier id'>at</span><span class='lparen token'>(</span><span class='path identifier id'>path</span><span class='rparen token'>)</span>
+        <span class='return return kw'>return</span> <span class='found identifier id'>found</span> <span class='if if_mod kw'>if</span> <span class='found identifier id'>found</span>
+      <span class='end end kw'>end</span>
+      <span class='namespace identifier id'>namespace</span> <span class='assign token'>=</span> <span class='namespace identifier id'>namespace</span><span class='dot token'>.</span><span class='parent identifier id'>parent</span>
+    <span class='end end kw'>end</span>
+
+    <span class='comment val'># Look for ::name or #name in the root space</span>
+    <span class='lbrack token'>[</span><span class='CodeObjects constant id'>CodeObjects</span><span class='colon2 op'>::</span><span class='NSEP constant id'>NSEP</span><span class='comma token'>,</span> <span class='CodeObjects constant id'>CodeObjects</span><span class='colon2 op'>::</span><span class='ISEP constant id'>ISEP</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='each identifier id'>each</span> <span class='do do kw'>do</span> <span class='bitor op'>|</span><span class='s identifier id'>s</span><span class='bitor op'>|</span>
+      <span class='found identifier id'>found</span> <span class='assign token'>=</span> <span class='at identifier id'>at</span><span class='lparen token'>(</span><span class='s identifier id'>s</span> <span class='plus op'>+</span> <span class='newname identifier id'>newname</span><span class='rparen token'>)</span>
+      <span class='return return kw'>return</span> <span class='found identifier id'>found</span> <span class='if if_mod kw'>if</span> <span class='found identifier id'>found</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+  <span class='proxy_fallback identifier id'>proxy_fallback</span> <span class='integer val'>? </span><span class='CodeObjects constant id'>CodeObjects</span><span class='colon2 op'>::</span><span class='Proxy constant id'>Proxy</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='namespace identifier id'>namespace</span><span class='comma token'>,</span> <span class='name identifier id'>name</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='nil nil kw'>nil</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>root</h3>
+</div><div id="root-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>root</span><span class='args'></span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/registry.rb', line 82</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/registry.rb#L82">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">82</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='root identifier id'>root</span><span class='semicolon token'>;</span> <span class='namespace identifier id'>namespace</span><span class='lbrack token'>[</span><span class='symbol val'>:root</span><span class='rbrack token'>]</span> <span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>save</h3>
+</div><div id="save-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>save</span><span class='args'>(file = yardoc_file)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/registry.rb', line 57</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/registry.rb#L57">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">57
+58
+59
+60</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='save identifier id'>save</span><span class='lparen token'>(</span><span class='file identifier id'>file</span> <span class='assign token'>=</span> <span class='yardoc_file identifier id'>yardoc_file</span><span class='rparen token'>)</span>
+  <span class='File constant id'>File</span><span class='dot token'>.</span><span class='open identifier id'>open</span><span class='lparen token'>(</span><span class='file identifier id'>file</span><span class='comma token'>,</span> <span class='string val'>&quot;w&quot;</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='f identifier id'>f</span><span class='bitor op'>|</span> <span class='Marshal constant id'>Marshal</span><span class='dot token'>.</span><span class='dump identifier id'>dump</span><span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='@namespace ivar id'>@namespace</span><span class='comma token'>,</span> <span class='@proxy_types ivar id'>@proxy_types</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='f identifier id'>f</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+  <span class='true true kw'>true</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+</div>
+          </div>
+        </div>
+      </div>  
+                  
+      <div id="footer">
+        <div class="site">
+          <div class="info">
+            <div class="links">
+              <a href="http://github.com/blog/148-github-shirts-now-available">Shirts</a> |
+              <a href="http://github.com/blog">Blog</a> |
+              <a href="http://support.github.com/">Support</a> |
+              <a href="http://github.com/training">Training</a> |
+              <a href="http://github.com/contact">Contact</a> |
+              <a href="http://groups.google.com/group/github/">Google Group</a> |
+              <a href="http://develop.github.com/">API</a> |
+              <a href="http://twitter.com/github">Status</a>
+            </div>
+            <div class="company">
+              <span id="_rrt" title="0.64509s from xc88-s00039">GitHub</span>
+              is <a href="http://logicalawesome.com/">Logical Awesome</a> ©2009 | <a href="http://github.com/site/terms">Terms of Service</a> | <a href="http://github.com/site/privacy">Privacy Policy</a>
+            </div>
+          </div>
+          <div class="sponsor">
+            <a href="http://engineyard.com/"><img src="http://github.com/images/modules/footer/engine_yard_logo.png" alt="Engine Yard"></a>
+            <div>
+              Hosting provided by our<br> partners at Engine Yard
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="coming_soon" style="display: none;">
+        This feature is coming soon.  Sit tight!
+      </div>
+
+      <div id="facebox" style="display: none;">       
+        <div class="popup">         
+          <table>           
+            <tbody>             
+              <tr>               
+                <td class="tl"></td>
+                <td class="b"></td>
+                <td class="tr"></td>             
+              </tr>             
+            <tr>               
+              <td class="b"></td>               
+              <td class="body">                 
+                <div class="content"></div>                 
+                <div class="footer">                   
+                  <a href="#" class="close"><img src="http://github.com/facebox/closelabel.gif" title="close" class="close_image"></a>                 
+                </div>               
+              </td>               
+              <td class="b"></td>             
+            </tr>             
+            <tr>               
+              <td class="bl"></td>
+              <td class="b"></td>
+              <td class="br"></td>             
+            </tr>           
+          </tbody>         
+        </table>       
+      </div>     
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+    var pageTracker = _gat._getTracker("UA-8555229-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+
+  </body>
+</html>

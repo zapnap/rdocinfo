@@ -1,0 +1,666 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>lsegal's yard - Class: YARD::Parser::SourceParser - GitHub Documentation</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="description" content="">
+
+<link rel="search" type="application/opensearchdescription+xml" href="http://github.com/opensearch.xml" title="GitHub">
+<link rel="fluid-icon" href="http://github.com/fluidicon.png" title="GitHub">
+<link href="http://assets0.github.com/stylesheets/bundle.css" media="screen" rel="stylesheet" type="text/css">
+<link href="http://github.com/feeds/lsegal/commits/yard/master" rel="alternate" title="Recent Commits to yard:master" type="application/atom+xml">
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://assets3.github.com/javascripts/bundle.js"></script>              
+<script src="../../app.js" type="text/javascript" charset="utf-8"></script>
+
+<style type="text/css">
+  #repo_menu { border-bottom: 5px solid #ccc; margin-bottom: 1.5em; }
+  #repo_sub_menu { display: none; }
+</style>
+    <link rel="stylesheet" href="../../style.css" type="text/css" charset="utf-8" />
+  </head>
+  <body>    
+    
+    
+        <div id="main">
+      <div id="header" class="">
+        <div class="site">
+          <div class="logo">
+            <a href="http://github.com/"><img src="http://github.com/images/modules/header/logov3.png" alt="github"></a>
+          </div>          
+          <div class="topsearch">
+            <form action="http://github.com/search" id="top_search_form" method="get">
+              <input class="search" name="q" type="search"> <input value="Search" type="submit">
+            </form>
+            <div class="links">
+              <a href="http://github.com/repositories">Browse</a> | <a href="http://github.com/guides">Guides</a> | <a href="http://github.com/search">Advanced</a>
+            </div>
+          </div>
+        </div>
+      </div>    
+                                                  
+      <div id="repo_menu">
+        <div class="site">
+          <ul>          
+            <li class=""><a href="http://github.com/lsegal/yard/tree/">Source</a></li>
+            <li class=""><a href="http://github.com/lsegal/yard/commits/">Commits</a></li>            
+            <li class=""><a href="http://github.com/lsegal/yard/network">Network</a></li>            
+            <li class=""><a href="http://github.com/lsegal/yard/issues">Issues</a></li>
+            <li class=""><a href="http://wiki.github.com/lsegal/yard">Wiki</a></li>
+            <li class=""><a href="http://github.com/lsegal/yard/graphs">Graphs</a></li>                    
+            <li class="active"><a href="http://docs.github.com/lsegal/yard">Documentation</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="repo_sub_menu">
+        <div class="site">
+          <div class="joiner"></div>      
+        </div>
+      </div>
+
+      <div class="site">  
+        <div id="repos">
+          <div class="repo public">
+            <div class="title">
+              <div class="path">
+                <a href="http://github.com/lsegal">lsegal</a> / <b><a href="http://github.com/lsegal/yard/tree">yard</a></b>        
+                <a id="namespaces_button" rel="lsegal/yard" href="#">
+                  <img class="button" src="http://docs.github.com/namespaces_button.png" alt="Modules and Classes"/>
+                </a>
+                <a id="methods_button" rel="lsegal/yard" href="#">
+                  <img class="button" src="http://docs.github.com/methods_button.png" alt="Methods"/>
+                </a>
+
+                <script type="text/javascript">          
+                $('#namespaces_button').click(function(){
+                  var url="/"+$(this).attr('rel')+"/namespaces/";
+                  $.gitbox(url);
+                  return false;
+                });
+
+                $('#methods_button').click(function(){
+                  var url="/"+$(this).attr('rel')+"/methods/";
+                  $.gitbox(url);
+                  return false;
+                });
+                </script>
+                
+              </div>
+            </div>
+
+            <div class="meta">
+              <table>
+                <tbody>
+                  <tr>
+                    <td class="label">Description:</td>
+                    <td><span id="repository_description" rel="http://github.com/lsegal/yard/edit/update" class="">No description available</span></td>
+                  </tr>              
+                </tbody>
+              </table>
+            </div>
+          </div>
+                                        
+          <div id="content">
+            <div class="wikistyle">
+  <div class="section class YARD_Parser_SourceParser">
+  <h1>Class: YARD::Parser::SourceParser</h1>
+  <div class="section docstring">
+  <p>
+Responsible for parsing a source file into the namespace
+</p>
+
+</div><div class="section attributes">
+  
+    <div class="">
+      <h2>Instance Attributes</h2>
+      <table>
+      
+        <tr>
+          <th class="name">file</td>
+          <td class="readwrite">
+            [<span id='file-instance_method'>R</span>W] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Returns the value of attribute <tt>file</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <th class="name">load_order_errors</td>
+          <td class="readwrite">
+            [<span id='load_order_errors-instance_method'>R</span><span id='load_order_errors%3D-instance_method'>W</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Sets the attribute <tt>load_order_errors</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <th class="name">namespace</td>
+          <td class="readwrite">
+            [<span id='namespace-instance_method'>R</span><span id='namespace%3D-instance_method'>W</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Sets the attribute <tt>namespace</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <th class="name">owner</td>
+          <td class="readwrite">
+            [<span id='owner-instance_method'>R</span><span id='owner%3D-instance_method'>W</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Sets the attribute <tt>owner</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <th class="name">scope</td>
+          <td class="readwrite">
+            [<span id='scope-instance_method'>R</span><span id='scope%3D-instance_method'>W</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Sets the attribute <tt>scope</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+      
+        <tr>
+          <th class="name">visibility</td>
+          <td class="readwrite">
+            [<span id='visibility-instance_method'>R</span><span id='visibility%3D-instance_method'>W</span>] 
+          </td>
+          <td class="visibility">
+            public
+          </td>
+          <td class="docstring">
+            <p>
+Sets the attribute <tt>visibility</tt>.
+</p>
+
+            
+          </td>
+        </tr>
+      
+      </table>
+    </div>
+  
+</div><div class="section constants">
+  
+</div><div class="section constructor">
+<h2>Constructor</h2>
+  <div id="initialize-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>initialize</span><span class='args'>(load_order_errors = false)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/parser/source_parser.rb', line 50</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/parser/source_parser.rb#L50">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">50
+51
+52
+53
+54
+55
+56
+57</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='load_order_errors identifier id'>load_order_errors</span> <span class='assign token'>=</span> <span class='false false kw'>false</span><span class='rparen token'>)</span>
+  <span class='@file ivar id'>@file</span> <span class='assign token'>=</span> <span class='string val'>&quot;&lt;STDIN&gt;&quot;</span>
+  <span class='@namespace ivar id'>@namespace</span> <span class='assign token'>=</span> <span class='YARD constant id'>YARD</span><span class='colon2 op'>::</span><span class='Registry constant id'>Registry</span><span class='dot token'>.</span><span class='root identifier id'>root</span>
+  <span class='@visibility ivar id'>@visibility</span> <span class='assign token'>=</span> <span class='symbol val'>:public</span>
+  <span class='@scope ivar id'>@scope</span> <span class='assign token'>=</span> <span class='symbol val'>:instance</span>
+  <span class='@owner ivar id'>@owner</span> <span class='assign token'>=</span> <span class='@namespace ivar id'>@namespace</span>
+  <span class='@load_order_errors ivar id'>@load_order_errors</span> <span class='assign token'>=</span> <span class='load_order_errors identifier id'>load_order_errors</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+</div>  <div class="section visibilitygroup">
+      <div class="section methodsummary">
+    <h2>Public Class Method Summary</h2>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#parse-class_method">parse</span><span class='args'>(paths = &quot;lib/**/*.rb&quot;, level = log.level)</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#parse_string-class_method">parse_string</span><span class='args'>(content)</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        
+        
+      </td>
+    </tr>
+  
+</table>
+  </div>
+  <div class="section methodsummary">
+    <h2>Public Instance Method Summary</h2>
+<table class="summary">
+  
+    <tr>
+      <th class="signature">
+        <span class='name'><a href="#parse-instance_method">#parse</span><span class='args'>(content = )</span>
+        <span class='block'></span>
+        
+      </th>
+      <td class="docstring">
+        <p>
+Creates a new SourceParser that parses a file and returns analysis
+information about it.
+</p>
+
+        
+      </td>
+    </tr>
+  
+</table>
+  </div>
+<div class="section methoddetails">
+  <h2>Public Class Method Details</h2>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>parse</h3>
+</div><div id="parse-class_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>parse</span><span class='args'>(paths = &quot;lib/**/*.rb&quot;, level = log.level)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/parser/source_parser.rb', line 11</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/parser/source_parser.rb#L11">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='paths identifier id'>paths</span> <span class='assign token'>=</span> <span class='string val'>&quot;lib/**/*.rb&quot;</span><span class='comma token'>,</span> <span class='level identifier id'>level</span> <span class='assign token'>=</span> <span class='log identifier id'>log</span><span class='dot token'>.</span><span class='level identifier id'>level</span><span class='rparen token'>)</span>
+  <span class='if if kw'>if</span> <span class='paths identifier id'>paths</span><span class='dot token'>.</span><span class='is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='Array constant id'>Array</span><span class='rparen token'>)</span>
+    <span class='files identifier id'>files</span> <span class='assign token'>=</span> <span class='paths identifier id'>paths</span><span class='dot token'>.</span><span class='map identifier id'>map</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='p identifier id'>p</span><span class='bitor op'>|</span> <span class='Dir constant id'>Dir</span><span class='lbrack token'>[</span><span class='p identifier id'>p</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='flatten identifier id'>flatten</span>
+  <span class='else else kw'>else</span>
+    <span class='files identifier id'>files</span> <span class='assign token'>=</span> <span class='Dir constant id'>Dir</span><span class='lbrack token'>[</span><span class='File constant id'>File</span><span class='dot token'>.</span><span class='join identifier id'>join</span><span class='lparen token'>(</span><span class='Dir constant id'>Dir</span><span class='dot token'>.</span><span class='pwd identifier id'>pwd</span><span class='comma token'>,</span> <span class='paths identifier id'>paths</span><span class='rparen token'>)</span><span class='rbrack token'>]</span>
+  <span class='end end kw'>end</span>
+
+  <span class='log identifier id'>log</span><span class='dot token'>.</span><span class='enter_level identifier id'>enter_level</span><span class='lparen token'>(</span><span class='level identifier id'>level</span><span class='rparen token'>)</span> <span class='do do kw'>do</span>
+    <span class='parse_in_order identifier id'>parse_in_order</span><span class='lparen token'>(</span><span class='mult op'>*</span><span class='files identifier id'>files</span><span class='dot token'>.</span><span class='uniq identifier id'>uniq</span><span class='rparen token'>)</span>
+  <span class='end end kw'>end</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>parse_string</h3>
+</div><div id="parse_string-class_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>parse_string</span><span class='args'>(content)</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/parser/source_parser.rb', line 23</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/parser/source_parser.rb#L23">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">23
+24
+25</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='parse_string identifier id'>parse_string</span><span class='lparen token'>(</span><span class='content identifier id'>content</span><span class='rparen token'>)</span>
+  <span class='new identifier id'>new</span><span class='dot token'>.</span><span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='StringIO constant id'>StringIO</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='content identifier id'>content</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+</div><div class="section methoddetails">
+  <h2>Public Instance Method Details</h2>
+  
+    <div class="method">
+      <div class="method_header">
+  <h3>parse</h3>
+</div><div id="parse-instance_method" class="section method">
+  <div class="details_title">
+  <div class='section methodsignature'>
+  <tt class='def'>
+    <span class='visibility'>public</span>
+    <span class='return_types'></span>
+    <span class='name'>parse</span><span class='args'>(content = )</span>
+    <span class='block'></span>
+  </tt>
+</div>
+
+</div><div class="section docstring">
+  <p>
+Creates a new SourceParser that parses a file and returns analysis
+information about it.
+</p>
+
+</div><div class="section tags">
+  <h2>Meta Tags</h2>
+  <div class="param">
+  <h3>Parameters:</h3>
+  <dl>
+  
+    
+      <dt>
+        <span class='type'>[<tt><a href="../../String.html" title="String">String</a></tt>, <tt><a href="TokenList.html" title="TokenList">TokenList</a></tt>, <tt><a href="StatementList.html" title="StatementList">StatementList</a></tt>, <tt>#read</tt>]</span>
+        <span class='name'>content</span>
+        
+          <em class="default">(defaults to: <tt></tt>)</em>
+        
+      </dt>
+      <dd>
+        <span class='desc'><p>
+the source file to parse
+</p>
+</span>
+      </dd>
+    
+  
+  </dl>
+</div>
+</div></div>
+<div class="section source">
+  <span>[<a class="source_link" href="#">View source</a>]</span>
+  <div class="files" style="display:none">
+    <div class="file">
+      <div class="meta">
+        <div class="info">
+          <span>File 'lib/yard/parser/source_parser.rb', line 64</span>
+        </div>
+        <div class="actions">      
+          <a id="raw-url" href="http://github.com/lsegal/yard/blob/master/lib/yard/parser/source_parser.rb#L64">raw</a>      
+        </div>
+      </div>
+            
+      <div class="data syntax">    
+        <table cellspacing="0" cellpadding="0">
+          <tbody>
+            <tr>
+              <td>            
+                <pre class="line_numbers">64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82</pre>
+              </td>
+              <td width="100%">                    
+                <div class="highlight"><pre class="code"><span class='def def kw'>def</span> <span class='parse identifier id'>parse</span><span class='lparen token'>(</span><span class='content identifier id'>content</span> <span class='assign token'>=</span> <span class='__FILE__ __file__ kw'>__FILE__</span><span class='rparen token'>)</span>
+  <span class='case case kw'>case</span> <span class='content identifier id'>content</span>
+  <span class='when when kw'>when</span> <span class='String constant id'>String</span>
+    <span class='@file ivar id'>@file</span> <span class='assign token'>=</span> <span class='content identifier id'>content</span>
+    <span class='statements identifier id'>statements</span> <span class='assign token'>=</span> <span class='StatementList constant id'>StatementList</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='IO constant id'>IO</span><span class='dot token'>.</span><span class='read identifier id'>read</span><span class='lparen token'>(</span><span class='content identifier id'>content</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+  <span class='when when kw'>when</span> <span class='TokenList constant id'>TokenList</span>
+    <span class='statements identifier id'>statements</span> <span class='assign token'>=</span> <span class='StatementList constant id'>StatementList</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='content identifier id'>content</span><span class='rparen token'>)</span>
+  <span class='when when kw'>when</span> <span class='StatementList constant id'>StatementList</span>
+    <span class='statements identifier id'>statements</span> <span class='assign token'>=</span> <span class='content identifier id'>content</span>
+  <span class='else else kw'>else</span>
+    <span class='if if kw'>if</span> <span class='content identifier id'>content</span><span class='dot token'>.</span><span class='respond_to? fid id'>respond_to?</span> <span class='colon op'>:</span><span class='read identifier id'>read</span>
+      <span class='statements identifier id'>statements</span> <span class='assign token'>=</span> <span class='StatementList constant id'>StatementList</span><span class='dot token'>.</span><span class='new identifier id'>new</span><span class='lparen token'>(</span><span class='content identifier id'>content</span><span class='dot token'>.</span><span class='read identifier id'>read</span><span class='rparen token'>)</span>
+    <span class='else else kw'>else</span>
+      <span class='raise identifier id'>raise</span> <span class='ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='dstring node'>&quot;Invalid argument for SourceParser::parse: #{content.inspect}:#{content.class}&quot;</span>
+    <span class='end end kw'>end</span>
+  <span class='end end kw'>end</span>
+
+  <span class='top_level_parse identifier id'>top_level_parse</span><span class='lparen token'>(</span><span class='statements identifier id'>statements</span><span class='rparen token'>)</span>
+<span class='end end kw'>end</span>
+</pre></div>          
+              </td>
+            </tr>
+          </tbody>
+        </table>    
+      </div>
+    </div>  
+  </div>
+</div>
+<div>
+</div>
+    </div>
+  
+</div>
+  </div>
+
+</div>
+</div>
+          </div>
+        </div>
+      </div>  
+                  
+      <div id="footer">
+        <div class="site">
+          <div class="info">
+            <div class="links">
+              <a href="http://github.com/blog/148-github-shirts-now-available">Shirts</a> |
+              <a href="http://github.com/blog">Blog</a> |
+              <a href="http://support.github.com/">Support</a> |
+              <a href="http://github.com/training">Training</a> |
+              <a href="http://github.com/contact">Contact</a> |
+              <a href="http://groups.google.com/group/github/">Google Group</a> |
+              <a href="http://develop.github.com/">API</a> |
+              <a href="http://twitter.com/github">Status</a>
+            </div>
+            <div class="company">
+              <span id="_rrt" title="0.64509s from xc88-s00039">GitHub</span>
+              is <a href="http://logicalawesome.com/">Logical Awesome</a> ©2009 | <a href="http://github.com/site/terms">Terms of Service</a> | <a href="http://github.com/site/privacy">Privacy Policy</a>
+            </div>
+          </div>
+          <div class="sponsor">
+            <a href="http://engineyard.com/"><img src="http://github.com/images/modules/footer/engine_yard_logo.png" alt="Engine Yard"></a>
+            <div>
+              Hosting provided by our<br> partners at Engine Yard
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="coming_soon" style="display: none;">
+        This feature is coming soon.  Sit tight!
+      </div>
+
+      <div id="facebox" style="display: none;">       
+        <div class="popup">         
+          <table>           
+            <tbody>             
+              <tr>               
+                <td class="tl"></td>
+                <td class="b"></td>
+                <td class="tr"></td>             
+              </tr>             
+            <tr>               
+              <td class="b"></td>               
+              <td class="body">                 
+                <div class="content"></div>                 
+                <div class="footer">                   
+                  <a href="#" class="close"><img src="http://github.com/facebox/closelabel.gif" title="close" class="close_image"></a>                 
+                </div>               
+              </td>               
+              <td class="b"></td>             
+            </tr>             
+            <tr>               
+              <td class="bl"></td>
+              <td class="b"></td>
+              <td class="br"></td>             
+            </tr>           
+          </tbody>         
+        </table>       
+      </div>     
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+    var pageTracker = _gat._getTracker("UA-8555229-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+
+  </body>
+</html>
