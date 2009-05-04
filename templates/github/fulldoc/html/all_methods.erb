@@ -8,7 +8,7 @@
         "/" + 
         $github[:user] + "/" + 
         $github[:project] + "/" + 
-        url_for(obj).gsub(/[^0-9A-Za-z\_\-\#\.]/, '-') %>"><%= obj.path %></a>
+        url_for(obj).gsub(/[^0-9A-Za-z\_\-\#\.\/]/, '-') %>"><%= obj.path %></a>
       <% if obj.namespace != Registry.root %>
         <em>(<%= obj.namespace.type %> <%= obj.namespace.name %>)</em>
       <% end %>
