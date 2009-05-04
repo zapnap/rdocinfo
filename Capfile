@@ -31,5 +31,6 @@ namespace :deploy do
     run "rm #{release_path}/environment.rb"
     run "ln -s #{shared_path}/config/environment.rb #{release_path}/environment.rb"
     run "ln -s #{shared_path}/assets/rdoc #{release_path}/public/rdoc"
+    run "ln -s #{shared_path}/assets/rdoc #{release_path}/public"
   end
 end
