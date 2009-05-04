@@ -47,7 +47,7 @@ class DocBuilder
    
   # Eventually we can include GH_BRANCH, GH_VERSION, and GH_DESCRIPTION 
   def run_yardoc
-    init_pages
+    #init_pages
     clone_repo
     command = "export GH_USER=#{@project.owner}; export GH_PROJECT=#{@project.name}; yardoc -o #{rdoc_dir} -t #{SiteConfig.template} -p #{templates_dir} -e #{helpers_file} -r #{readme_file} #{included_files}"
     logger.info command
@@ -86,9 +86,29 @@ class DocBuilder
     file
   end
 
+  def git
+    @git ||= Git.clone(@project.clone_url, clone_dir, { :log => logger })
+  end
+
+  def pages
+    if @pages
+      @pages
+    else
+      begin
+        @pages = Git.open(SiteConfig.rdoc_dir)
+      rescue ArgumentError
+        @pages = Git.init(SiteConfig.rdoc_dir)
+      end
+
+      @pages.add_remote('origin', 'git@github.com:docs/docs.github.com.git')
+      @pages.pull # origin master
+      @pages
+    end
+  end
+
   def clone_repo
-    `git clone #{@project.clone_url} #{clone_dir}`
-    Dir.chdir(clone_dir)
+    #`git clone #{@project.clone_url} #{clone_dir}`
+    git && Dir.chdir(clone_dir)
   end
 
   def clean_repo
@@ -97,19 +117,19 @@ class DocBuilder
   end
   
   def init_pages
-    FileUtils::mkdir_p SiteConfig.rdoc_dir
-    Dir.chdir(SiteConfig.rdoc_dir)
-    return unless `git status` =~ /Not a git repository/
-    `git init`
-    `git remote add origin git@github.com:docs/docs.github.com.git`
-    `git pull origin master`
+    #FileUtils::mkdir_p SiteConfig.rdoc_dir unless File.exists?(SiteConfig.rdoc_dir)
+    #Dir.chdir(SiteConfig.rdoc_dir)
+    #return unless `git status` =~ /Not a git repository/
   end
   
   def push_pages
-    Dir.chdir(SiteConfig.rdoc_dir)
-    `git pull origin master`
-    `git add .`
-    `git commit -a -m "Updating documentation for #{@project.owner}/#{@project.name}"`
-    `git push origin master`
+    #Dir.chdir(SiteConfig.rdoc_dir)
+    pages.pull # origin master
+    pages.add('.')
+    #`git add .`
+    pages.commit("Updating documentation for #{@project.owner}/#{@project.name}")
+    #`git commit -a -m "Updating documentation for #{@project.owner}/#{@project.name}"`
+    pages.push # origin master
+    #`git push origin master`
   end
 end
