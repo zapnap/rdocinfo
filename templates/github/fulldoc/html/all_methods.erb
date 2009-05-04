@@ -4,7 +4,7 @@
   <% for obj in YARD::Registry.all(:method).sort_by {|o| o.path } %>
     <% next if obj.namespace == Registry.root %>
     <li nowrap="nowrap">
-      <%= linkify("/", $github[:user], $github[:project], obj, (obj.scope == :class ? '' : '#') + obj.name.to_s) %> 
+      <a href="<%= "/" + $github[:user] + "/" + $github[:project] + "/" + obj.path %>"><%= (obj.scope == :class ? '' : '#') + obj.name.to_s %></a>
       <% if obj.namespace != Registry.root %>
         <em>(<%= obj.namespace.type %> <%= obj.namespace.name %>)</em>
       <% end %>
