@@ -1,0 +1,356 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>jeffrafter's fates - GitHub Documentation</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="description" content="">
+
+<link rel="search" type="application/opensearchdescription+xml" href="http://github.com/opensearch.xml" title="GitHub">
+<link rel="fluid-icon" href="http://github.com/fluidicon.png" title="GitHub">
+<link href="http://assets0.github.com/stylesheets/bundle.css" media="screen" rel="stylesheet" type="text/css">
+<link href="http://github.com/feeds/jeffrafter/commits/fates/master" rel="alternate" title="Recent Commits to fates:master" type="application/atom+xml">
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://assets3.github.com/javascripts/bundle.js"></script>              
+<script src="app.js" type="text/javascript" charset="utf-8"></script>
+
+<style type="text/css">
+  #repo_menu { border-bottom: 5px solid #ccc; margin-bottom: 1.5em; }
+  #repo_sub_menu { display: none; }
+</style>
+    <link rel="stylesheet" href="style.css" type="text/css" charset="utf-8" />
+  </head>
+  <body>    
+    
+        <div id="main">
+      <div id="header" class="">
+        <div class="site">
+          <div class="logo">
+            <a href="http://github.com/"><img src="http://github.com/images/modules/header/logov3.png" alt="github"></a>
+          </div>          
+          <div class="topsearch">
+            <form action="http://github.com/search" id="top_search_form" method="get">
+              <input class="search" name="q" type="search"> <input value="Search" type="submit">
+            </form>
+            <div class="links">
+              <a href="http://github.com/repositories">Browse</a> | <a href="http://github.com/guides">Guides</a> | <a href="http://github.com/search">Advanced</a>
+            </div>
+          </div>
+        </div>
+      </div>    
+                                                  
+      <div id="repo_menu">
+        <div class="site">
+          <ul>          
+            <li class=""><a href="http://github.com/jeffrafter/fates/tree/">Source</a></li>
+            <li class=""><a href="http://github.com/jeffrafter/fates/commits/">Commits</a></li>            
+            <li class=""><a href="http://github.com/jeffrafter/fates/network">Network</a></li>            
+            <li class=""><a href="http://github.com/jeffrafter/fates/issues">Issues</a></li>
+            <li class=""><a href="http://wiki.github.com/jeffrafter/fates">Wiki</a></li>
+            <li class=""><a href="http://github.com/jeffrafter/fates/graphs">Graphs</a></li>                    
+            <li class="active"><a href="http://docs.github.com/jeffrafter/fates">Documentation</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="repo_sub_menu">
+        <div class="site">
+          <div class="joiner"></div>      
+        </div>
+      </div>
+
+      <div class="site">  
+        <div id="repos">
+          <div class="repo public">
+            <div class="title">
+              <div class="path">
+                <a href="http://github.com/jeffrafter">jeffrafter</a> / <b><a href="http://github.com/jeffrafter/fates/tree">fates</a></b>        
+                <a id="namespaces_button" rel="jeffrafter/fates" href="#">
+                  <img class="button" src="http://docs.github.com/namespaces_button.png" alt="Modules and Classes"/>
+                </a>
+                <a id="methods_button" rel="jeffrafter/fates" href="#">
+                  <img class="button" src="http://docs.github.com/methods_button.png" alt="Methods"/>
+                </a>
+
+                <script type="text/javascript">          
+                $('#namespaces_button').click(function(){
+                  var url="/"+$(this).attr('rel')+"/namespaces/";
+                  $.gitbox(url);
+                  return false;
+                });
+
+                $('#methods_button').click(function(){
+                  var url="/"+$(this).attr('rel')+"/methods/";
+                  $.gitbox(url);
+                  return false;
+                });
+                </script>
+                
+              </div>
+            </div>
+
+            <div class="meta">
+              <table>
+                <tbody>
+                  <tr>
+                    <td class="label">Description:</td>
+                    <td><span id="repository_description" rel="http://github.com/jeffrafter/fates/edit/update" class="">No description available</span></td>
+                  </tr>              
+                </tbody>
+              </table>
+            </div>
+          </div>
+                                        
+          <div id="content">
+            <div class="section docstring readme wikistyle">
+  <p>
+Copyright (C) 2006 Mauricio Fernandez &lt;mfp@acm.org&gt;&lt;br/&gt;
+Copyright (C) 2007 Jeff Rafter &lt;jeff@jeffrafter.com&gt; (additions,
+revisions)
+</p>
+<p>
+Fate Search is based on FTSearch by Mauricio Fernandez which can be found
+at http://www.eigenclass.org/
+</p>
+<p>
+Fate Search uses a suffix-array, so if you look for e.g. &quot;fa&quot;,
+it&#8217;ll match faq, fat, fat_entry, &#8230;, making it equivalent to
+looking for &quot;fa%&quot;. It does phrasal search naturally, if
+you&#8217;re lookup for &quot;big array&quot;, just enter it (without the
+quotes); with ferret-lookup.rb, you <b>have</b> to surround the phrase with
+quotes.
+</p>
+<p>
+TRY IT OUT
+</p>
+<hr size="8"></hr><p>
+You can test things out using the rake tasks. Indexing:
+</p>
+<p>
+&lt;pre&gt;&lt;code&gt;
+</p>
+<pre class="code">
+  $ <span class='rake identifier id'>rake</span> <span class='fates identifier id'>fates</span><span class='symbol val'>:index</span>
+  <span class='lparen token'>(</span><span class='in in kw'>in</span> <span class='regexp val'>/Users/n</span><span class='jero identifier id'>jero</span><span class='div op'>/</span><span class='Projects constant id'>Projects</span><span class='div op'>/</span><span class='Web constant id'>Web</span><span class='div op'>/</span><span class='fates identifier id'>fates</span><span class='rparen token'>)</span>
+  <span class='Removing constant id'>Removing</span> <span class='the identifier id'>the</span> <span class='current identifier id'>current</span> <span class='index identifier id'>index</span> <span class='for for kw'>for</span> <span class='contacts identifier id'>contacts</span>
+  <span class='Preparing constant id'>Preparing</span> <span class='fields identifier id'>fields</span>
+  <span class='Reading constant id'>Reading</span> <span class='contacts identifier id'>contacts</span>
+  <span class='Indexing constant id'>Indexing</span> <span class='contacts identifier id'>contacts</span>
+  <span class='Writing constant id'>Writing</span> <span class='indexes identifier id'>indexes</span>
+  <span class='Done constant id'>Done</span>
+  <span class='Needed constant id'>Needed</span> <span class='integer val'>0</span><span class='integer val'>.015277</span> <span class='to identifier id'>to</span> <span class='remove identifier id'>remove</span> <span class='the identifier id'>the</span> <span class='current identifier id'>current</span> <span class='indexes identifier id'>indexes</span><span class='dot token'>.</span>
+  <span class='Needed constant id'>Needed</span> <span class='float val'>1.611284</span> <span class='to identifier id'>to</span> <span class='read identifier id'>read</span> <span class='the identifier id'>the</span> <span class='contacts identifier id'>contacts</span> <span class='file identifier id'>file</span><span class='dot token'>.</span>
+  <span class='Needed constant id'>Needed</span> <span class='float val'>3.864082</span> <span class='to identifier id'>to</span> <span class='index identifier id'>index</span> <span class='the identifier id'>the</span> <span class='contacts identifier id'>contacts</span><span class='dot token'>.</span>
+  <span class='Needed constant id'>Needed</span> <span class='integer val'>0</span><span class='integer val'>.962226</span> <span class='to identifier id'>to</span> <span class='write identifier id'>write</span> <span class='the identifier id'>the</span> <span class='indexes identifier id'>indexes</span><span class='dot token'>.</span>
+  <span class='Total constant id'>Total</span> <span class='time identifier id'>time</span><span class='colon op'>:</span> <span class='float val'>6.453019</span>
+  <span class='Total constant id'>Total</span> <span class='records identifier id'>records</span><span class='colon op'>:</span> <span class='integer val'>50000</span>
+</pre>
+<p>
+&lt;/code&gt;&lt;/pre&gt;
+</p>
+<p>
+Searching:
+</p>
+<p>
+&lt;pre&gt;&lt;code&gt;
+</p>
+<pre class="code">
+  $ <span class='rake identifier id'>rake</span> <span class='fates identifier id'>fates</span><span class='symbol val'>:search</span> <span class='QUERY constant id'>QUERY</span><span class='assign token'>=</span><span class='string val'>'Smith'</span>
+  <span class='lparen token'>(</span><span class='in in kw'>in</span> <span class='regexp val'>/Users/n</span><span class='jero identifier id'>jero</span><span class='div op'>/</span><span class='Projects constant id'>Projects</span><span class='div op'>/</span><span class='Web constant id'>Web</span><span class='div op'>/</span><span class='fates identifier id'>fates</span><span class='rparen token'>)</span>
+  <span class='Loading constant id'>Loading</span> <span class='the identifier id'>the</span> <span class='index identifier id'>index</span> <span class='files identifier id'>files</span>
+  <span class='Counting constant id'>Counting</span> <span class='the identifier id'>the</span> <span class='number identifier id'>number</span> <span class='of identifier id'>of</span> <span class='hits identifier id'>hits</span>
+  <span class='Total constant id'>Total</span> <span class='hits identifier id'>hits</span><span class='colon op'>:</span> <span class='integer val'>4370</span> <span class='lparen token'>(</span><span class='integer val'>0</span><span class='integer val'>.000325</span><span class='rparen token'>)</span>
+  <span class='Looking constant id'>Looking</span> <span class='up identifier id'>up</span> <span class='all identifier id'>all</span> <span class='matches identifier id'>matches</span>
+  <span class='Showing constant id'>Showing</span> <span class='top identifier id'>top</span> <span class='integer val'>10</span> <span class='matches identifier id'>matches</span> <span class='of identifier id'>of</span> <span class='integer val'>4370</span><span class='colon op'>:</span>
+  <span class='string val'>&quot;3499: Smith Dan&quot;</span>
+  <span class='string val'>&quot;37110: Smith Dan&quot;</span>
+  <span class='string val'>&quot;1193: Smith Dan&quot;</span>
+  <span class='string val'>&quot;45769: Smith Deb&quot;</span>
+  <span class='string val'>&quot;6702: Smith Deb&quot;</span>
+  <span class='string val'>&quot;48737: Smith Deb&quot;</span>
+  <span class='string val'>&quot;25339: Smith Den&quot;</span>
+  <span class='string val'>&quot;5754: Smith Den&quot;</span>
+  <span class='string val'>&quot;1029: Smith Den&quot;</span>
+  <span class='string val'>&quot;42762: Smith Eve&quot;</span>
+  <span class='string val'>&quot;32002: Smith Fae&quot;</span>
+  <span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span>
+  <span class='Needed constant id'>Needed</span> <span class='to identifier id'>to</span> <span class='load identifier id'>load</span> <span class='cache identifier id'>cache</span> <span class='lparen token'>(</span><span class='integer val'>0</span><span class='integer val'>.002848</span><span class='rparen token'>)</span>
+  <span class='Needed constant id'>Needed</span> <span class='to identifier id'>to</span> <span class='find identifier id'>find</span> <span class='all identifier id'>all</span> <span class='matches identifier id'>matches</span> <span class='lparen token'>(</span><span class='integer val'>0</span><span class='integer val'>.000266</span><span class='rparen token'>)</span>
+  <span class='Needed constant id'>Needed</span> <span class='to identifier id'>to</span> <span class='print identifier id'>print</span> <span class='matches identifier id'>matches</span> <span class='lparen token'>(</span><span class='integer val'>0</span><span class='integer val'>.000598</span><span class='rparen token'>)</span>
+  <span class='Total constant id'>Total</span> <span class='time identifier id'>time</span> <span class='lparen token'>(</span><span class='integer val'>0</span><span class='integer val'>.00376</span><span class='rparen token'>)</span>
+</pre>
+<p>
+&lt;/code&gt;&lt;/pre&gt;
+</p>
+<p>
+Searching with sorting and probabalistic ranking:
+</p>
+<p>
+&lt;pre&gt;&lt;code&gt;
+</p>
+<pre class="code">
+  $ <span class='rake identifier id'>rake</span> <span class='fates identifier id'>fates</span><span class='symbol val'>:search</span> <span class='QUERY constant id'>QUERY</span><span class='assign token'>=</span><span class='string val'>'Smith'</span> <span class='SORT constant id'>SORT</span><span class='assign token'>=</span><span class='string val'>'y'</span>
+  <span class='lparen token'>(</span><span class='in in kw'>in</span> <span class='regexp val'>/Users/n</span><span class='jero identifier id'>jero</span><span class='div op'>/</span><span class='Projects constant id'>Projects</span><span class='div op'>/</span><span class='Web constant id'>Web</span><span class='div op'>/</span><span class='fates identifier id'>fates</span><span class='rparen token'>)</span>
+  <span class='Loading constant id'>Loading</span> <span class='the identifier id'>the</span> <span class='index identifier id'>index</span> <span class='files identifier id'>files</span>
+  <span class='Counting constant id'>Counting</span> <span class='the identifier id'>the</span> <span class='number identifier id'>number</span> <span class='of identifier id'>of</span> <span class='hits identifier id'>hits</span>
+  <span class='Total constant id'>Total</span> <span class='hits identifier id'>hits</span><span class='colon op'>:</span> <span class='integer val'>4370</span> <span class='lparen token'>(</span><span class='integer val'>0</span><span class='integer val'>.000385</span><span class='rparen token'>)</span>
+  <span class='Looking constant id'>Looking</span> <span class='up identifier id'>up</span> <span class='all identifier id'>all</span> <span class='matches identifier id'>matches</span>
+  <span class='Showing constant id'>Showing</span> <span class='all identifier id'>all</span> <span class='matches identifier id'>matches</span> <span class='of identifier id'>of</span> <span class='integer val'>10</span><span class='colon op'>:</span>
+  <span class='string val'>&quot;3499: Smith Dan, (20004370.0)&quot;</span>
+  <span class='string val'>&quot;37110: Smith Dan, (20004369.0)&quot;</span>
+  <span class='string val'>&quot;1193: Smith Dan, (20004368.0)&quot;</span>
+  <span class='string val'>&quot;45769: Smith Deb, (20004367.0)&quot;</span>
+  <span class='string val'>&quot;6702: Smith Deb, (20004366.0)&quot;</span>
+  <span class='string val'>&quot;48737: Smith Deb, (20004365.0)&quot;</span>
+  <span class='string val'>&quot;25339: Smith Den, (20004364.0)&quot;</span>
+  <span class='string val'>&quot;5754: Smith Den, (20004363.0)&quot;</span>
+  <span class='string val'>&quot;1029: Smith Den, (20004362.0)&quot;</span>
+  <span class='string val'>&quot;42762: Smith Eve, (20004361.0)&quot;</span>
+  <span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span><span class='minus op'>-</span>
+  <span class='Needed constant id'>Needed</span> <span class='to identifier id'>to</span> <span class='load identifier id'>load</span> <span class='cache identifier id'>cache</span> <span class='lparen token'>(</span><span class='integer val'>0</span><span class='integer val'>.003019</span><span class='rparen token'>)</span>
+  <span class='Needed constant id'>Needed</span> <span class='to identifier id'>to</span> <span class='find identifier id'>find</span> <span class='all identifier id'>all</span> <span class='matches identifier id'>matches</span> <span class='lparen token'>(</span><span class='integer val'>0</span><span class='integer val'>.000359</span><span class='rparen token'>)</span>
+  <span class='Needed constant id'>Needed</span> <span class='to identifier id'>to</span> <span class='print identifier id'>print</span> <span class='matches identifier id'>matches</span> <span class='lparen token'>(</span><span class='integer val'>0</span><span class='integer val'>.060236</span><span class='rparen token'>)</span>
+  <span class='Total constant id'>Total</span> <span class='time identifier id'>time</span> <span class='lparen token'>(</span><span class='integer val'>0</span><span class='integer val'>.063915</span><span class='rparen token'>)</span>
+</pre>
+<p>
+&lt;/code&gt;&lt;/pre&gt;
+</p>
+<p>
+If you apply sorting the results will be sorted and ranked but the printing
+(tree navigation) will take considerably longer. In the above example the
+print time was 0.060236 versus 0.000598.
+</p>
+<p>
+Note: currently merged (delta) indexes are not supported. Search allows you
+to look for names from the spec/samples/contacts.csv file.
+</p>
+<p>
+Gemify this with Jeweler. Consider some native extensions (based on the
+FTSearch native extensions). In general lots of profiling was done around
+the sorting and initial indexing but as always you can still optimize.
+</p>
+<p>
+I originally built ActiveRecord extensions for fates, but have removed them
+as they would need additional work. As a sample though, you can still
+install the library as a plugin:
+</p>
+<p>
+&lt;pre&gt;<tt>script/plugin install git://github.com/jeffrafter/fates.git
+</tt>&lt;/pre&gt;
+</p>
+<p>
+Next you need to build the index. If you are just focused on names then you
+can cheat and reuse the existing search rake tasks (which already handle
+ranking and timing). Next you need to build the index. In the following I
+build an index for the PersonName model:
+</p>
+<p>
+&lt;pre&gt;&lt;code&gt;white_space =
+FateSearch::Analysis::WhitespaceAnalyzer.new analyzers = [white_space,
+white_space] fragment = FateSearch::FragmentWriter.new(
+</p>
+<pre class="code">
+  <span class='symbol val'>:path</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;/tmp/index/fates/names-0000000&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:analyzers</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='analyzers identifier id'>analyzers</span><span class='rparen token'>)</span>
+</pre>
+<p>
+names = PersonName.find(:all) names.each {|name| fragment.add(name.id,
+[name.given_name, name.family_name])} fragment.finish!
+&lt;/code&gt;&lt;/pre&gt;
+</p>
+<p>
+Save this file in the lib folder of your rails application as
+&quot;index.rb&quot;. Run the following (from your rails root). If you get
+an error about the directory not being empty then you will need to move the
+current indexes away.
+</p>
+<p>
+&lt;pre&gt;<tt>script/runner lib/index.rb </tt>&lt;/pre&gt;
+</p>
+<p>
+You should now be able to run full text searches:
+</p>
+<p>
+&lt;pre&gt;<tt>rake fates:search
+BASE_PATH=&#8217;/tmp/index/fates/names&#8217; QUERY=&#8217;banda&#8217;
+</tt>&lt;/pre&gt;
+</p>
+<p>
+Distribution and modification subject to the same terms as Ruby.
+</p>
+
+</div>
+          </div>
+        </div>
+      </div>  
+                  
+      <div id="footer">
+        <div class="site">
+          <div class="info">
+            <div class="links">
+              <a href="http://github.com/blog/148-github-shirts-now-available">Shirts</a> |
+              <a href="http://github.com/blog">Blog</a> |
+              <a href="http://support.github.com/">Support</a> |
+              <a href="http://github.com/training">Training</a> |
+              <a href="http://github.com/contact">Contact</a> |
+              <a href="http://groups.google.com/group/github/">Google Group</a> |
+              <a href="http://develop.github.com/">API</a> |
+              <a href="http://twitter.com/github">Status</a>
+            </div>
+            <div class="company">
+              <span id="_rrt" title="0.64509s from xc88-s00039">GitHub</span>
+              is <a href="http://logicalawesome.com/">Logical Awesome</a> ©2009 | <a href="http://github.com/site/terms">Terms of Service</a> | <a href="http://github.com/site/privacy">Privacy Policy</a>
+            </div>
+          </div>
+          <div class="sponsor">
+            <a href="http://engineyard.com/"><img src="http://github.com/images/modules/footer/engine_yard_logo.png" alt="Engine Yard"></a>
+            <div>
+              Hosting provided by our<br> partners at Engine Yard
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="coming_soon" style="display: none;">
+        This feature is coming soon.  Sit tight!
+      </div>
+
+      <div id="facebox" style="display: none;">       
+        <div class="popup">         
+          <table>           
+            <tbody>             
+              <tr>               
+                <td class="tl"></td>
+                <td class="b"></td>
+                <td class="tr"></td>             
+              </tr>             
+            <tr>               
+              <td class="b"></td>               
+              <td class="body">                 
+                <div class="content"></div>                 
+                <div class="footer">                   
+                  <a href="#" class="close"><img src="http://github.com/facebox/closelabel.gif" title="close" class="close_image"></a>                 
+                </div>               
+              </td>               
+              <td class="b"></td>             
+            </tr>             
+            <tr>               
+              <td class="bl"></td>
+              <td class="b"></td>
+              <td class="br"></td>             
+            </tr>           
+          </tbody>         
+        </table>       
+      </div>     
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+    var pageTracker = _gat._getTracker("UA-8555229-2");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+
+  </body>
+</html>
