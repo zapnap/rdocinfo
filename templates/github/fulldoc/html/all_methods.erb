@@ -4,7 +4,11 @@
   <% for obj in YARD::Registry.all(:method).sort_by {|o| o.path } %>
     <% next if obj.namespace == Registry.root %>
     <li nowrap="nowrap">
-      <a href="<%= "/" + $github[:user] + "/" + $github[:project] + "/" + obj.path.to_s.gsub(/::/, "/") + ".html" + (obj.scope == :class ? '' : '#') + obj.name.to_s.gsub(/[^0-9A-Za-z\_\-]/, '-') %>"><%= obj.path + "." + obj.name.to_s %></a>
+      <a href="<%= 
+        "/" + 
+        $github[:user] + "/" + 
+        $github[:project] + "/" + 
+        url_for(obj).gsub(/[^0-9A-Za-z\_\-\#\.]/, '-') %>"><%= obj.path %></a>
       <% if obj.namespace != Registry.root %>
         <em>(<%= obj.namespace.type %> <%= obj.namespace.name %>)</em>
       <% end %>
