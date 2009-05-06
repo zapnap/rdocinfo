@@ -8,7 +8,7 @@ describe 'DocBuilder' do
     @project = Factory.build(:project)
     @doc = DocBuilder.new(@project)
 
-    @rdoc_dir = "#{SiteConfig.rdoc_dir}/zapnap/simplepay"
+    @rdoc_dir = "#{SiteConfig.rdoc_dir}/default/zapnap/simplepay"
     @tmp_dir  = "#{SiteConfig.tmp_dir}/zapnap/simplepay"
   end
 
@@ -17,7 +17,11 @@ describe 'DocBuilder' do
   end
 
   it 'should have an rdoc dir' do
-    @doc.rdoc_dir.should == "#{SiteConfig.rdoc_dir}/zapnap/simplepay"
+    @doc.rdoc_dir('default').should == "#{SiteConfig.rdoc_dir}/default/zapnap/simplepay"
+  end
+
+  it 'should have an rdoc dir for github' do
+    @doc.rdoc_dir('github').should == "#{SiteConfig.rdoc_dir}/github/zapnap/simplepay"
   end
 
   it 'should have a clone dir' do
@@ -87,24 +91,25 @@ describe 'DocBuilder' do
   describe 'RDoc template' do
     before(:each) do
       FileUtils.rm_rf @rdoc_dir
-      FileUtils.rm_rf @tmp_dir
+      FileUtils.rm_rf @tmp_dir      
       @doc.generate
+      @github_dir = @doc.rdoc_dir('github')
     end
     
     it 'should use absolute links for namespaces' do
-      IO.read("#{@rdoc_dir}/namespaces/index.html").should =~ /"\/zapnap\/simplepay\/Simplepay.html"/	
+      IO.read("#{@github_dir}/namespaces/index.html").should =~ /"\/zapnap\/simplepay\/Simplepay.html"/	
     end
     
     it 'should use absolute links for methods' do
-      IO.read("#{@rdoc_dir}/methods/index.html").should =~ /"\/zapnap\/simplepay\/Simplepay\/Authentication.html#authentic-3F-class_method"/	
+      IO.read("#{@github_dir}/methods/index.html").should =~ /"\/zapnap\/simplepay\/Simplepay\/Authentication.html#authentic-3F-class_method"/	
     end
     
     it 'should use absolute links for the namespaces link popup' do
-      IO.read("#{@rdoc_dir}/methods/index.html").scan("var url=\"/zapnap/simplepay\"+$(this).attr('rel')+\"/namespaces/\"").size == 1;                  
+      IO.read("#{@github_dir}/methods/index.html").scan("var url=\"/zapnap/simplepay\"+$(this).attr('rel')+\"/namespaces/\"").size == 1;                  
     end
     
     it 'should use absolute links for the methods link popup' do
-      IO.read("#{@rdoc_dir}/methods/index.html").scan("var url=\"/zapnap/simplepay\"+$(this).attr('rel')+\"/methods/\"").size == 1;                  
+      IO.read("#{@github_dir}/methods/index.html").scan("var url=\"/zapnap/simplepay\"+$(this).attr('rel')+\"/methods/\"").size == 1;                  
     end
 
   end  

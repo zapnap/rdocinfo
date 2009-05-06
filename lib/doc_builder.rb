@@ -6,7 +6,8 @@ class DocBuilder
 
   # Generate RDocs for the project
   def generate
-    FileUtils.rm_rf(rdoc_dir) if File.exists?(rdoc_dir) # clean first
+    FileUtils.rm_rf(rdoc_dir('default')) if File.exists?(rdoc_dir('default')) # clean first
+    FileUtils.rm_rf(rdoc_dir(SiteConfig.template)) if File.exists?(rdoc_dir(SiteConfig.template)) # clean first
     (Sinatra::Base.environment == :test) ? run_yardoc : run_yardoc_asynch
   end
 
@@ -16,8 +17,8 @@ class DocBuilder
   end
   
   # Local directory where rdocs will be generated
-  def rdoc_dir
-    "#{SiteConfig.rdoc_dir}/#{@project.owner}/#{@project.name}"
+  def rdoc_dir(template)
+    "#{SiteConfig.rdoc_dir}/#{template}/#{@project.owner}/#{@project.name}"
   end
   
   # Local directory where the yard template is kept
@@ -35,7 +36,7 @@ class DocBuilder
 
   # Does generated documentation exist?
   def exists?
-    File.exists?("#{rdoc_dir}/index.html")
+    File.exists?("#{rdoc_dir('default')}/index.html") && File.exists?("#{rdoc_dir(SiteConfig.template)}/index.html")
   end
 
   # Generate RDocs for the specified project
@@ -45,15 +46,30 @@ class DocBuilder
 
   private
    
-  # Eventually we can include GH_BRANCH, GH_VERSION, and GH_DESCRIPTION 
   def run_yardoc
     #init_pages
     clone_repo
-    command = "export GH_USER=#{@project.owner}; export GH_PROJECT=#{@project.name}; yardoc -q -o #{rdoc_dir} -t #{SiteConfig.template} -p #{templates_dir} -e #{helpers_file} -r #{readme_file} #{included_files}"
+
+    # Run it once with the default
+    command = yardoc_command('default')
     logger.info command
     logger.info `#{command}`
+    
+    # And once with the custom template
+    command = yardoc_command(SiteConfig.template)
+    logger.info command
+    logger.info `#{command}`
+
     clean_repo
     push_pages
+  end
+  
+  # Eventually we can include GH_BRANCH, GH_VERSION, and GH_DESCRIPTION 
+  def yardoc_command(template)
+    command = "export GH_USER=#{@project.owner}; export GH_PROJECT=#{@project.name}; yardoc -q -o #{rdoc_dir(template)} -r #{readme_file}"
+    command += " -t #{template} -p #{templates_dir} -e #{helpers_file}" unless template == 'default'
+    command += " #{included_files}"
+    command
   end
 
   def run_yardoc_asynch
@@ -95,9 +111,9 @@ class DocBuilder
       @pages
     else
       begin
-        @pages = Git.open(SiteConfig.rdoc_dir)
+        @pages = Git.open(SiteConfig.rdoc_dir(SiteConfig.template))
       rescue ArgumentError
-        @pages = Git.init(SiteConfig.rdoc_dir)
+        @pages = Git.init(SiteConfig.rdoc_dir(SiteConfig.template))
       end
 
       @pages.add_remote('origin', SiteConfig.github_doc_pages)
@@ -116,20 +132,10 @@ class DocBuilder
     FileUtils.rm_rf(clone_dir)
   end
   
-  #def init_pages
-    #FileUtils::mkdir_p SiteConfig.rdoc_dir unless File.exists?(SiteConfig.rdoc_dir)
-    #Dir.chdir(SiteConfig.rdoc_dir)
-    #return unless `git status` =~ /Not a git repository/
-  #end
-  
   def push_pages
-    #Dir.chdir(SiteConfig.rdoc_dir)
     pages.pull # origin master
     pages.add('.')
-    #`git add .`
     pages.commit("Updating documentation for #{@project.owner}/#{@project.name}")
-    #`git commit -a -m "Updating documentation for #{@project.owner}/#{@project.name}"`
     pages.push # origin master
-    #`git push origin master`
   end
 end
