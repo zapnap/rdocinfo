@@ -2,7 +2,12 @@
   <h1>All Modules / Classes</h1>
   <ul>
   <% for obj in YARD::Registry.all(:module, :class).sort_by {|o| o.path } %>
-    <li><%= linkify(obj) %> <em>(<%= obj.type %>)</em></li>
+    <li>
+      <a href="<%= 
+        "/" + 
+        $github[:user] + "/" + 
+        $github[:project] + "/" + 
+        url_for(obj).gsub(/[^0-9A-Za-z\_\-\#\.\/]/, '-') %>"><%= obj.path %></a> <em>(<%= obj.type %>)</em></li>
   <% end %>
   </ul>
   <div class="actions">

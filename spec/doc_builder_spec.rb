@@ -81,7 +81,33 @@ describe 'DocBuilder' do
       @github_pages.receives(:push)
       @doc.generate
     end
+    
   end
+
+  describe 'RDoc template' do
+    before(:each) do
+      FileUtils.rm_rf @rdoc_dir
+      FileUtils.rm_rf @tmp_dir
+      @doc.generate
+    end
+    
+    it 'should use absolute links for namespaces' do
+      IO.read("#{@rdoc_dir}/namespaces/index.html").should =~ /"\/zapnap\/simplepay\/Simplepay.html"/	
+    end
+    
+    it 'should use absolute links for methods' do
+      IO.read("#{@rdoc_dir}/methods/index.html").should =~ /"\/zapnap\/simplepay\/Simplepay\/Authentication.html#authentic-3F-class_method"/	
+    end
+    
+    it 'should use absolute links for the namespaces link popup' do
+      IO.read("#{@rdoc_dir}/methods/index.html").scan("var url=\"/zapnap/simplepay\"+$(this).attr('rel')+\"/namespaces/\"").size == 1;                  
+    end
+    
+    it 'should use absolute links for the methods link popup' do
+      IO.read("#{@rdoc_dir}/methods/index.html").scan("var url=\"/zapnap/simplepay\"+$(this).attr('rel')+\"/methods/\"").size == 1;                  
+    end
+
+  end  
 
   private
 
