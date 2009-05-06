@@ -3,6 +3,8 @@ require "#{File.dirname(__FILE__)}/spec_helper"
 describe 'DocBuilder' do
   before(:each) do
     Project.all.destroy!
+
+    Git.stubs(:open).returns(@github_pages = stub_everything('Git'))
     @project = Factory.build(:project)
     @doc = DocBuilder.new(@project)
 
@@ -72,6 +74,15 @@ describe 'DocBuilder' do
       @doc.exists?.should be_false
       @doc.generate
       @doc.exists?.should be_true
+    end
+
+    it 'should push updated pages to the remote' do
+      @github_pages.receives(:add_remote)
+      @github_pages.receives(:pull)
+      @github_pages.receives(:add)
+      @github_pages.receives(:commit)
+      @github_pages.receives(:push)
+      @doc.generate
     end
   end
 

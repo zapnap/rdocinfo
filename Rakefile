@@ -29,7 +29,7 @@ namespace :gems do
   desc 'Install required gems'
   task :install do
     required_gems = %w{ yard dm-core dm-validations dm-aggregates dm-is-paginated 
-                        merb-pagination sinatra haml rest-client json rack-test
+                        merb-pagination sinatra haml rest-client json rack-test schacon-git
                         mocha rspec rspec_hpricot_matchers thoughtbot-factory_girl }
     required_gems.each { |required_gem| system "sudo gem install #{required_gem}" }
   end

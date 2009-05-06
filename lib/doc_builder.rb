@@ -100,8 +100,8 @@ class DocBuilder
         @pages = Git.init(SiteConfig.rdoc_dir)
       end
 
-      @pages.add_remote('origin', 'git@github.com:docs/docs.github.com.git')
-      @pages.pull # origin master
+      @pages.add_remote('origin', SiteConfig.github_doc_pages)
+      #@pages.pull # origin master
       @pages
     end
   end
@@ -116,11 +116,11 @@ class DocBuilder
     FileUtils.rm_rf(clone_dir)
   end
   
-  def init_pages
+  #def init_pages
     #FileUtils::mkdir_p SiteConfig.rdoc_dir unless File.exists?(SiteConfig.rdoc_dir)
     #Dir.chdir(SiteConfig.rdoc_dir)
     #return unless `git status` =~ /Not a git repository/
-  end
+  #end
   
   def push_pages
     #Dir.chdir(SiteConfig.rdoc_dir)
