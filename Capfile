@@ -20,7 +20,7 @@ default_run_options[:pty] = true
 set :repository, "git://github.com/zapnap/rdocinfo.git"
 set :scm, "git"
 set :branch, "master"
-set :git_enable_submodules, 1
+#set :git_enable_submodules, 1
 
 namespace :deploy do
   task :restart do
@@ -31,6 +31,5 @@ namespace :deploy do
     run "rm #{release_path}/environment.rb"
     run "ln -s #{shared_path}/config/environment.rb #{release_path}/environment.rb"
     run "ln -s #{shared_path}/assets/rdoc #{release_path}/public/rdoc"
-    run "ln -s #{shared_path}/assets/rdoc #{release_path}/public"
   end
 end
