@@ -6,3 +6,4 @@ public/rdoc/*
 .yardoc
 .DS_Store
 rdoc/*
+config/*.yml
