@@ -111,12 +111,11 @@ class DocBuilder
       @pages
     else
       begin
-        @pages = Git.open(SiteConfig.rdoc_dir(SiteConfig.template))
+        @pages = Git.open(SiteConfig.rdoc_dir+'/github')
       rescue ArgumentError
-        @pages = Git.init(SiteConfig.rdoc_dir(SiteConfig.template))
+        @pages = Git.init(SiteConfig.rdoc_dir+'/github')
         @pages.add_remote('origin', SiteConfig.github_doc_pages)
       end
-      @pages.pull # origin master
       @pages
     end
   end
