@@ -28,8 +28,7 @@ namespace :deploy do
   end
 
   task :after_update_code, :roles => [:app] do
-    run "rm #{release_path}/environment.rb"
-    run "ln -s #{shared_path}/config/environment.rb #{release_path}/environment.rb"
-    run "ln -s #{shared_path}/assets/rdoc #{release_path}/public/rdoc"
+    run "ln -s #{shared_path}/config/production.yml #{release_path}/config/production.yml"
+    run "ln -s #{shared_path}/assets/rdoc/default #{release_path}/public/rdoc"
   end
 end
