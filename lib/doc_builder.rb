@@ -52,6 +52,7 @@ class DocBuilder
     command = "export GH_USER=#{@project.owner}; export GH_PROJECT=#{@project.name}; yardoc -o #{rdoc_dir} -t #{SiteConfig.template} -p #{templates_dir} -e #{helpers_file} -r #{readme_file} #{included_files}"
     logger.info command
     logger.info `#{command}`
+    puts command
     clean_repo
     push_pages
   end

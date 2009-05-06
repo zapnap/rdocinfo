@@ -16,7 +16,7 @@ require 'logger'
 require 'sinatra' unless defined?(Sinatra)
 
 configure do
-  SiteConfig = OpenStruct.new(YAML.load_file("#{File.dirname(__FILE__)}/conf/#{Sinatra::Base.environment}.yml"))
+  SiteConfig = OpenStruct.new(YAML.load_file("#{File.dirname(__FILE__)}/config/#{Sinatra::Base.environment}.yml"))
   DataMapper.setup(:default, "sqlite3:///#{File.expand_path(File.dirname(__FILE__))}/#{Sinatra::Base.environment}.db")
 
   # load models

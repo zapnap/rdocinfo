@@ -1,7 +1,7 @@
 title:            'rdoc.info'
 rdoc_url:         '/rdoc'
 template:         'github'
-templates_dir:    '/Users/nap/dev/rdocinfo/tmp/test/templates'
+templates_dir:    '/Users/nap/dev/rdocinfo/templates'
 rdoc_dir:         '/Users/nap/dev/rdocinfo/tmp/test/rdoc'
 tmp_dir:          '/Users/nap/dev/rdocinfo/tmp/test/projects'
 url_base:         'http://localhost:4567/'

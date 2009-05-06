@@ -8,8 +8,8 @@ describe 'DocBuilder' do
     @project = Factory.build(:project)
     @doc = DocBuilder.new(@project)
 
-    @rdoc_dir = File.expand_path(File.dirname(__FILE__) + '/rdoc')
-    @tmp_dir = File.expand_path(File.dirname(__FILE__) + '/tmp')
+    @rdoc_dir = "#{SiteConfig.rdoc_dir}/zapnap/simplepay"
+    @tmp_dir  = "#{SiteConfig.tmp_dir}/zapnap/simplepay"
   end
 
   it 'should have an rdoc url' do
@@ -26,9 +26,6 @@ describe 'DocBuilder' do
 
   describe 'RDoc generation' do
     before(:each) do
-      @doc.stubs(:rdoc_dir).returns(@rdoc_dir)
-      @doc.stubs(:clone_dir).returns(@tmp_dir)
-
       FileUtils.rm_rf @rdoc_dir
       FileUtils.rm_rf @tmp_dir
     end
