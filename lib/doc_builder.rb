@@ -133,7 +133,7 @@ class DocBuilder
   def push_pages
     pages.pull # origin master
     pages.add('.')
-    pages.commit("Updating documentation for #{@project.owner}/#{@project.name}")
+    pages.commit_all("Updating documentation for #{@project.owner}/#{@project.name}")
     pages.push # origin master
   end
 end

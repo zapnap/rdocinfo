@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="<%= url_for(css_file) %>" type="text/css" charset="utf-8" />
   </head>
   <body>    
-    <% $base_url = ("../" * object.path.scan(/::/).size) %>
     <% $content = :content_for_header %>
     <% $yielded_content = yield object %>
+    <% $base_url  = ("../" * object.path.scan(/::/).size) %>
     <%= render :html_body %>
   </body>
 </html>
