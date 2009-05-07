@@ -8,7 +8,7 @@
   <body>    
     <% $content = :content_for_header %>
     <% $yielded_content = yield object %>
-    <% $base_url  = ("../" * object.path.scan(/::/).size) %>
+    <% $base_url = '/' %>
     <%= render :html_body %>
   </body>
 </html>
