@@ -62,10 +62,7 @@
 .section.tags .option td.name { font-family: monospace; }
 .section.methodmissing p.note { font-style: italic; }
 .section.constructor p.inherited_msg { font-style: italic; }
-.included h1, .inherited h1 { font-size: 1em !important; border: 0; margin: 0; padding: 5px; border-bottom: 1px solid #ccc; }
-.included div, .inherited div { color: #444; margin: 1.5em 0; width: 47%; border: 1px solid #ccc; float: left; margin-right: 12px; }
 .included p .name, .inherited p .name { font-family: monospace; }
-.included p, .inherited p { margin: 5px; }
 
 /* these overrides are because I nest too deep, oh well */
 .files table td {
