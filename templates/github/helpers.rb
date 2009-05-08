@@ -15,6 +15,11 @@ module YARD
           serializer.serialize '/files/index.html', render(:all_files)
           serializer.serialize '/namespaces/index.html', render(:all_namespaces)
           serializer.serialize '/methods/index.html', render(:all_methods)
+
+          if readme_file_exists?
+            @contents = File.read(readme_file)
+            serializer.serialize 'index.html', render(:readme)
+          end  
         end
         true
       end
