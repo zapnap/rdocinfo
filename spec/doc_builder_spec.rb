@@ -105,11 +105,15 @@ describe 'DocBuilder' do
     end
     
     it 'should use absolute links for the namespaces link popup' do
-      IO.read("#{@github_dir}/methods/index.html").scan("var url=\"/\"+$(this).attr('rel')+\"/namespaces/\"").size == 1;                  
+      IO.read("#{@github_dir}/namespaces/index.html").scan("var url=\"/\"+$(this).attr('rel')+\"/namespaces/\"").size == 1;                  
     end
     
     it 'should use absolute links for the methods link popup' do
       IO.read("#{@github_dir}/methods/index.html").scan("var url=\"/\"+$(this).attr('rel')+\"/methods/\"").size == 1;                  
+    end
+
+    it 'should generate a redirect page for the latest commit' do
+      IO.read("#{@github_dir}/../../index.html").scan("url=http://docs.github.com/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f").size == 1;                  
     end
 
   end  

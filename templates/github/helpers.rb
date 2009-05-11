@@ -10,6 +10,7 @@ module YARD
     class FullDocGenerator < Base
       def generate_index
         if format == :html && serializer
+          serializer.serialize '../../index.html', render(:redirect)
           serializer.serialize 'index.html', render(:index)
           serializer.serialize '/namespaces/index.html', render(:all_namespaces)
           serializer.serialize '/methods/index.html', render(:all_methods)
