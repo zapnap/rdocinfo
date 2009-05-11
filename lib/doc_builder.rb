@@ -1,7 +1,6 @@
 class DocBuilder
   def initialize(project)
     @project = project
-    @pwd = Dir.pwd
   end
 
   # Generate RDocs for the project
@@ -13,12 +12,12 @@ class DocBuilder
 
   # Local tmp directory used for project cloning
   def clone_dir
-    "#{SiteConfig.tmp_dir}/#{@project.owner}/#{@project.name}"
+    "#{SiteConfig.tmp_dir}/#{@project.owner}/#{@project.name}/blob/#{@project.commit_hash}"
   end
   
   # Local directory where rdocs will be generated
   def rdoc_dir(template)
-    "#{SiteConfig.rdoc_dir}/#{template}/#{@project.owner}/#{@project.name}"
+    "#{SiteConfig.rdoc_dir}/#{template}/#{@project.owner}/#{@project.name}/blob/#{@project.commit_hash}"
   end
   
   # Local directory where the yard template is kept
@@ -31,7 +30,7 @@ class DocBuilder
   end
 
   def rdoc_url
-    "#{SiteConfig.rdoc_url}/#{@project.owner}/#{@project.name}"
+    "#{SiteConfig.rdoc_url}/#{@project.owner}/#{@project.name}/blob/#{@project.commit_hash}"
   end
 
   # Does generated documentation exist?
@@ -66,7 +65,8 @@ class DocBuilder
   
   # Eventually we can include GH_BRANCH, GH_VERSION, and GH_DESCRIPTION 
   def yardoc_command(template)
-    command = "export GH_USER=#{@project.owner}; export GH_PROJECT=#{@project.name}; yardoc -q -o #{rdoc_dir(template)} -r #{readme_file}"
+    command = "cd #{clone_dir};"
+    command += " export GH_USER=#{@project.owner}; export GH_PROJECT=#{@project.name}; export GH_COMMIT=#{@project.commit_hash}; yardoc -q -o #{rdoc_dir(template)} -r #{readme_file}"
     command += " -t #{template} -p #{templates_dir} -e #{helpers_file}" unless template == 'default'
     command += " #{included_files}"
     command
@@ -103,7 +103,11 @@ class DocBuilder
   end
 
   def git
-    @git ||= Git.clone(@project.clone_url, clone_dir, { :log => logger })
+    unless @git
+      @git = Git.clone(@project.clone_url, clone_dir, { :log => logger })
+      @git.checkout(@project.commit_hash, :new_branch => 'documentation') if @project.commit_hash
+    end
+    @git
   end
 
   def pages
@@ -121,19 +125,17 @@ class DocBuilder
   end
 
   def clone_repo
-    #`git clone #{@project.clone_url} #{clone_dir}`
-    git && Dir.chdir(clone_dir)
+    git
   end
 
   def clean_repo
-    Dir.chdir(@pwd)
     FileUtils.rm_rf(clone_dir)
   end
   
   def push_pages
     pages.pull # origin master
     pages.add('.')
-    pages.commit_all("Updating documentation for #{@project.owner}/#{@project.name}")
+    pages.commit_all("Updating documentation for #{@project.owner}/#{@project.name} at revision #{@project.commit_hash}")
     pages.push # origin master
   end
 end

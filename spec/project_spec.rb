@@ -11,7 +11,7 @@ describe 'Project' do
   end
 
   it 'should have a public doc url' do
-    @project.doc_url.should == '/projects/zapnap/simplepay'
+    @project.doc_url.should == '/projects/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f'
   end
 
   it 'should have a clone url' do

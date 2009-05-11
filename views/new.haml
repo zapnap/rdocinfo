@@ -23,6 +23,11 @@
       %label{:for => 'name'} Project Name
     .field
       %input{:type => 'text', :name => 'name', :value => @project.name}
+  .commit_hash
+    .label
+      %label{:for => 'commit_hash'} Commit
+    .field
+      %input{:type => 'text', :name => 'commit_hash', :value => @project.commit_hash}
   %input.button{:type => 'submit', :value => 'Submit'}
 
 .explanation.small

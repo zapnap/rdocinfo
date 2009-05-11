@@ -54,7 +54,7 @@ describe 'Application' do
   describe 'post-commit hook' do
     it 'should update the specified project' do
       Project.expects(:first).with(:url => 'http://github.com/zapnap/simplepay').returns(@project)
-      @project.expects(:update_attributes).with(:commit_hash => 'de8251ff97ee194a289832576287d6f8ad74e3d0').returns(true)
+      @project.expects(:update_attributes).with(:commit_hash => '0f115cd0b8608f677b676b861d3370ef2991eb5f').returns(true)
       post '/projects/update', :payload => json_data
       last_response.status.should == 202
     end
@@ -105,13 +105,13 @@ describe 'Application' do
 
     it 'should return success if the project rdoc has been built'  do
       @project.doc.expects(:exists?).returns(true)
-      get '/projects/zapnap/simplepay/status'
+      get '/projects/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f/status'
       last_response.status.should == 205
     end
 
     it 'should return 404 if the project rdocs do not exist' do
       @project.doc.expects(:exists?).returns(false)
-      get '/projects/zapnap/simplepay/status'
+      get '/projects/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f/status'
       last_response.status.should == 404
     end
   end

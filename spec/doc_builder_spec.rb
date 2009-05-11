@@ -8,24 +8,24 @@ describe 'DocBuilder' do
     @project = Factory.build(:project)
     @doc = DocBuilder.new(@project)
 
-    @rdoc_dir = "#{SiteConfig.rdoc_dir}/default/zapnap/simplepay"
-    @tmp_dir  = "#{SiteConfig.tmp_dir}/zapnap/simplepay"
+    @rdoc_dir = "#{SiteConfig.rdoc_dir}/default/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
+    @tmp_dir  = "#{SiteConfig.tmp_dir}/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
   end
 
   it 'should have an rdoc url' do
-    @doc.rdoc_url.should == "#{SiteConfig.rdoc_url}/zapnap/simplepay"
+    @doc.rdoc_url.should == "#{SiteConfig.rdoc_url}/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
   end
 
   it 'should have an rdoc dir' do
-    @doc.rdoc_dir('default').should == "#{SiteConfig.rdoc_dir}/default/zapnap/simplepay"
+    @doc.rdoc_dir('default').should == "#{SiteConfig.rdoc_dir}/default/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
   end
 
   it 'should have an rdoc dir for github' do
-    @doc.rdoc_dir('github').should == "#{SiteConfig.rdoc_dir}/github/zapnap/simplepay"
+    @doc.rdoc_dir('github').should == "#{SiteConfig.rdoc_dir}/github/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
   end
 
   it 'should have a clone dir' do
-    @doc.clone_dir.should == "#{SiteConfig.tmp_dir}/zapnap/simplepay"
+    @doc.clone_dir.should == "#{SiteConfig.tmp_dir}/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
   end
 
   describe 'RDoc generation' do
@@ -97,19 +97,19 @@ describe 'DocBuilder' do
     end
     
     it 'should use absolute links for namespaces' do
-      IO.read("#{@github_dir}/namespaces/index.html").should =~ /"\/zapnap\/simplepay\/Simplepay.html"/	
+      IO.read("#{@github_dir}/namespaces/index.html").should =~ /"\/zapnap\/simplepay\/blob\/0f115cd0b8608f677b676b861d3370ef2991eb5f\/Simplepay.html"/	
     end
     
     it 'should use absolute links for methods' do
-      IO.read("#{@github_dir}/methods/index.html").should =~ /"\/zapnap\/simplepay\/Simplepay\/Authentication.html#authentic-3F-class_method"/	
+      IO.read("#{@github_dir}/methods/index.html").should =~ /"\/zapnap\/simplepay\/blob\/0f115cd0b8608f677b676b861d3370ef2991eb5f\/Simplepay\/Authentication.html#authentic-3F-class_method"/	
     end
     
     it 'should use absolute links for the namespaces link popup' do
-      IO.read("#{@github_dir}/methods/index.html").scan("var url=\"/zapnap/simplepay\"+$(this).attr('rel')+\"/namespaces/\"").size == 1;                  
+      IO.read("#{@github_dir}/methods/index.html").scan("var url=\"/\"+$(this).attr('rel')+\"/namespaces/\"").size == 1;                  
     end
     
     it 'should use absolute links for the methods link popup' do
-      IO.read("#{@github_dir}/methods/index.html").scan("var url=\"/zapnap/simplepay\"+$(this).attr('rel')+\"/methods/\"").size == 1;                  
+      IO.read("#{@github_dir}/methods/index.html").scan("var url=\"/\"+$(this).attr('rel')+\"/methods/\"").size == 1;                  
     end
 
   end  

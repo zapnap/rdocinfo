@@ -58,7 +58,7 @@ end
 post '/projects/update' do
   json = JSON.parse(params[:payload])
   if json['repository'] && @project = Project.first(:url => json['repository']['url'])
-    @project.update_attributes(:commit_hash => json['after'])
+    @project.update_attributes(:commit_hash => json['commits'][0]['id'])
     status(202)
   else
     # create project
@@ -72,8 +72,23 @@ post '/projects/update' do
 end
 
 # project rdoc container
+get '/projects/:owner/:name/blob/:commit_hash' do
+  if @project = Project.first(:owner => params[:owner], :name => params[:name], :commit_hash => params[:commit_hash])
+    if @project.doc.exists?
+      haml(:rdoc, :layout => false)
+    else
+      @title = @project.name
+      haml(:working)
+    end
+  else
+    status(404)
+  end
+end
+
+
+# project rdoc container (this just grabs the latest)
 get '/projects/:owner/:name' do
-  if @project = Project.first(:owner => params[:owner], :name => params[:name])
+  if @project = Project.first(:order => [:id.desc], :owner => params[:owner], :name => params[:name])
     if @project.doc.exists?
       haml(:rdoc, :layout => false)
     else
@@ -86,8 +101,8 @@ get '/projects/:owner/:name' do
 end
 
 # status inquiry
-get '/projects/:owner/:name/status' do
-  if (@project = Project.first(:owner => params[:owner], :name => params[:name])) && @project.doc.exists?
+get '/projects/:owner/:name/blob/:commit_hash/status' do
+  if (@project = Project.first(:owner => params[:owner], :name => params[:name], :commit_hash => params[:commit_hash])) && @project.doc.exists?
     status(205) # reset content
   else
     status(404) # work in progress, content not available yet
@@ -96,7 +111,7 @@ end
 
 # update pre-existing documentation
 put '/projects/:owner/:name' do
-  if @project = Project.first(:owner => params[:owner], :name => params[:name])
+  if @project = Project.first(:order => [:id.desc], :owner => params[:owner], :name => params[:name])
     @project.update_attributes(:updated_at => Time.now) # touch and auto-generate
     redirect @project.doc_url
   else

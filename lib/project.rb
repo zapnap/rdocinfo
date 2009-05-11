@@ -16,10 +16,10 @@ class Project
   validates_is_unique :url
   validates_with_method :owner, :method => :reject_non_ascii_owner_chars
   validates_with_method :name, :method => :reject_non_ascii_name_chars
-  validates_with_method :name, :method => :check_remote
+  validates_with_method :name, :method => :check_remote_and_update_hash
 
+  # generate updated project docs
   after :save do
-    # generate updated project docs
     self.doc.generate
   end
 
@@ -30,12 +30,12 @@ class Project
 
   # GitHub clone URL for this project
   def clone_url
-    "#{url.gsub('http://', 'git://')}.git"
+    "git://github.com/#{owner}/#{name}.git"
   end
 
   # public URL where documentation for this project is viewable
   def doc_url
-    "/projects/#{owner}/#{name}"
+    "/projects/#{owner}/#{name}/blob/#{commit_hash}"
   end
 
   # truncate commit hash for display
@@ -55,8 +55,12 @@ class Project
     true
   end
 
-  def check_remote
-    RestClient.get("http://github.com/api/v1/json/#{owner}/#{name}/commits/master") unless owner.nil? || name.nil?
+  def check_remote_and_update_hash
+    return true if owner.blank? || name.blank?
+    remote = RestClient.get("http://github.com/api/v1/json/#{owner}/#{name}/commits/master") 
+    commits = JSON.parse(remote)
+    commit = commits['commits'].first['id']
+    self.commit_hash = commit if self.commit_hash.blank?
     true
   rescue RestClient::RequestFailed, RestClient::ResourceNotFound
     [false, "Name must refer to a valid GitHub repository"]

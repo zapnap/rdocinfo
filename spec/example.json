@@ -14,19 +14,8 @@
   },
   "commits": [
     {
-      "id": "41a212ee83ca127e3c8cf465891ab7216a705f59",
-      "url": "http://github.com/zapnap/simplepay/commit/41a212ee83ca127e3c8cf465891ab7216a705f59",
-      "author": {
-        "email": "nap@zerosum.org",
-        "name": "Nick Plante" 
-      },
-      "message": "changed important stuff",
-      "timestamp": "2008-02-15T14:57:17-08:00",
-      "added": ["filepath.rb"]
-    },
-    {
-      "id": "de8251ff97ee194a289832576287d6f8ad74e3d0",
-      "url": "http://github.com/zapnap/simplepay/commit/de8251ff97ee194a289832576287d6f8ad74e3d0",
+      "id": "0f115cd0b8608f677b676b861d3370ef2991eb5f",
+      "url": "http://github.com/zapnap/simplepay/commit/0f115cd0b8608f677b676b861d3370ef2991eb5f",
       "author": {
         "email": "nap@zerosum.org",
         "name": "Nick Plante" 
