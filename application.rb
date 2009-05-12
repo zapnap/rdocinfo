@@ -109,11 +109,17 @@ get '/projects/:owner/:name/blob/:commit_hash/status' do
 end
 
 # update pre-existing documentation
-put '/projects/:owner/:name' do
-  if @project = Project.first(:order => [:id.desc], :owner => params[:owner], :name => params[:name])
-    @project.update_attributes(:updated_at => Time.now) # touch and auto-generate
-    redirect @project.doc_url
-  else
-    status(404)
+['/projects/:owner/:name',
+ '/projects/:owner/:name/blob/:commit_hash'].each do |action|
+  put action do
+    if params[:commit_hash] && @project = Project.first(:order => [:id.desc], :owner => params[:owner], :name => params[:name], :commit_hash => params[:commit_hash])
+      @project.update_attributes(:updated_at => Time.now) # touch and auto-generate
+      redirect @project.doc_url
+    elsif @project = Project.first(:order => [:id.desc], :owner => params[:owner], :name => params[:name])
+      @project.update_attributes(:updated_at => Time.now) # touch and auto-generate
+      redirect @project.doc_url
+    else
+      status(404)
+    end
   end
 end

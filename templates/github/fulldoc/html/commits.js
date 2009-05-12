@@ -74,7 +74,7 @@ GitHubCommit = new function() {
     "<div class='group'>" + 
     "  <div class='envelope commit'>" + 
     "    <div class='human'>" + 
-    "      <div class='message'><pre><a href='" + this.commit.url + "'>" + this.escapeContent(this.commit.message) + "</a></pre></div>" + 
+    "      <div class='message'><code><a href='" + this.commit.url + "'>" + this.escapeContent(this.commit.message) + "</a></code></div>" + 
     "      <div class='actor'>" + 
     "        <div class='gravatar'>" +               
     "          <img width='30' height='30' src='http://www.gravatar.com/avatar/" + hex_md5(this.commit.author.email) + "?s=30&amp;d=http%3A%2F%2Fgithub.com%2Fimages%2Fgravatars%2Fgravatar-30.png' alt=''/>" + 
@@ -83,7 +83,7 @@ GitHubCommit = new function() {
     "        <div class='date'><abbr title='" + this.commit.authored_date + "' class='relatize'>" + this.escapeDate(this.commit.authored_date) + "</abbr></div>" + 
     "      </div>"; 
     
-    if (this.commit.committer)
+    if (this.commit.committer && this.commit.committer.name != this.commit.author.name)
       html += 
       "      <div class='actor'>" + 
       "        <div class='gravatar'>" +                                             

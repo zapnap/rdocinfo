@@ -6,7 +6,8 @@
  *  You need: jquery.js
  *
  *  Notes: I am ignoring private repos, and the api doesn't give you gem or
- *  fork information that is present on the GitHub website
+ *  fork information that is present on the GitHub website. Pledgie info is
+ *  also not available.
  *
  *--------------------------------------------------------------------------*/
 
@@ -76,19 +77,30 @@ GitHubRepo = new function() {
     + ""      
     + "  <div class='meta'>"
     + "    <table>"
-    + "      <tbody>"
-    + "        <tr>"
-    + "          <td class='label'>Fork:</td>"
-    + "          <td>" + (this.data.fork ? 'yes' : 'no') + "</td>"
-    + "        </tr>"     
+    + "      <tbody>";
+    
+    // if (this.data.fork)
+    // html += ""
+    // + "        <tr>"
+    // + "          <td class='label'>Fork:</td>"
+    // + "          <td>Yes</td>"
+    // + "        </tr>";
+    
+    if (this.data.description)
+    html += ""
     + "        <tr>"
     + "          <td class='label'>Description:</td>"
     + "          <td>" + this.escapeContent(this.data.description) + "</td>"
-    + "        </tr>"
+    + "        </tr>";
+      
+    if (this.data.homepage)
+    html += ""
     + "        <tr>"
     + "          <td class='label'>Homepage:</td>"
     + "          <td><a href='" + this.escapeContent(this.data.homepage) + "'>" + this.escapeContent(this.data.homepage) + "</a></td>"
-    + "        </tr>"
+    + "        </tr>";
+    
+    html += ""
     + "        <tr>"
     + "          <td class='label'>Public Clone URL:</td>"
     + "          <td>"
