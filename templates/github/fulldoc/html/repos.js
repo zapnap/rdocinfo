@@ -102,7 +102,7 @@ GitHubRepo = new function() {
     
     html += ""
     + "        <tr>"
-    + "          <td class='label'>Public Clone URL:</td>"
+    + "          <td class='label'>Clone URL:</td>"
     + "          <td>"
     + "            <a rel='#git-clone' class='git_url_facebox' href='git://github.com/" + this.username + "/" + this.repository + ".git'>git://github.com/" + this.username + "/" + this.repository + ".git</a>"
     + "            <object width='110' height='14' id='clippy' class='clippy' classid='clsid:d27cdb6e-ae6d-11cf-96b8-444553540000'>"
