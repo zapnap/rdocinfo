@@ -53,8 +53,7 @@ describe 'Application' do
 
   describe 'post-commit hook' do
     it 'should update the specified project' do
-      Project.expects(:first).with(:url => 'http://github.com/zapnap/simplepay').returns(@project)
-      @project.expects(:update_attributes).with(:commit_hash => '0f115cd0b8608f677b676b861d3370ef2991eb5f').returns(true)
+      Project.expects(:first).with(:owner => 'zapnap', :name => 'simplepay', :commit_hash => '0f115cd0b8608f677b676b861d3370ef2991eb5f').returns(@project)
       post '/projects/update', :payload => json_data
       last_response.status.should == 202
     end

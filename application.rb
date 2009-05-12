@@ -46,7 +46,7 @@ end
 # create project
 post '/projects' do
   @title = 'New Project'
-  @project = Project.new(:name => params[:name], :owner => params[:owner], :url => "http://github.com/#{params[:owner]}/#{params[:name]}")
+  @project = Project.new(:name => params[:name], :owner => params[:owner], :commit_hash => params[:commit_hash], :url => "http://github.com/#{params[:owner]}/#{params[:name]}")
   if @project.save
     redirect @project.doc_url
   else
@@ -57,13 +57,12 @@ end
 # post-receive hook for github
 post '/projects/update' do
   json = JSON.parse(params[:payload])
-  if json['repository'] && @project = Project.first(:url => json['repository']['url'])
-    @project.update_attributes(:commit_hash => json['commits'][0]['id'])
+  if json['repository'] && @project = Project.first(:owner => json['repository']['owner']['name'], :name => json['repository']['name'], :commit_hash => json['commits'][0]['id'])
     status(202)
   else
     # create project
-    if (repository = json['repository']) && (owner = repository['owner'])
-      @project = Project.new(:name => repository['name'], :owner => owner['name'], :url => repository['url'])
+    if (repository = json['repository']) && (owner = repository['owner']) && (commit_hash = json['commits'][0]['id'])
+      @project = Project.new(:name => repository['name'], :owner => owner['name'], :commit_hash => commit_hash, :url => repository['url'])
       @project.save ? status(202) : status(403)
     else
       status(403)
