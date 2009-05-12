@@ -15,7 +15,7 @@
           = "from #{@project.truncated_hash}" unless @project.commit_hash.nil?
           %form.inline{:action => @project.doc_url, :method => 'post'}
             %input{:type => 'hidden', :name => '_method', :value => 'put'}
-            %input{:type => 'submit', :value => 'Update', :disabled => !@project.commit_hash.nil?}
+            %input{:type => 'submit', :value => 'Update'}
           %a{:href => @project.url} [src]
       .container
         %iframe{:src => "#{@project.doc.rdoc_url}/index.html", :height => '100%'}
