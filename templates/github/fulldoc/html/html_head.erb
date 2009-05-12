@@ -16,9 +16,9 @@
 <script type="text/javascript">
   $(document).ready(function(){
     GitHubRepo.init("<%= $github[:user] %>", "<%= $github[:project] %>", function(){ 
-      GitHubRepo.links = "<a id='namespaces_button' rel='<%= $github[:user] %>/<%= $github[:project] %>/blob/<%= $github[:commit] %>' href='#'><img class='button' src='http://docs.github.com/namespaces_button.png' alt='Modules and Classes'/></a>";
-      GitHubRepo.links += "<a id='methods_button' rel='<%= $github[:user] %>/<%= $github[:project] %>/blob/<%= $github[:commit] %>' href='#'><img class='button' src='http://docs.github.com/methods_button.png' alt='Methods'/></a>";
-      $("#repos").html(GitHubRepo.content()) 
+      GitHubRepo.links = " <a id='namespaces_button' rel='<%= $github[:user] %>/<%= $github[:project] %>/blob/<%= $github[:commit] %>' href='#'><img class='button' src='http://docs.github.com/namespaces_button.png' alt='Modules and Classes'/></a> ";
+      GitHubRepo.links += " <a id='methods_button' rel='<%= $github[:user] %>/<%= $github[:project] %>/blob/<%= $github[:commit] %>' href='#'><img class='button' src='http://docs.github.com/methods_button.png' alt='Methods'/></a> ";
+      $("#repo").html(GitHubRepo.content()) 
     });
     GitHubCommit.init("<%= $github[:user] %>", "<%= $github[:project] %>", "<%= $github[:commit] %>", function(){ 
       $("#commit").html(GitHubCommit.content()) 
