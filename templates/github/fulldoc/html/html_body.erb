@@ -43,35 +43,17 @@
 
       <div class="site">  
         <div id="repos">
-          <div class="repo public">
+          <div id="repo" class="repo public">
             <div class="title">
               <div class="path">
                 <a href="http://github.com/<%= $github[:user] %>"><%= $github[:user] %></a> / <b><a href="http://github.com/<%= $github[:user] %>/<%= $github[:project] %>/tree"><%= $github[:project] %></a></b>        
-                <a id="namespaces_button" rel="<%= $github[:user] %>/<%= $github[:project] %>/blob/<%= $github[:commit] %>" href="#">
-                  <img class="button" src="http://docs.github.com/namespaces_button.png" alt="Modules and Classes"/>
-                </a>
-                <a id="methods_button" rel="<%= $github[:user] %>/<%= $github[:project] %>/blob/<%= $github[:commit] %>" href="#">
-                  <img class="button" src="http://docs.github.com/methods_button.png" alt="Methods"/>
-                </a>
-
-                <script type="text/javascript">          
-                $('#namespaces_button').click(function(){
-                  var url="<%= $base_url %>"+$(this).attr('rel')+"/namespaces/";
-                  $.gitbox(url);
-                  return false;
-                });
-
-                $('#methods_button').click(function(){
-                  var url="<%= $base_url %>"+$(this).attr('rel')+"/methods/";
-                  $.gitbox(url);
-                  return false;
-                });
-                </script>
-                
+                <a id="namespaces_button" rel="<%= $github[:user] %>/<%= $github[:project] %>/blob/<%= $github[:commit] %>" href="#"><img class="button" src="http://docs.github.com/namespaces_button.png" alt="Modules and Classes"/></a>
+                <a id="methods_button" rel="<%= $github[:user] %>/<%= $github[:project] %>/blob/<%= $github[:commit] %>" href="#"><img class="button" src="http://docs.github.com/methods_button.png" alt="Methods"/></a>
               </div>
-            </div>
+            </div>            
           </div>
-                                        
+          <div id="commit">
+          </div>                                        
           <div id="content">
             <%= render $content %>
           </div>

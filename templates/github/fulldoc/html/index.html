@@ -5,19 +5,13 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="description" content="Github Documentation">
 
-    <link type="text/css" rel="stylesheet" media="screen" href="http://gist.github.com/stylesheets/gist/screen.css">
+    <link href="http://assets0.github.com/stylesheets/bundle.css" media="screen" rel="stylesheet" type="text/css">
     <link rel="search" type="application/opensearchdescription+xml" href="http://github.com/opensearch.xml" title="GitHub">
     <link rel="fluid-icon" href="http://github.com/fluidicon.png" title="GitHub">
-    <link href="http://assets0.github.com/stylesheets/bundle.css" media="screen" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://assets3.github.com/javascripts/bundle.js"></script>              
     <script src="./app.js" type="text/javascript" charset="utf-8"></script>
-
-    <style type="text/css">
-      #repo_menu { border-bottom: 5px solid #ccc; margin-bottom: 1.5em; }
-      #repo_sub_menu { display: none; }
-    </style>
 
     <link rel="stylesheet" href="./style.css" type="text/css" charset="utf-8" />
     
@@ -26,19 +20,20 @@
       $(document).ready(function(){
         $("#doc_search_form").submit(function(){
           try {        
-            var q = $('#doc_q').val();
+            var q = $('#doc_owner').val() + "/" + $('#doc_name').val();
             window.location = "/" + q;
           } catch(ex) { }
           return false;
         });
 
-        $("#doc_q").Watermark("user/project");
+        $("#doc_owner").Watermark("username");
+        $("#doc_name").Watermark("repository");
       });
     </script>
   </head>
   <body>    
     <div id="main">
-      <div id="header">
+      <div id="header" style="border-bottom:5px solid #DDDDDD">
         <div class="site">
           <div class="logo">
             <a href="http://github.com/"><img src="http://github.com/images/modules/header/logov3.png" alt="github"></a>
@@ -51,7 +46,7 @@
               <a href="http://github.com/repositories">Browse</a> | <a href="http://github.com/guides">Guides</a> | <a href="http://github.com/search">Advanced</a>
             </div>
           </div>        
-          <div class="actions">
+          <div class="actions basic">
             <a href="http://github.com">Home</a>
             <a href="http://github.com/plans"><b><u>Pricing and Signup</u></b></a>
             <a href="http://docs.github.com/">Documentation</a>
@@ -61,7 +56,7 @@
       </div>
                                                   
       <div id="home">
-        <div class="announce">
+        <div class="announce" style="margin-top:0">
           <h1>GitHub Documentation is Built on GitHub Pages</h1>
         </div>
 
@@ -69,9 +64,10 @@
           <div id="content">
             <div class="search">
               <form method="get" class="search_repos" id="doc_search_form" action="http://github.com/search">
-                <div class="label">Find documentation for public git repositories (username/project)</div>
+                <div class="label">Find documentation for public git repositories by entering the user and repository name</div>
                 <div class="box">
-                  <input type="text" name="q" id="doc_q" class="text"/>
+                  <input type="text" name="owner" id="doc_owner" class="text" style="width:10em;padding-left:0.2em"/>
+                  <input type="text" name="name" id="doc_name" class="text"  style="width:10em;padding-left:0.2em"/>
                   <input type="image" alt="search" src="http://github.com/images/modules/home/search_button.png"/>
                 </div>
               </form>
@@ -79,9 +75,10 @@
           </div>
 
           <div class="features" style="background:none;border:none;float:none;clear:both;margin-top:30px;">
-            <p style="width:700px;position:absolute;padding:0;margin:0;left:50%;margin-left:-350px;">This documentation application is a custom website developed by Nick Plante and Jeff Rafter.
+            <p style="width:700px;position:absolute;padding:0;margin:0;left:50%;margin-left:-350px;">This documentation application is a custom website developed by <a href="http://github.com/zapnap">Nick Plante</a> and <a href="http://github.com/jeffrafter">Jeff Rafter</a>.<br/>
+            We currently support automated ruby documentation.
             If you run into problems please let us know or report the issues on the GitHub repository at <a href="http://github.com/docs/docs.github.com">http://github.com/docs/docs.github.com</a>.
-            They have very graciously let us use their style because they are cool. In fact, you should sign up there now.</p>            
+            GitHub has very graciously let us use their style because they are cool. In fact, you should sign up now.</p>            
           </div>
           <div class="tour" style="margin-top:80px;">
             <a href="/plans"><img src="http://assets0.github.com/images/modules/tour/sign_up_now.png?add25bbfa82f0b09a209206d69a2366544a9699b" alt="Sign up now!"/></a>

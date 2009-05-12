@@ -9,3 +9,29 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://assets3.github.com/javascripts/bundle.js"></script>              
 <script src="<%= url_for(js_app_file) %>" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript" src="http://docs.github.com/javascripts/md5.js"></script>
+<script type="text/javascript" src="http://docs.github.com/javascripts/repos.js"></script>
+<script type="text/javascript" src="http://docs.github.com/javascripts/commits.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    GitHubRepo.init("<%= $github[:user] %>", "<%= $github[:project] %>", function(){ 
+      GitHubRepo.links = "<a id='namespaces_button' rel='<%= $github[:user] %>/<%= $github[:project] %>/blob/<%= $github[:commit] %>' href='#'><img class='button' src='http://docs.github.com/namespaces_button.png' alt='Modules and Classes'/></a>";
+      GitHubRepo.links += "<a id='methods_button' rel='<%= $github[:user] %>/<%= $github[:project] %>/blob/<%= $github[:commit] %>' href='#'><img class='button' src='http://docs.github.com/methods_button.png' alt='Methods'/></a>";
+      $("#repos").html(GitHubRepo.content()) 
+    });
+    GitHubCommit.init("<%= $github[:user] %>", "<%= $github[:project] %>", "<%= $github[:commit] %>", function(){ 
+      $("#commit").html(GitHubCommit.content()) 
+    });
+    $('#namespaces_button').click(function(){
+      var url="/"+$(this).attr('rel')+"/namespaces/";
+      $.gitbox(url);
+      return false;
+    });    
+    $('#methods_button').click(function(){
+      var url="/"+$(this).attr('rel')+"/methods/";
+      $.gitbox(url);
+      return false;
+    });        
+  });
+</script>

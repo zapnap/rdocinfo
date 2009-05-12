@@ -5,7 +5,6 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="description" content="Github Documentation">
 
-    <link type="text/css" rel="stylesheet" media="screen" href="http://gist.github.com/stylesheets/gist/screen.css">
     <link rel="search" type="application/opensearchdescription+xml" href="http://github.com/opensearch.xml" title="GitHub">
     <link rel="fluid-icon" href="http://github.com/fluidicon.png" title="GitHub">
     <link href="http://assets0.github.com/stylesheets/bundle.css" media="screen" rel="stylesheet" type="text/css">
@@ -14,11 +13,6 @@
     <script type="text/javascript" src="http://assets3.github.com/javascripts/bundle.js"></script>              
     <script src="./app.js" type="text/javascript" charset="utf-8"></script>
 
-    <style type="text/css">
-      #repo_menu { border-bottom: 5px solid #ccc; margin-bottom: 1.5em; }
-      #repo_sub_menu { display: none; }
-    </style>
-
     <link rel="stylesheet" href="./style.css" type="text/css" charset="utf-8" />
     
     <!-- Temp search stuff -->
@@ -26,20 +20,20 @@
       $(document).ready(function(){
         $("#doc_search_form").submit(function(){
           try {        
-            var q = $('#doc_q').val();
+            var q = $('#doc_owner').val() + "/" + $('#doc_name').val();
             window.location = "/" + q;
           } catch(ex) { }
           return false;
         });
         
-        $("#doc_owner").Watermark("user");
-        $("#doc_name").Watermark("project");         
+        $("#doc_owner").Watermark("username");
+        $("#doc_name").Watermark("repository");         
       });
     </script>
   </head>
   <body>    
     <div id="main">
-      <div id="header">
+      <div id="header" style="border-bottom:5px solid #DDDDDD">
         <div class="site">
           <div class="logo">
             <a href="http://github.com/"><img src="http://github.com/images/modules/header/logov3.png" alt="github"></a>
@@ -62,7 +56,7 @@
       </div>
                                                   
       <div id="home">
-        <div class="announce">
+        <div class="announce" style="margin-top:0">
           <h1>GitHub Documentation is Built on GitHub Pages</h1>
         </div>
                                  
@@ -70,10 +64,10 @@
           <div id="content">
             <div class="search">
               <form method="post" class="search_repos" id="doc_update_form" action="http://rdoc.info/projects/">                
-                <div class="label">Enter a public GitHub project by entering the user and project name</div>
+                <div class="label">Find documentation for public git repositories by entering the user and repository name</div>
                 <div class="box">
-                  <input type="text" name="owner" id="doc_owner" class="text" style="width:10em"/>
-                  <input type="text" name="name" id="doc_name" class="text"  style="width:10em"/>
+                  <input type="text" name="owner" id="doc_owner" class="text" style="width:10em;padding-left:0.2em"/>
+                  <input type="text" name="name" id="doc_name" class="text"  style="width:10em;padding-left:0.2em"/>
                   <input type="image" alt="search" src="http://github.com/images/modules/home/search_button.png"/>
                 </div>
               </form>
@@ -88,7 +82,7 @@
           
         </div>        
 
-        <div class="features" style="background:none;border:none;float:none;clear:both;height:100px;">
+        <div class="features" style="background:none;border:none;float:none;clear:both;height:150px;">
           <p style="width:700px;position:absolute;padding:0;margin:0;left:50%;margin-left:-350px;">
             It looks like the documentation you were looking for could not be found. 
             If you followed this link from a project, please report this to the project owner.

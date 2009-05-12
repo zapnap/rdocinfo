@@ -2,7 +2,6 @@ $github = {}
 $github[:project] = ENV['GH_PROJECT']
 $github[:user] = ENV['GH_USER']
 $github[:commit] = ENV['GH_COMMIT']
-$github[:description] = ENV['GH_DESCRIPTION']
 
 # This is just not cool
 module YARD
