@@ -46,11 +46,11 @@ describe 'Project' do
       @project.errors[:url].should include("Url must not be blank")
     end
 
-    it 'should require a unique url' do
+    it 'should require a unique commit hash' do
       @project.save
       @project = Factory.build(:project)
       @project.should_not be_valid
-      @project.errors[:url].should include("Url is already taken")
+      @project.errors[:commit_hash].should include("Commit hash is already taken")
     end
     
     it 'should require a valid github repository' do

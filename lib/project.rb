@@ -13,10 +13,11 @@ class Project
   property :updated_at,  DateTime
 
   validates_present :name, :owner, :url
-  validates_is_unique :url
   validates_with_method :owner, :method => :reject_non_ascii_owner_chars
   validates_with_method :name, :method => :reject_non_ascii_name_chars
   validates_with_method :name, :method => :check_remote_and_update_hash
+  # validates_is_unique :url
+  validates_is_unique :commit_hash
 
   # generate updated project docs
   after :save do
