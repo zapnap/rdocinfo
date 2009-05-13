@@ -4,10 +4,10 @@ class DocBuilder
   end
 
   # Generate RDocs for the project
-  def generate
+  def generate(asynch = true)
     FileUtils.rm_rf(rdoc_dir('default')) if File.exists?(rdoc_dir('default')) # clean first
     FileUtils.rm_rf(rdoc_dir(SiteConfig.template)) if File.exists?(rdoc_dir(SiteConfig.template)) # clean first
-    (Sinatra::Base.environment == :test) ? run_yardoc : run_yardoc_asynch
+    (!asynch || (Sinatra::Base.environment == :test)) ? run_yardoc : run_yardoc_asynch
   end
 
   # Local tmp directory used for project cloning
