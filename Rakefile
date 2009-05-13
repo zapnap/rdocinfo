@@ -25,6 +25,15 @@ namespace :db do
   end
 end
 
+namespace :rdoc do
+  desc 'Regenerate all projects'
+  task :regenerate => :environment do
+    Project.all.each do |project|
+      project.doc.generate(false)
+    end
+  end
+end
+
 namespace :gems do
   desc 'Install required gems'
   task :install do

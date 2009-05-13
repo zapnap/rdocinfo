@@ -4,14 +4,18 @@ A simple Sinatra-based web service that hosts rdocs for GitHub-based projects. A
 
 == Configuration
 
-Dependencies and all configuration is done in <tt>environment.rb</tt>. Your database is also set up here. DataMapper will use sqlite3 by default. Tests use the sqlite3-memory adapter (no configuration needed).
+All configuration is done in the <tt>conf</tt> directory via environment yaml files. Copy <tt>development.yml.example</tt> to <tt>deelopment.yml</tt> within that directory and alter the settings to match your local environment.
 
 There are a couple additional steps you'll need to take to get rdoc.info working:
 
 * Install Jeff Rafter's fork of YARD -- see http://github.com/jeffrafter/yard
-* Create a symlink from /public/rdoc to ../rdoc
+* Create a symlink from /public/rdoc to ../rdoc/default
 
 Once you've done that you should be ready to rock.
+
+== GitHub Integration
+
+Rdoc.info can now push GitHub-themed doc files directly to a GitHub account. Toggle the enable_push and github_doc_pages options in the yaml config to set this up and make sure the appropriate keys are in place. This support is still considered experimental :).
 
 == Getting Started
 
@@ -20,4 +24,4 @@ Once you've done that you should be ready to rock.
 
 == Contribute
 
-All contributions are welcome. See <tt>TODO</tt> for a list of specific features that have been requested or discussed.
+All contributions are welcome. See GitHub project issues for a list of specific features that have been requested or discussed.
