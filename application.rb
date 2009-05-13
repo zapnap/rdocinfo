@@ -30,6 +30,8 @@ end
   get action do
     @title = 'Featured Projects'
     @pages, @projects = Project.paginated(:order => [:created_at.desc],
+                                          :fields => [:owner, :name],
+                                          :unique => true,
                                           :per_page => SiteConfig.per_page,
                                           :page => (params[:page] || 1).to_i)
     haml(:index)
