@@ -40,7 +40,7 @@ describe 'Application' do
   describe 'create' do
     it 'should create a new project' do
       lambda {
-        post '/projects', :owner => 'zapnap', :name => 'isbn_validation'
+        post '/projects', :owner => 'zapnap', :name => 'isbn_validation', :commit_hash => '0f115cd0b8608f677b676b861d3370ef2991eb5f'
       }.should change(Project, :count).by(1)
     end
 
@@ -89,6 +89,16 @@ describe 'Application' do
       get '/projects/zapnap/simplepay'
       last_response.should be_ok
       last_response.body.should have_tag('div.progress')
+    end
+
+    it 'should display rdocs for the specified commit hash' do
+      Project.expects(:first).with(:name => 'simplepay', :owner => 'zapnap', :commit_hash => '0f115cd0b8608f677b676b861d3370ef2991eb5f')
+      get '/projects/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f/status'
+    end
+
+    it 'should grab the latest commit if hash is unspecified' do
+      Project.expects(:first).with(:name => 'simplepay', :owner => 'zapnap', :order => [:id.desc])
+      get '/projects/zapnap/simplepay'
     end
 
     it 'should return 404 if the project does not exist' do
