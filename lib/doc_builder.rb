@@ -63,7 +63,6 @@ class DocBuilder
     push_pages if SiteConfig.enable_push
   end
   
-  # Eventually we can include GH_BRANCH, GH_VERSION, and GH_DESCRIPTION 
   def yardoc_command(template)
     command = "cd #{clone_dir};"
     command += " export GH_USER=#{@project.owner}; export GH_PROJECT=#{@project.name}; export GH_COMMIT=#{@project.commit_hash}; yardoc -q -o #{rdoc_dir(template)} -r #{readme_file}"
@@ -81,8 +80,8 @@ class DocBuilder
   end
   
   def included_files
-    if File.exists?('.document')
-      files = File.read('.document')
+    if File.exists?(File.join(clone_dir, '.document'))
+      files = File.read(File.join(clone_dir, '.document'))
       "-q #{files.split(/$\n?/).join(' ')}"
     else
       ''
@@ -94,11 +93,11 @@ class DocBuilder
   end
 
   def generate_readme_file
-    unless file = Dir['README*'].first
-      File.open('README', 'w') {}
+    unless file = Dir[File.join(clone_dir, 'README*')].first
+      File.open(File.join(clone_dir, 'README'), 'w') {}
       file = 'README'
     end
-
+    file = File.basename(file)
     file
   end
 

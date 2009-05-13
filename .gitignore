@@ -2,7 +2,7 @@
 *.log
 log/*.log
 tmp/*
-public/rdoc/*
+public/rdoc
 .yardoc
 .DS_Store
 rdoc/*
