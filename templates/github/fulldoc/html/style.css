@@ -14,8 +14,9 @@
 .methodsignature .visibility { display: none; }
 .methodsignature .name { font-weight: bold; }
 .methoddetails .method_header h3 { display: none; }
-.section.method { background: #eee; margin-bottom: 0.8em; }
-.section.tags,.section.docstring,.section.source { padding: 5px 12px; }
+.section.method { background: #eee; }
+.section.tags,.section.docstring { padding: 5px 12px; }
+.section.source { margin-bottom: 1em; padding: 5px 12px; }
 .section.method .details_title { font-size: 1.1em; background: #dde; padding: 7px; }
 .section.method .details_title p.aliases { padding: 0; margin: 0; font-style: italic; font-size: 0.9em; }
 .section.method .details_title p.aliases tt { font-weight: bold; font-style: normal; font-size: 1.1em; }
