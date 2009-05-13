@@ -42,7 +42,7 @@ describe 'Application' do
   describe 'create' do
     it 'should create a new project' do
       lambda {
-        post '/projects', :owner => 'zapnap', :name => 'isbn_validation', :commit_hash => '0f115cd0b8608f677b676b861d3370ef2991eb5f'
+        post '/projects', :owner => 'zapnap', :name => 'isbn_validation', :commit_hash => '1f115cd0b8608f677b676b861d3370ef2991eb5f'
       }.should change(Project, :count).by(1)
     end
 
