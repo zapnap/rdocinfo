@@ -15,9 +15,6 @@ Sinatra::Base.set :logging, false
 require 'application'
 require File.dirname(__FILE__) + '/factories'
 
-# establish in-memory database for testing
-DataMapper.setup(:default, "sqlite3::memory:")
-
 Spec::Runner.configure do |config|
   config.mock_with(:mocha)
 

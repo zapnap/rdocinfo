@@ -60,7 +60,7 @@ class DocBuilder
     logger.info `#{command}`
 
     clean_repo
-    push_pages
+    push_pages if SiteConfig.enable_push
   end
   
   # Eventually we can include GH_BRANCH, GH_VERSION, and GH_DESCRIPTION 
