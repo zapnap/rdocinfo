@@ -48,7 +48,7 @@ post '/projects' do
   @title = 'New Project'
   @project = Project.new(:name => params[:name], :owner => params[:owner], :commit_hash => params[:commit_hash], :url => "http://github.com/#{params[:owner]}/#{params[:name]}")
   if @project.save
-    redirect @project.doc_url
+    redirect (params[:return] || @project.doc_url)
   else
     haml(:new)
   end

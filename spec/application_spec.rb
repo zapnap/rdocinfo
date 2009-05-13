@@ -49,6 +49,12 @@ describe 'Application' do
       follow_redirect!
       last_request.url.should match(/.*projects\/zapnap\/isbn_validation.*$/)
     end
+
+    it 'should redirect to the return url if provided' do
+      post '/projects', :owner => 'zapnap', :name => 'isbn_validation', :return => 'http://blog.zerosum.org/'
+      follow_redirect!
+      last_request.url.should == 'http://blog.zerosum.org/'
+    end
   end
 
   describe 'post-commit hook' do
