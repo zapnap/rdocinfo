@@ -8,7 +8,7 @@
           <span>File '<%= h object.file %>', line <%= object.line %></span>
         </div>
         <div class="actions">      
-          <a id="raw-url" href="http://github.com/<%= $github[:user] %>/<%= $github[:project] %>/blob/master/<%= h object.file %>#L<%= object.line %>">raw</a>      
+          <a id="raw-url" href="http://github.com/<%= $github[:user] %>/<%= $github[:project] %>/blob/<%= $github[:commit] %>/<%= h object.file %>#L<%= object.line %>">raw</a>      
         </div>
       </div>
             
