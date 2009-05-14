@@ -3,6 +3,9 @@
   <head>
     <title><%= $github[:user] %>'s <%= $github[:project] %> - GitHub Documentation</title>
     <meta http-equiv="refresh" content="0;url=http://docs.github.com/<%= $github[:user] %>/<%= $github[:project] %>/blob/<%= $github[:commit] %>">
+    <script type="text/javascript">
+      var skipHeaders = true;
+    </script>
     <%= render :html_head %>
     <link rel="stylesheet" href="<%= url_for(css_file) %>" type="text/css" charset="utf-8" />
   </head>
