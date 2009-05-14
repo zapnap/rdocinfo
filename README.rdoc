@@ -1,6 +1,6 @@
 = RdocInfo
 
-A simple Sinatra-based web service that hosts rdocs for GitHub-based projects. Accepts updates from post-commit hooks and regenerates as needed. Public service is hosted at http://rdoc.info
+A simple Sinatra-based web service that generates and hosts rdocs for GitHub-based projects. Accepts updates from post-commit hooks and regenerates as needed. Public service is hosted at http://rdoc.info
 
 == Configuration
 
