@@ -51,8 +51,12 @@
         
         var results = new RegExp('^http\:\/\/docs\.github\.com\/([0-9A-Za-z\_\-]+)\/([0-9A-Za-z\_\-]+)\/?$').exec(window.location.href);        
         results = results || [];
-        $("#doc_owner").Watermark(results[1] || "username");
-        $("#doc_name").Watermark(results[2] || "repository");         
+        $("#doc_owner").Watermark("username");
+        $("#doc_name").Watermark("repository");         
+        if (results[1] && results[2) {
+          $("#doc_owner").val(results[1]);
+          $("#doc_name").val(results[2]);                 
+        }
       });
     </script>
   </head>
