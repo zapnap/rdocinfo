@@ -75,13 +75,21 @@
           <div class="features" style="background:none;border:none;float:none;clear:both;margin-top:30px;">
             <p style="width:700px;position:absolute;padding:0;margin:0;left:50%;margin-left:-350px;">
             This documentation application is a custom website developed by <a href="http://github.com/zapnap">Nick Plante</a> and <a href="http://github.com/jeffrafter">Jeff Rafter</a>
-            based on the <a href="http://rdoc.info">rdoc.info</a> project. We currently support automated ruby documentation.<br/>
+            based on the <a href="http://rdoc.info">rdoc.info</a> project. We currently support automated <a href="#" id="post_commit_button">Ruby documentation</a>.<br/>
             If you run into problems please let us know or report the issues on the GitHub repository at <a href="http://github.com/docs/docs.github.com">http://github.com/docs/docs.github.com</a>.
             GitHub has very graciously let us use their style because they are cool. In fact, you should sign up now.</p>            
           </div>
           <div class="tour" style="margin-top:80px;">
             <a href="http://github.com/plans"><img src="http://assets0.github.com/images/modules/tour/sign_up_now.png?add25bbfa82f0b09a209206d69a2366544a9699b" alt="Sign up now!"/></a>
           </div>          
+          <script type="text/javascript">
+            $(document).ready(function(){
+              $('#post_commit_button').click(function(){
+                $.gitbox("./post-commit.html");
+                return false;
+              });    
+            });
+          </script>
         </div>
 
       </div>  

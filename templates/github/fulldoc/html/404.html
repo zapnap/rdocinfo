@@ -95,8 +95,18 @@
             It looks like the documentation you were looking for could not be found. 
             If you followed this link from a project, please report this to the project owner.
             If the documentation has never been generated you should do that now.
-            If you are the project owner, add a post-commit hook to your repository.
+            If it's your project, add a <a href="#" id="post_commit_button">post-commit</a> 
+            hook to your repository.
           </p>            
+
+          <script type="text/javascript">
+            $(document).ready(function(){
+              $('#post_commit_button').click(function(){
+                $.gitbox("./post-commit.html");
+                return false;
+              });    
+            });
+          </script>
         </div>
 
         <div id="site">                                                  
