@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <title>GitHub Documentation</title>
+    <title>GitHub Documentation - Generating</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="description" content="Github Documentation">
 
@@ -15,18 +15,49 @@
     
     <!-- Temp search stuff -->
     <script type="text/javascript">
+      $.param = function(name){
+        try {
+          var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+          return results[1] || 0;
+        } catch(ex) {
+          return null;
+        }  
+      }    
+          
       $(document).ready(function(){
-        $("#doc_generate_form").submit(function(){
-          try {  
-            $('#doc_return').val('http://docs.github.com/generate/?owner=' + encodeURIComponent($('#doc_owner').val()) + '&name=' + encodeURIComponent($('#doc_name').val()));
-            return true;
-          } catch(ex) { }
+        $(document).everyTime(2500, function(i) {
+          // Check if it exists, if so redirect
+          var owner = $.param('owner');
+          var name = $.param('name');
+          var url = '/' + owner + '/' + name;
+
+          $.ajax({
+             type:'GET',
+             url:url,
+             success:function(){window.location = url},
+             error:function(xhr, ajaxOptions, thrownError){ /* nothing */ }
+          });                     
         });
-        
-        $("#doc_owner").Watermark("username");
-        $("#doc_name").Watermark("repository");         
       });
     </script>
+    
+    <style type="text/css" media="screen">
+      .progress {
+        width: 96px;
+        height: 11px;
+        margin: 0 auto;
+        padding:2px;
+        background:white;
+        border:1px solid silver;
+      }
+      .progress .box {
+        width: 15px;
+        height: 10px;
+        background: #133855;
+        float: left;
+        margin: 0 2px;
+      }
+    </style>
   </head>
   <body>    
     <div id="main">
@@ -59,41 +90,23 @@
                                  
         <div id="site">                                                  
           <div id="content">
-            <div class="search">
-              <form method="post" class="search_repos" id="doc_generate_form" action="http://rdoc.info/projects">                
-                <div class="label">Generate documentation for public git repositories by entering the user and repository name</div>
-                <div class="box">
-                  <input type="hidden" name="return" id="doc_return" value="http://docs.github.com/generate/"/>
-                  <input type="text" name="owner" id="doc_owner" class="text" style="width:10em;padding-left:0.2em"/>
-                  <input type="text" name="name" id="doc_name" class="text"  style="width:10em;padding-left:0.2em"/>
-                  <input type="image" alt="search" src="http://docs.github.com/generate.png"/>
+
+            <script src='./progress.js' type='text/javascript'></script>
+            <div id="login" class="standard_form">      
+              <h2>The documentation for this repository is being generated</h2>
+              <p>
+                <div class='progress'>
+                  <div class='box'></div>
+                  <div class='box'></div>
+                  <div class='box'></div>
+                  <div class='box'></div>
+                  <div class='box'></div>
                 </div>
-              </form>
+              </p>  
+              <p>Feel free to head back to the <a href="/">search</a>, or you can wait and be redirected when the documentation is ready.</p>
             </div>
           </div>
-          <br/>
-          <br/>
-          <div style="float:none;clear:both;">
-            <img src="http://github.com/images/error/octocat_happy.gif">
-          </div>
-          <br/>
-          
         </div>        
-
-        <div class="features" style="background:none;border:none;float:none;clear:both;height:150px;">
-          <p style="width:700px;position:absolute;padding:0;margin:0;left:50%;margin-left:-350px;">
-            It looks like the documentation you were looking for could not be found. 
-            If you followed this link from a project, please report this to the project owner.
-            If the documentation has never been generated you should do that now.
-            If you are the project owner, why not add a post-commit hook to your
-            repository?
-          </p>            
-        </div>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        
       </div>  
     </div>                  
     
