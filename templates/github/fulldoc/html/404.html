@@ -14,17 +14,45 @@
     <script type="text/javascript" src="http://docs.github.com/app.js"></script>
     
     <!-- Temp search stuff -->
+    <script type="text/javascript" src="http://docs.github.com/javascripts/repos.js"></script>
     <script type="text/javascript">
+      var submitting = false;
+            
       $(document).ready(function(){
         $("#doc_generate_form").submit(function(){
+          // This is what happens when you are cool
+          if (submitting) 
+            return true;            
           try {  
-            $('#doc_return').val('http://docs.github.com/generate/?owner=' + encodeURIComponent($('#doc_owner').val()) + '&name=' + encodeURIComponent($('#doc_name').val()));
-            return true;
-          } catch(ex) { }
+            var owner = encodeURIComponent($('#doc_owner').val())
+            var name = encodeURIComponent($('#doc_name').val());
+            $('#doc_return').val('http://docs.github.com/generate/?owner=' + owner + '&name=' + name);
+            $('#doc_owner').attr('disabled', 'disabled');
+            $('#doc_name').attr('disabled', 'disabled');
+            $('#doc_submit').attr('disabled', 'disabled');
+            GitHubRepo.init(owner, name, function(){
+              $('#doc_owner').removeAttr('disabled');
+              $('#doc_name').removeAttr('disabled');
+              $('#doc_submit').removeAttr('disabled');
+              if (GitHubRepo.data) {
+                submitting = true;
+                document.getElementById("doc_generate_form").submit();
+              } else {
+                $.gitbox('http://docs.github.com/invalid.html');
+              }              
+            });
+          } catch(ex) { 
+            alert(ex);
+          }
+          
+          // By default we don't want submission happening
+          return false;
         });
         
-        $("#doc_owner").Watermark("username");
-        $("#doc_name").Watermark("repository");         
+        var results = new RegExp('^http\:\/\/docs\.github\.com\/([0-9A-Za-z\_\-]+)\/([0-9A-Za-z\_\-]+)\/?$').exec(window.location.href);        
+        results = results || [];
+        $("#doc_owner").Watermark(results[1] || "username");
+        $("#doc_name").Watermark(results[2] || "repository");         
       });
     </script>
   </head>
@@ -66,7 +94,7 @@
                   <input type="hidden" name="return" id="doc_return" value="http://docs.github.com/generate/"/>
                   <input type="text" name="owner" id="doc_owner" class="text" style="width:10em;padding-left:0.2em"/>
                   <input type="text" name="name" id="doc_name" class="text"  style="width:10em;padding-left:0.2em"/>
-                  <input type="image" alt="search" src="http://docs.github.com/generate.png"/>
+                  <input type="image" id="doc_submit" alt="search" src="http://docs.github.com/generate.png"/>
                 </div>
               </form>
             </div>
