@@ -90,11 +90,20 @@
           <h1>GitHub Documentation is Built on GitHub Pages</h1>
         </div>
                                  
+        <div class="features" style="background:none;border:none;float:none;clear:both;height:60px;">
+          <p style="width:700px;position:absolute;padding:0;margin:0;left:50%;margin-left:-350px;">
+            It looks like the documentation you were looking for could not be found. 
+            If you followed this link from a project, please report this to the project owner.
+            If the documentation has never been generated you should do that now.
+            If you are the project owner, add a post-commit hook to your repository.
+          </p>            
+        </div>
+
         <div id="site">                                                  
           <div id="content">
             <div class="search">
               <form method="post" class="search_repos" id="doc_generate_form" action="http://rdoc.info/projects">                
-                <div class="label">Generate documentation for public git repositories by entering the user and repository name</div>
+                <div class="label"><span style="font-weight:bolder;text-decoration:underline;color:#666">Generate</span> documentation for public git repositories by entering the user and repository name</div>
                 <div class="box">
                   <input type="hidden" name="return" id="doc_return" value="http://docs.github.com/generate/"/>
                   <input type="text" name="owner" id="doc_owner" class="text" style="width:10em;padding-left:0.2em"/>
@@ -112,16 +121,8 @@
           <br/>
           
         </div>        
-
-        <div class="features" style="background:none;border:none;float:none;clear:both;height:150px;">
-          <p style="width:700px;position:absolute;padding:0;margin:0;left:50%;margin-left:-350px;">
-            It looks like the documentation you were looking for could not be found. 
-            If you followed this link from a project, please report this to the project owner.
-            If the documentation has never been generated you should do that now.
-            If you are the project owner, why not add a post-commit hook to your
-            repository?
-          </p>            
-        </div>
+        <br/>
+        <br/>
         <br/>
         <br/>
         <br/>
