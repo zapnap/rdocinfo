@@ -35,8 +35,10 @@ class Project
   end
 
   # public URL where documentation for this project is viewable
-  def doc_url
-    "/projects/#{owner}/#{name}/blob/#{commit_hash}"
+  def doc_url(full = true)
+    path = "/projects/#{owner}/#{name}"
+    path += "/blob/#{commit_hash}" if full
+    path
   end
 
   # truncate commit hash for display

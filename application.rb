@@ -50,9 +50,14 @@ post '/projects' do
   @title = 'New Project'
   @project = Project.new(:name => params[:name], :owner => params[:owner], :commit_hash => params[:commit_hash], :url => "http://github.com/#{params[:owner]}/#{params[:name]}")
   if @project.save
-    redirect (params[:return] || @project.doc_url)
+    redirect(params[:return] || @project.doc_url)
   else
-    haml(:new)
+    # TODO: refactor target; trying to support both local and GH-pages workflows
+    if params[:return] && @project.errors.on(:commit_hash)
+      redirect(params[:return])
+    else
+      haml(:new)
+    end
   end
 end
 

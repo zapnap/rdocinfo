@@ -13,8 +13,10 @@
         .info
           = "Generated at #{@project.updated_at.strftime('%D %T %Z')}"
           = "from #{@project.truncated_hash}" unless @project.commit_hash.nil?
-          %form.inline{:action => @project.doc_url, :method => 'post'}
-            %input{:type => 'hidden', :name => '_method', :value => 'put'}
+          %form.inline{:action => '/projects', :method => 'post'}
+            %input{:type => 'hidden', :name => 'owner', :value => @project.owner}
+            %input{:type => 'hidden', :name => 'name', :value => @project.name}
+            %input{:type => 'hidden', :name => 'return', :value => @project.doc_url(false)}
             %input{:type => 'submit', :value => 'Update'}
           %a{:href => @project.url} [src]
       .container

@@ -46,7 +46,7 @@ describe 'Application' do
       }.should change(Project, :count).by(1)
     end
 
-    it 'should redirect to the rdoc' do
+    it 'should redirect to the rdoc if successful' do
       post '/projects', :owner => 'zapnap', :name => 'isbn_validation'
       follow_redirect!
       last_request.url.should match(/.*projects\/zapnap\/isbn_validation.*$/)
@@ -56,6 +56,18 @@ describe 'Application' do
       post '/projects', :owner => 'zapnap', :name => 'isbn_validation', :return => 'http://blog.zerosum.org/'
       follow_redirect!
       last_request.url.should == 'http://blog.zerosum.org/'
+    end
+
+    it 'should re-render the new template if save fails' do
+      post '/projects', :owner => 'zapnap', :name => 'simplepay'
+      last_response.should be_ok
+      last_response.body.should have_tag('form[@action=/projects]')
+    end
+
+    it 'should redirect back to return url if latest commit hash already exists' do
+      post '/projects', :owner => 'zapnap', :name => 'simplepay', :return => 'http://blog.zerosum.org/something'
+      follow_redirect!
+      last_request.url.should == 'http://blog.zerosum.org/something'
     end
   end
 
