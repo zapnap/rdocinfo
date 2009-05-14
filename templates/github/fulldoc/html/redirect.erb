@@ -8,6 +8,9 @@
     </script>
     <%= render :html_head %>
     <link rel="stylesheet" href="<%= url_for(css_file) %>" type="text/css" charset="utf-8" />
+    <style type="text/css">
+      #repo { display:none; }
+    </style>
   </head>
   <body>    
     <% $content = :content_for_redirect %>

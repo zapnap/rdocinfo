@@ -1,0 +1,24 @@
+<div id="nav" class="methods standard_form">
+  <h1 style="margin-bottom:0">Creating documentation for your project</h1>
+  <div style="padding:1em;color:#444444;font-size:120%;background:white;">
+    If you're a project author, you can add a post-commit hook and
+    your documentation will automatically regenerate whenever you push updates 
+    to your code. Simply open your project, click on the Admin tab and click
+    on the Service Hooks button. Add the following post-receive URL: 
+    <pre style="margin:15px;">http://rdoc.info/projects/update</pre>
+    We proudly use Loren Segal's <a href="http://github.com/lsegal/yard">YARD</a> 
+    library to generate documentation. This means that you can take advantage of 
+    meta <code>@tags</code> alongside regular code. If you'd like to customize 
+    the classes that we index, create a <code>.document</code> file in the root 
+    directory of your GitHub project. Each line of the file should contain a 
+    file name or pattern indicating which files to include 
+    <code>(default: lib/**/*.rb)</code>.    
+  </div>
+  <div class="actions">
+    <div class="right">
+      <label>
+        <input type="button" value="Close" id="close_facebox"/>
+      </label>
+    </div>
+  </div>
+</div>
