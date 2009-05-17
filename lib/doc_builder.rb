@@ -82,7 +82,7 @@ class DocBuilder
   def included_files
     if File.exists?(File.join(clone_dir, '.document'))
       files = File.read(File.join(clone_dir, '.document'))
-      "-q #{files.split(/$\n?/).join(' ')}"
+      "'#{files.split(/$\n?/).join('\' \'')}'"
     else
       ''
     end
