@@ -149,6 +149,10 @@ ul.projects li.highlight a {
   border: 1px solid #222;
   background: #CCC;
 }
+.sponsor {
+  margin: 2em 1em 0 0;
+  float: right;
+}
 .explanation {
   width: 600px;
 }
