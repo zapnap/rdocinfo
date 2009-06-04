@@ -11,6 +11,7 @@ require 'git'
 require 'rest_client'
 require 'ostruct'
 require 'yaml'
+require 'haml'
 require 'logger'
 
 require 'sinatra' unless defined?(Sinatra)
