@@ -4,7 +4,7 @@ A simple Sinatra-based web service that generates and hosts rdocs for GitHub-bas
 
 == Configuration
 
-All configuration is done in the <tt>conf</tt> directory via environment yaml files. Copy <tt>development.yml.example</tt> to <tt>deelopment.yml</tt> within that directory and alter the settings to match your local environment.
+All configuration is done in the <tt>conf</tt> directory via environment yaml files. Copy <tt>development.yml.example</tt> to <tt>development.yml</tt> within that directory and alter the settings to match your local environment.
 
 There are a couple additional steps you'll need to take to get rdoc.info working:
 
