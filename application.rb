@@ -34,6 +34,7 @@ end
                                           :unique => true,
                                           :per_page => SiteConfig.per_page,
                                           :page => (params[:page] || 1).to_i)
+    @pages = (Project.all(:fields => [:owner, :name], :unique => true).length.to_f / SiteConfig.per_page.to_f).ceil
     haml(:index)
   end
 end
