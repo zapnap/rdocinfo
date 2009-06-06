@@ -1,0 +1,3 @@
+= haml(:_project_list, :layout => false)
+= paginate((params[:page] || 1).to_i, @pages, :default_css => false, :url => @url)
+= haml(:_sponsor, :layout => false)

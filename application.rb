@@ -80,6 +80,34 @@ post '/projects/update' do
   end
 end
 
+# project search
+get '/projects/search' do
+  redirect('/') unless params[:q]
+
+  @title = "Search [#{params[:q]}]"
+  # TODO: consider placing project name matches at top of list
+  # TODO: consider placing front anchored matches at top of list
+  # TODO: implement fts for description
+  # TODO: implement fts for project docs
+  predicate = ['name LIKE ? OR owner LIKE ?'] 
+  params[:q].split(/\s+/).each do |q|
+    predicate[0] = [predicate[0], predicate[0]].join(' OR ') unless predicate.size == 1
+    predicate << ["%#{q}%", "%#{q}%"] 
+  end
+  predicate.flatten!
+  @pages, @projects = Project.paginated(:order => [:owner, :name],
+                                        :fields => [:owner, :name],
+                                        :conditions => predicate,
+                                        :unique => true,
+                                        :per_page => SiteConfig.per_page,
+                                        :page => (params[:page] || 1).to_i)
+
+  # TODO: temporary fix for dm-aggregates bug in 0.9.11
+  @pages = (Project.all(:fields => [:owner, :name], :conditions => predicate, :unique => true).length.to_f / SiteConfig.per_page.to_f).ceil
+  @url = "/projects/search?q=#{URI.escape(params[:q])}"
+  haml(:search)
+end
+
 # project rdoc container
 get '/projects/:owner/:name/blob/:commit_hash' do
   if @project = Project.first(:owner => params[:owner], :name => params[:name], :commit_hash => params[:commit_hash])

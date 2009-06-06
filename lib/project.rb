@@ -4,8 +4,8 @@ class Project
   is_paginated
 
   property :id,          Serial
-  property :name,        String
-  property :owner,       String
+  property :name,        String, :index => true
+  property :owner,       String, :index => true
   property :url,         String, :length => 255
   property :description, String, :length => 255
   property :commit_hash, String

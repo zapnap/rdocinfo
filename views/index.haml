@@ -6,17 +6,11 @@
     %p Problems or suggestions? <a href='#' rel='info/rdoc.info' class='email'>contact us</a>
     %p.small rdoc.info is &copy; 2009 <a href='http://nthmetal.com'>Nth Metal Interactive</a>. Docs by <a href='http://github.com/lsegal/yard'>YARD</a>.
 
-%ul.projects
-  - @projects.each do |project|
-    %li.project{:id => "project-#{project.owner}-#{project.name}"}
-      %a{:href => "/projects/#{project.owner}/#{project.name}"}= "#{project.owner} / #{project.name}"
-.clear
+= haml(:_project_list, :layout => false)
 
 = paginate((params[:page] || 1).to_i, @pages, :default_css => false)
 
-.sponsor
-  %a{:href => 'http://linode.com'}
-    %img{:src => '/images/hosted_by_linode.png', :width => '190', :height => '50', :alt => 'Hosted by Linode', :border => 0}
+= haml(:_sponsor, :layout => false)
 
 .new.button
   %a{:href => '/projects/new'} New Project
