@@ -32,17 +32,35 @@ describe 'Application' do
   end
 
   describe 'search' do
-    it 'should redirect to / on with no search term'
+    it 'should redirect to / on with no search term' do
+      get '/projects/search'
+      follow_redirect!
+      last_request.url.should match(/\//)
+    end
 
-    it 'should find zapnap-simplepay for search term: simple'
+    ['simple', 'power nap', 'power^nap'].each do |term|
+      it "should find zapnap-simplepay for search term: #{term}" do
+        get '/projects/search?q=simple'
+        last_response.should be_ok
+        last_response.body.should have_tag("li#project-#{@project.owner}-#{@project.name}")
+      end
+    end
 
-    it 'should find zapnap-simplepay for search term: power nap'
+    it 'should not find zapnap-simplepay for search term: foo' do
+      get '/projects/search?q=foo'
+      last_response.should be_ok
+      last_response.body.should_not have_tag("li#project-#{@project.owner}-#{@project.name}")
+    end
 
-    it 'should find zapnap-simplepay for search term: power^nap'
-
-    it 'should not find zapnap-simplepay for search term: foo'
-
-    it 'should retrieve the second page of results'
+    it 'should retrieve the second page of results for search term: nap' do
+      Project.expects(:paginated).with(:order => [:owner, :name],
+                                       :fields => [:owner, :name],
+                                       :conditions => ['name LIKE ? OR owner LIKE ?', '%nap%', '%nap%'],
+                                       :unique => true,
+                                       :per_page => SiteConfig.per_page,
+                                       :page => 2).returns([3, [@project]])
+      get '/projects/search?q=nap&page=2'
+    end
 
     it 'should set the url for pagination'
 
