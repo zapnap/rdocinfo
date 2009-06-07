@@ -84,17 +84,25 @@ end
 get '/projects/search' do
   redirect('/') unless params[:q]
 
-  @title = "Search [#{params[:q]}]"
+  # clean the search terms
+  search_param = params[:q].downcase.gsub(/\W+/, ' ')
+
+  @title = "Search [#{search_param}]"
+  @url = "/projects/search?q=#{URI.escape(search_param)}"
+
   # TODO: consider placing project name matches at top of list
   # TODO: consider placing front anchored matches at top of list
   # TODO: implement fts for description
   # TODO: implement fts for project docs
+  
+  # construct the query predicate
   predicate = ['name LIKE ? OR owner LIKE ?'] 
-  params[:q].split(/\s+/).each do |q|
+  search_param.split(/\s+/).each do |q|
     predicate[0] = [predicate[0], predicate[0]].join(' OR ') unless predicate.size == 1
     predicate << ["%#{q}%", "%#{q}%"] 
   end
   predicate.flatten!
+
   @pages, @projects = Project.paginated(:order => [:owner, :name],
                                         :fields => [:owner, :name],
                                         :conditions => predicate,
@@ -104,7 +112,7 @@ get '/projects/search' do
 
   # TODO: temporary fix for dm-aggregates bug in 0.9.11
   @pages = (Project.all(:fields => [:owner, :name], :conditions => predicate, :unique => true).length.to_f / SiteConfig.per_page.to_f).ceil
-  @url = "/projects/search?q=#{URI.escape(params[:q])}"
+
   haml(:search)
 end
 
