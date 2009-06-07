@@ -38,24 +38,26 @@ describe 'Application' do
       last_request.url.should match(/\//)
     end
 
-    ['simple', 'power nap', 'power^nap'].each do |term|
+    ['simple', 'simple nap', 'simple^nap'].each do |term|
       it "should find zapnap-simplepay for search term: #{term}" do
-        get '/projects/search?q=simple'
+        get "/projects/search?q=#{URI.escape(term)}"
         last_response.should be_ok
         last_response.body.should have_tag("li#project-#{@project.owner}-#{@project.name}")
       end
     end
 
-    it 'should not find zapnap-simplepay for search term: foo' do
-      get '/projects/search?q=foo'
-      last_response.should be_ok
-      last_response.body.should_not have_tag("li#project-#{@project.owner}-#{@project.name}")
+    ['foo', 'foo nap', 'foo^nap'].each do |term|
+      it "should not find zapnap-simplepay for search term: #{term}" do
+        get "/projects/search?q=#{URI.escape(term)}"
+        last_response.should be_ok
+        last_response.body.should_not have_tag("li#project-#{@project.owner}-#{@project.name}")
+      end
     end
 
     it 'should retrieve the second page of results for search term: nap' do
       Project.expects(:paginated).with(:order => [:owner, :name],
                                        :fields => [:owner, :name],
-                                       :conditions => ['name LIKE ? OR owner LIKE ?', '%nap%', '%nap%'],
+                                       :conditions => ['(name LIKE ? OR owner LIKE ?)', '%nap%', '%nap%'],
                                        :unique => true,
                                        :per_page => SiteConfig.per_page,
                                        :page => 2).returns([3, [@project]])
@@ -63,6 +65,11 @@ describe 'Application' do
     end
 
     it 'should set the url for pagination'
+
+    it 'should preset the search params after search' do
+      get '/projects/search?q=nap'
+      last_response.body.should have_tag('input[@value=nap]')
+    end
 
   end
 

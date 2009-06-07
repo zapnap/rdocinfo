@@ -10,4 +10,14 @@ $(document).ready(function() {
   $('form').submit(function() { 
     $(':button',this).attr('disabled','disabled');
   });
+  $('.header .search input').bind('focus.search', function(event) {
+    if ($('.header .search input').attr('value') == 'Search Projects') {
+      $('.header .search input').attr('value', '');
+    }
+  });
+  $('.header .search input').bind('blur.search', function(event) {
+    if ($('.header .search input').attr('value') == '') {
+      $('.header .search input').attr('value', 'Search Projects')
+    }
+  });
 });

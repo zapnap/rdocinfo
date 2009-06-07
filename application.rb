@@ -85,10 +85,10 @@ get '/projects/search' do
   redirect('/') unless params[:q]
 
   # clean the search terms
-  search_param = params[:q].downcase.gsub(/\W+/, ' ')
+  @search_params = params[:q].downcase.gsub(/\W+/, ' ').split(/\s+/)[0,5]
 
-  @title = "Search [#{search_param}]"
-  @url = "/projects/search?q=#{URI.escape(search_param)}"
+  @title = "Searching for [#{@search_params.join(' ')}]"
+  @url = "/projects/search?q=#{URI.escape(@search_params.join(' '))}"
 
   # TODO: consider placing project name matches at top of list
   # TODO: consider placing front anchored matches at top of list
@@ -96,9 +96,9 @@ get '/projects/search' do
   # TODO: implement fts for project docs
  
   # construct the query predicate
-  predicate = ['name LIKE ? OR owner LIKE ?'] 
-  search_param.split(/\s+/).each do |q|
-    predicate[0] = [predicate[0], predicate[0]].join(' OR ') unless predicate.size == 1
+  predicate = ['(name LIKE ? OR owner LIKE ?)'] 
+  @search_params.each do |q|
+    predicate[0] = [predicate[0], predicate[0]].join(' AND ') unless predicate.size == 1
     predicate << ["%#{q}%", "%#{q}%"] 
   end
   predicate.flatten!

@@ -12,6 +12,9 @@
           %a{:href => '/'}= SiteConfig.title
           %span.separator ::
           %span.name= @title
+        .search
+          %form{:action => '/projects/search', :method => 'get'}
+            %input{:type => 'text', :name => 'q', :value => @search_params ? @search_params.join(' ') : 'Search Projects', :length => '20', :max => '50'}
       .main= yield
     %script{:type => 'text/javascript'}
       var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
