@@ -94,7 +94,7 @@ get '/projects/search' do
   # TODO: consider placing front anchored matches at top of list
   # TODO: implement fts for description
   # TODO: implement fts for project docs
-  
+ 
   # construct the query predicate
   predicate = ['name LIKE ? OR owner LIKE ?'] 
   search_param.split(/\s+/).each do |q|

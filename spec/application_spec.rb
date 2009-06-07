@@ -31,6 +31,23 @@ describe 'Application' do
     end
   end
 
+  describe 'search' do
+    it 'should redirect to / on with no search term'
+
+    it 'should find zapnap-simplepay for search term: simple'
+
+    it 'should find zapnap-simplepay for search term: power nap'
+
+    it 'should find zapnap-simplepay for search term: power^nap'
+
+    it 'should not find zapnap-simplepay for search term: foo'
+
+    it 'should retrieve the second page of results'
+
+    it 'should set the url for pagination'
+
+  end
+
   describe 'new' do
     it 'should have a form for project submission' do
       get '/projects/new'
