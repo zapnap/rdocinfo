@@ -46,6 +46,10 @@ class Project
     (commit_hash || '').slice(0, 8) + '...'
   end
 
+  def commit_url
+    commit_hash.nil? ? url : "#{url}/commit/#{commit_hash}"
+  end
+
   private
 
   def reject_non_ascii_owner_chars

@@ -83,6 +83,9 @@ a, span.name {
 a:hover {
   text-decoration: underline;
 }
+a.commit-link {
+  color: #FFF;
+}
 .container {
   position: fixed;
   top: 40px;

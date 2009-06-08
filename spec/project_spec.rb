@@ -23,6 +23,10 @@ describe 'Project' do
     @project.truncated_hash.should == '2ceae37d...'
   end
 
+  it 'should have a commit url' do
+    @project.commit_url.should == 'http://github.com/zapnap/simplepay/commit/0f115cd0b8608f677b676b861d3370ef2991eb5f'
+  end
+
   describe 'validations' do
     before(:each) do
       @project.stubs(:doc).returns(@doc = stub_everything('DocBuilder'))

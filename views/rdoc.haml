@@ -1,7 +1,7 @@
 !!!
 %html{html_attrs}
   %head
-    %title= @title || SiteConfig.title
+    %title= "#{SiteConfig.title} :: #{@title}"
     %link{:href => '/stylesheets/main.css', :rel => 'stylesheet', :type => 'text/css'}
   %body
     .page
@@ -12,13 +12,14 @@
           %a{:href => @project.doc_url}= @project.name
         .info
           = "Generated at #{@project.updated_at.strftime('%D %T %Z')}"
-          = "from #{@project.truncated_hash}" unless @project.commit_hash.nil?
+          - unless @project.commit_hash.nil?
+            = "from "
+            %a{:class => 'commit-link', :href => @project.commit_url}= @project.truncated_hash
           %form.inline{:action => '/projects', :method => 'post'}
             %input{:type => 'hidden', :name => 'owner', :value => @project.owner}
             %input{:type => 'hidden', :name => 'name', :value => @project.name}
             %input{:type => 'hidden', :name => 'return', :value => @project.doc_url(false)}
             %input{:type => 'submit', :value => 'Update'}
-          %a{:href => @project.url} [src]
       .container
         %iframe{:src => "#{@project.doc.rdoc_url}/index.html", :height => '100%'}
     %script{:type => 'text/javascript'}
