@@ -27,7 +27,7 @@ body {
   float: left;
 }
 .header .search {
-  padding: 0.4em 0.4em 0 1em;
+  padding: 0.4em 1em 0 1em;
   float: right;
 }
 .header .search input {
