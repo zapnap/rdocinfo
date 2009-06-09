@@ -117,31 +117,22 @@ get '/projects/search' do
 end
 
 # project rdoc container
-get '/projects/:owner/:name/blob/:commit_hash' do
-  if @project = Project.first(:owner => params[:owner], :name => params[:name], :commit_hash => params[:commit_hash])
-    if @project.doc.exists?
-      haml(:rdoc, :layout => false)
-    else
-      @title = @project.name
-      haml(:working)
-    end
-  else
-    status(404)
-  end
-end
+['/projects/:owner/:name/blob/:commit_hash', '/projects/:owner/:name'].each do |action|
+  get action do
+    conditions = { :owner => params[:owner], :name => params[:name] }
+    params[:commit_hash] ? conditions[:commit_hash] = params[:commit_hash] : conditions[:order] = [:id.desc]
 
-
-# project rdoc container (this just grabs the latest)
-get '/projects/:owner/:name' do
-  if @project = Project.first(:order => [:id.desc], :owner => params[:owner], :name => params[:name])
-    if @project.doc.exists?
-      haml(:rdoc, :layout => false)
+    if @project = Project.first(conditions)
+      if @project.doc.exists?
+        @title = @project.name
+        haml(:rdoc, :layout => false)
+      else
+        @title = @project.name
+        haml(:working)
+      end
     else
-      @title = @project.name
-      haml(:working)
+      status(404)
     end
-  else
-    status(404)
   end
 end
 
