@@ -88,19 +88,19 @@ class Project
   def self.search(kwargs = {})
     raise ArgumentError unless kwargs[:fields] && kwargs[:terms]
 
-    fields  = kwargs[:fields]
-    terms   = kwargs[:terms]
+    fields  = kwargs[:fields].to_a
+    terms   = kwargs[:terms].to_a
     page    = kwargs[:page].to_i
     count   = kwargs[:count].to_i
 
-    # construct the query predicate
+    # construct the query predicate to pass to dm
     predicate = ['']
     terms.each do |term|
       predicate[0] += (predicate[0].empty? ? '(' : ') AND (') + 
-                      fields.to_a.map {|f| "#{f.to_s} LIKE ?"}.join(' OR ')
+                      fields.map {|f| "#{f.to_s} LIKE ?"}.join(' OR ')
       predicate += "%#{term}%".to_a * fields.size 
     end
-    predicate[0] += ')'
+    predicate[0] += ')' unless predicate[0].empty?
 
     if page > 0 || count > 0
       page = 1 if page == 0

@@ -57,7 +57,7 @@ describe 'Application' do
     it 'should retrieve the second page of results for search term: nap' do
       Project.expects(:paginated).with(:order => [:owner, :name],
                                        :fields => [:owner, :name],
-                                       :conditions => ['(name LIKE ? OR owner LIKE ?)', '%nap%', '%nap%'],
+                                       :conditions => ['(owner LIKE ? OR name LIKE ?)', '%nap%', '%nap%'],
                                        :unique => true,
                                        :per_page => SiteConfig.per_page,
                                        :page => 2).returns([3, [@project]])
