@@ -6,6 +6,7 @@ rdoc_dir:         '/Users/nap/dev/rdocinfo/rdoc'
 tmp_dir:          '/Users/nap/dev/rdocinfo/tmp/projects'
 url_base:         'http://localhost:4567/'
 per_page:         15
+max_search_terms: 5
 task_log:         '/Users/nap/dev/rdocinfo/log/task.log'
 github_doc_pages: 'git@github.com:docs/docs.github.com.git'
 enable_push:      false

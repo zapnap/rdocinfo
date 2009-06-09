@@ -72,4 +72,56 @@ class Project
   rescue RestClient::RequestFailed, RestClient::ResourceNotFound
     [false, "Name must refer to a valid GitHub repository"]
   end
+
+  # Projects.search(**kwargs) -- When given
+  #   :fields => [...] and
+  #   :terms => [...]
+  # returns all projects with all terms found in any of the supplied
+  # fields.  Search is performed using LIKE '%term%'
+  #
+  # When also given
+  #   :count => Fixnum (default SiteConfig.per_page) and/or
+  #   :page => Fixnum (default 1)
+  # returns an array of the total number of pages and the projects
+  # as queried above sliced [page*count-count, page*count]
+  # 
+  def self.search(kwargs = {})
+    raise ArgumentError unless kwargs[:fields] && kwargs[:terms]
+
+    fields  = kwargs[:fields]
+    terms   = kwargs[:terms]
+    page    = kwargs[:page].to_i
+    count   = kwargs[:count].to_i
+
+    # construct the query predicate
+    predicate = ['']
+    terms.each do |term|
+      predicate[0] += (predicate[0].empty? ? '(' : ') AND (') + 
+                      fields.to_a.map {|f| "#{f.to_s} LIKE ?"}.join(' OR ')
+      predicate += "%#{term}%".to_a * fields.size 
+    end
+    predicate[0] += ')'
+
+    if page > 0 || count > 0
+      page = 1 if page == 0
+      count = SiteConfig.per_page if count == 0
+
+      pages, projects = self.paginated(:order => fields,
+                                       :fields => fields,
+                                       :conditions => predicate,
+                                       :unique => true,
+                                       :per_page => count,
+                                       :page => page)
+      # TODO: temporary fix for dm-aggregates bug in 0.9.11
+      pages = (self.all(:fields => fields,
+                        :conditions => predicate,
+                        :unique => true).length.to_f / SiteConfig.per_page.to_f).ceil
+      [pages, projects]
+    else
+      self.all(:order => fields,
+               :fields => fields,
+               :conditions => predicate,
+               :unique => true)
+    end
+  end
 end
