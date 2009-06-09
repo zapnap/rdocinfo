@@ -54,6 +54,22 @@ describe 'Application' do
       end
     end
 
+    it 'should find projects with weird names' do
+      @project = Factory.build(:project, :name => 'A_Weird-1')
+      @project.save!
+      get "/projects/search?q=#{URI.escape('A_Weird-1')}"
+      last_response.should be_ok
+      last_response.body.should have_tag("li#project-#{@project.owner}-#{@project.name}")
+    end
+    
+    it 'should not find projects with really weird names' do
+      @project = Factory.build(:project, :owner => 'Muppet', :name => 'Balls')
+      @project.save!
+      get "/projects/search?q=#{URI.escape('_weird-1-a')}"
+      last_response.should be_ok
+      last_response.body.should_not have_tag("li#project-#{@project.owner}-#{@project.name}")
+    end
+    
     it 'should retrieve the second page of results for search term: nap' do
       Project.expects(:paginated).with(:order => [:owner, :name],
                                        :fields => [:owner, :name],

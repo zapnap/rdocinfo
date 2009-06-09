@@ -84,7 +84,7 @@ end
 get '/projects/search' do
   redirect('/') unless params[:q]
 
-  @search_params = params[:q].downcase.gsub(/\W+/, ' ').split(/\s+/)[0,SiteConfig.max_search_terms]
+  @search_params = params[:q].gsub(/[^A-Za-z0-9\-_]/, ' ').split(/\s+/)[0,SiteConfig.max_search_terms]
   @title = "Searching for [#{@search_params.join(' ')}]"
   @url = "/projects/search?q=#{URI.escape(@search_params.join(' '))}"
   @pages, @projects = Project.search(:fields => [:owner, :name],
