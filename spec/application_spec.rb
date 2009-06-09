@@ -64,13 +64,16 @@ describe 'Application' do
       get '/projects/search?q=nap&page=2'
     end
 
-    it 'should set the url for pagination'
+    it 'should set the url for pagination' do
+      Project.stubs(:search).returns([SiteConfig.per_page + 1, [@project]*(SiteConfig.per_page + 1)])
+      get '/project/search?q=nap'
+      last_response.body.should have_tag('a[@href*=/project/search?q=nap&page=2')
+    end
 
     it 'should preset the search params after search' do
       get '/projects/search?q=nap'
       last_response.body.should have_tag('input[@value=nap]')
     end
-
   end
 
   describe 'new' do

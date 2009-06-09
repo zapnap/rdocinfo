@@ -88,7 +88,7 @@ class Project
   def self.search(kwargs = {})
     raise ArgumentError unless kwargs[:fields] && kwargs[:terms]
 
-    fields  = kwargs[:fields].to_a
+    fields  = [kwargs[:fields]].flatten
     terms   = kwargs[:terms].to_a
     page    = kwargs[:page].to_i
     count   = kwargs[:count].to_i

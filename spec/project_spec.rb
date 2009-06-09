@@ -87,4 +87,98 @@ describe 'Project' do
     @doc.expects(:generate)
     @project.save
   end
+
+  describe 'search' do
+    before(:each) do
+      @project.stubs(:doc).returns(@doc = stub_everything('DocBuilder'))
+    end
+
+    it 'should raise ArgumentError if :terms kwarg not supplied' do
+      lambda {Project.search(:fields => :owner)}.should raise_error(ArgumentError)
+    end
+
+    it 'should raise ArgumentError if :fields kwarg not supplied' do
+      lambda {Project.search(:terms => 'foo')}.should raise_error(ArgumentError)
+    end
+
+    it 'should return all results if :page and :count kwarg not supplied' do
+      Project.expects(:all)
+      Project.search(:fields => :owner, :terms => 'foo')
+    end
+
+    it 'should return paginated results if :page kwarg is supplied' do
+      Project.expects(:paginated)
+      Project.search(:page => 1, :fields => :owner, :terms => 'foo')
+    end
+
+    it 'should return paginated results if :count kwarg is supplied' do
+      Project.expects(:paginated)
+      Project.search(:count => 10, :fields => :owner, :terms => 'foo')
+    end
+
+    it 'should return paginated results if :page and :count kwargs are supplied' do
+      Project.expects(:paginated)
+      Project.search(:page => 1, :count => 10, :fields => :owner, :terms => 'foo')
+    end
+
+    it 'should default to SiteConfig.per_page if :count kwarg not supplied' do
+      Project.expects(:paginated).with(:order => [:owner],
+                                       :fields => [:owner],
+                                       :conditions => ['(owner LIKE ?)', '%foo%'],
+                                       :unique => true,
+                                       :per_page => SiteConfig.per_page,
+                                       :page => 1)
+      Project.search(:page => 1, :fields => :owner, :terms => 'foo')
+    end
+
+    it 'should default to first page if :page kwarg not supplied' do
+      Project.expects(:paginated).with(:order => [:owner],
+                                       :fields => [:owner],
+                                       :conditions => ['(owner LIKE ?)', '%foo%'],
+                                       :unique => true,
+                                       :per_page => 10,
+                                       :page => 1)
+      Project.search(:count => 10, :fields => :owner, :terms => 'foo')
+    end
+
+    [{:fields => :owner, :terms => 'nap'},
+     {:fields => [:owner], :terms => ['nap']},
+     {:fields => [:owner, :name], :terms => ['nap']},
+     {:fields => [:owner, :name], :terms => ['nap', 'simple']}].each do |args|
+      fields = [args[:fields]].flatten.map {|f| f.to_s}.join(' or ')
+      terms = [args[:terms]].join(' and ')
+
+      it "should return zapnap-simplepay searching fields #{fields} for #{terms}" do
+        @project.save
+        projects = Project.search(args)
+        projects.first.owner.should == 'zapnap'
+      end
+
+      it "should return page count and zapnap-simplepay searching fields #{fields} for #{terms} with pagination" do
+        @project.save
+        args[:page] = 1
+        pages, projects = Project.search(args)
+        pages.should == 1
+        projects.first.owner.should == 'zapnap'
+      end
+    end
+
+    [{:fields => [:owner], :terms => 'simple'},
+     {:fields => [:name], :terms => 'nap'},
+     {:fields => [:owner, :name], :terms => 'foo'}].each do |args|
+      fields = args[:fields].map {|f| f.to_s}.join(' or ')
+      terms = [args[:terms]].join(' and ')
+
+      it "should return no projects searching fields #{fields} for #{terms}" do
+        @project.save
+        Project.search(args).should == []
+      end
+
+      it "should return zero page count and no projects searching fields #{fields} for #{terms} with pagination" do
+        @project.save
+        args[:page] = 1
+        Project.search(args).should == [0, []]
+      end
+    end
+  end
 end
