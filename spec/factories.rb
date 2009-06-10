@@ -1,6 +1,6 @@
 require 'factory_girl'
 
-Factory.define :project do |f|
+Factory.define :project, :class => RdocInfo::Project do |f|
   f.name        'simplepay'
   f.owner       'zapnap'
   f.url         'http://github.com/zapnap/simplepay'

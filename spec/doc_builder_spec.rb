@@ -1,31 +1,31 @@
 require "#{File.dirname(__FILE__)}/spec_helper"
 
-describe 'DocBuilder' do
+describe 'RdocInfo::DocBuilder' do
   before(:each) do
-    Project.all.destroy!
+    RdocInfo::Project.all.destroy!
 
     Git.stubs(:open).returns(@github_pages = stub_everything('Git'))
     @project = Factory.build(:project)
-    @doc = DocBuilder.new(@project)
+    @doc = RdocInfo::DocBuilder.new(@project)
 
-    @rdoc_dir = "#{SiteConfig.rdoc_dir}/default/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
-    @tmp_dir  = "#{SiteConfig.tmp_dir}/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
+    @rdoc_dir = "#{RdocInfo.config[:rdoc_dir]}/default/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
+    @tmp_dir  = "#{RdocInfo.config[:tmp_dir]}/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
   end
 
   it 'should have an rdoc url' do
-    @doc.rdoc_url.should == "#{SiteConfig.rdoc_url}/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
+    @doc.rdoc_url.should == "#{RdocInfo.config[:rdoc_url]}/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
   end
 
   it 'should have an rdoc dir' do
-    @doc.rdoc_dir('default').should == "#{SiteConfig.rdoc_dir}/default/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
+    @doc.rdoc_dir('default').should == "#{RdocInfo.config[:rdoc_dir]}/default/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
   end
 
   it 'should have an rdoc dir for github' do
-    @doc.rdoc_dir('github').should == "#{SiteConfig.rdoc_dir}/github/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
+    @doc.rdoc_dir('github').should == "#{RdocInfo.config[:rdoc_dir]}/github/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
   end
 
   it 'should have a clone dir' do
-    @doc.clone_dir.should == "#{SiteConfig.tmp_dir}/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
+    @doc.clone_dir.should == "#{RdocInfo.config[:tmp_dir]}/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
   end
 
   describe 'RDoc generation' do
@@ -35,12 +35,12 @@ describe 'DocBuilder' do
     end
 
     it 'should place rdoc in public directory' do
-      @doc.generate
+      @doc.generate(false)
       File.exists?("#{@rdoc_dir}/index.html").should be_true
     end
 
     it 'should clean clone directory after build' do
-      @doc.generate
+      @doc.generate(false)
       File.exists?("#{@tmp_dir}}").should be_false
     end
 
@@ -73,7 +73,7 @@ describe 'DocBuilder' do
 
     it 'should exist on disk' do
       @doc.exists?.should be_false
-      @doc.generate
+      @doc.generate(false)
       @doc.exists?.should be_true
     end
 
@@ -83,7 +83,7 @@ describe 'DocBuilder' do
       @github_pages.receives(:add)
       @github_pages.receives(:commit)
       @github_pages.receives(:push)
-      @doc.generate
+      @doc.generate(false)
     end
     
   end
@@ -92,7 +92,7 @@ describe 'DocBuilder' do
     before(:each) do
       FileUtils.rm_rf @rdoc_dir
       FileUtils.rm_rf @tmp_dir      
-      @doc.generate
+      @doc.generate(false)
       @github_dir = @doc.rdoc_dir('github')
     end
     

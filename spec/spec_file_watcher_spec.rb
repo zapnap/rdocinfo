@@ -1,12 +1,12 @@
 require "#{File.dirname(__FILE__)}/spec_helper"
 require "mocha"
 
-describe 'SpecFileWatcher' do
+describe 'RdocInfo::SpecFileWatcher' do
   before(:each) do
     @project = 'zzot-i_like_ruby_things_involving_muppets'
     @version = '0.0.1'
     @sample = [[@project, Gem::Version.new(@version), "ruby"]]
-    @spec_file_watcher = SpecFileWatcher.new
+    @spec_file_watcher = RdocInfo::SpecFileWatcher.new
   end
 
   context 'no existing spec file' do

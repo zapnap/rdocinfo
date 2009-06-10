@@ -39,7 +39,7 @@ namespace :gems do
   task :install do
     required_gems = %w{ yard dm-core dm-validations dm-aggregates dm-is-paginated 
                         merb-pagination sinatra haml rest-client json rack-test schacon-git
-                        mocha rspec rspec_hpricot_matchers thoughtbot-factory_girl }
+                        mocha rspec rspec_hpricot_matchers thoughtbot-factory_girl vegas }
     required_gems.each { |required_gem| system "sudo gem install #{required_gem}" }
   end
 end
@@ -52,5 +52,5 @@ task :clean => :environment do
 end
 
 task :environment do
-  require 'environment'
+  require "#{File.expand_path(File.dirname(__FILE__))}/lib/rdoc_info"
 end

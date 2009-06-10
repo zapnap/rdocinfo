@@ -4,12 +4,15 @@ describe 'Application' do
   include Rack::Test::Methods
 
   def app
-    Sinatra::Application.new
+    RdocInfo::Application.new
   end
   
   before(:each) do
-    Project.all.destroy!
-    Project.any_instance.stubs(:doc).returns(@doc = stub_everything('DocBuilder'))
+    @per_page = RdocInfo.config[:per_page]
+
+    RdocInfo::Project.all.destroy!
+    RdocInfo::Project.any_instance.stubs(:doc).returns(@doc = stub_everything('RdocInfo::DocBuilder'))
+
     @project = Factory.build(:project)
     @project.save
   end
@@ -22,10 +25,10 @@ describe 'Application' do
     end
 
     it 'should retrieve the second page of results' do
-      Project.expects(:paginated).with(:order => [:created_at.desc],
+      RdocInfo::Project.expects(:paginated).with(:order => [:created_at.desc],
                                        :fields => [:owner, :name],
                                        :unique => true,                                          
-                                       :per_page => SiteConfig.per_page,
+                                       :per_page => @per_page,
                                        :page => 2).returns([3, [@project]])
       get '/page/2'
     end
@@ -71,17 +74,17 @@ describe 'Application' do
     end
     
     it 'should retrieve the second page of results for search term: nap' do
-      Project.expects(:paginated).with(:order => [:owner, :name],
+      RdocInfo::Project.expects(:paginated).with(:order => [:owner, :name],
                                        :fields => [:owner, :name],
                                        :conditions => ['(owner LIKE ? OR name LIKE ?)', '%nap%', '%nap%'],
                                        :unique => true,
-                                       :per_page => SiteConfig.per_page,
+                                       :per_page => @per_page,
                                        :page => 2).returns([3, [@project]])
       get '/projects/search?q=nap&page=2'
     end
 
     it 'should set the url for pagination' do
-      Project.stubs(:search).returns([SiteConfig.per_page + 1, [@project]*(SiteConfig.per_page + 1)])
+      RdocInfo::Project.stubs(:search).returns([@per_page + 1, [@project]*(@per_page + 1)])
       get '/project/search?q=nap'
       last_response.body.should have_tag('a[@href*=/project/search?q=nap&page=2')
     end
@@ -104,7 +107,7 @@ describe 'Application' do
     it 'should create a new project' do
       lambda {
         post '/projects', :owner => 'zapnap', :name => 'isbn_validation', :commit_hash => '1f115cd0b8608f677b676b861d3370ef2991eb5f'
-      }.should change(Project, :count).by(1)
+      }.should change(RdocInfo::Project, :count).by(1)
     end
 
     it 'should redirect to the rdoc if successful' do
@@ -134,16 +137,16 @@ describe 'Application' do
 
   describe 'post-commit hook' do
     it 'should update the specified project' do
-      Project.expects(:first).with(:owner => 'zapnap', :name => 'simplepay', :commit_hash => '0f115cd0b8608f677b676b861d3370ef2991eb5f').returns(@project)
+      RdocInfo::Project.expects(:first).with(:owner => 'zapnap', :name => 'simplepay', :commit_hash => '0f115cd0b8608f677b676b861d3370ef2991eb5f').returns(@project)
       post '/projects/update', :payload => json_data
       last_response.status.should == 202
     end
 
     it 'should auto-create the project' do
-      Project.all.destroy!
+      RdocInfo::Project.all.destroy!
       lambda {
         post '/projects/update', :payload => json_data
-      }.should change(Project, :count).by(1)
+      }.should change(RdocInfo::Project, :count).by(1)
       last_response.status.should == 202
     end
 
@@ -173,12 +176,12 @@ describe 'Application' do
     end
 
     it 'should display rdocs for the specified commit hash' do
-      Project.expects(:first).with(:name => 'simplepay', :owner => 'zapnap', :commit_hash => '0f115cd0b8608f677b676b861d3370ef2991eb5f')
+      RdocInfo::Project.expects(:first).with(:name => 'simplepay', :owner => 'zapnap', :commit_hash => '0f115cd0b8608f677b676b861d3370ef2991eb5f')
       get '/projects/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f/status'
     end
 
     it 'should grab the latest commit if hash is unspecified' do
-      Project.expects(:first).with(:name => 'simplepay', :owner => 'zapnap', :order => [:id.desc])
+      RdocInfo::Project.expects(:first).with(:name => 'simplepay', :owner => 'zapnap', :order => [:id.desc])
       get '/projects/zapnap/simplepay'
     end
 

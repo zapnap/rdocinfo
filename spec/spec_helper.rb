@@ -1,19 +1,23 @@
 require 'rubygems'
-require 'sinatra'
 require 'spec'
 require 'spec/interop/test'
 require 'rack/test'
 require 'mocha'
 require 'rspec_hpricot_matchers'
 
-# set test environment
-Sinatra::Base.set :environment, :test
-Sinatra::Base.set :run, false
-Sinatra::Base.set :raise_errors, true
-Sinatra::Base.set :logging, false
+$LOAD_PATH.unshift("#{File.dirname(__FILE__)}/../lib")
+require "#{File.dirname(__FILE__)}/../lib/rdoc_info"
 
-require 'application'
-require File.dirname(__FILE__) + '/factories'
+# set test environment
+RdocInfo::Application.set :environment, :test
+RdocInfo::Application.set :run, false
+RdocInfo::Application.set :raise_errors, true
+RdocInfo::Application.set :logging, false
+
+require "#{File.dirname(__FILE__)}/factories"
+
+# establish in-memory database for testing
+DataMapper.setup(:default, "sqlite3::memory:")
 
 Spec::Runner.configure do |config|
   config.mock_with(:mocha)

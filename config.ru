@@ -1,11 +1,12 @@
-require 'application'
+$LOAD_PATH.unshift("#{File.dirname(__FILE__)}/lib")
+require "#{File.dirname(__FILE__)}/lib/rdoc_info"
 
-set :run, false
-set :environment, :production
+RdocInfo::Application.set :run, false
+RdocInfo::Application.set :environment, :production
 
-FileUtils.mkdir_p 'log' unless File.exists?('log')
+FileUtils.mkdir_p('log') unless File.exists?('log')
 log = File.new("log/sinatra.log", "a")
 $stdout.reopen(log)
 $stderr.reopen(log)
 
-run Sinatra::Application
+run RdocInfo::Application
