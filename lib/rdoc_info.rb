@@ -23,6 +23,10 @@ require 'rdoc_info/doc_builder'
 module RdocInfo
   VERSION     = '0.1'
 
+  def self.environment
+    @environment ||= (Sinatra::Base.environment || :development)
+  end
+
   def self.config
     @config ||= load_config
   end
@@ -37,12 +41,13 @@ module RdocInfo
     end
   end
 
-  def self.config_file(env = Sinatra::Base.environment)
-    "#{File.expand_path(File.dirname(__FILE__))}/config/#{env}.yml"
+  def self.config_file
+    "#{File.expand_path(File.dirname(__FILE__))}/../config/#{environment}.yml"
   end
 
   def self.default_config
-    @defaults ||= { :title            => 'rdoc.info', 
+    @defaults ||= { :environment      => environment,
+                    :title            => 'rdoc.info', 
                     :root             => "#{File.expand_path(File.dirname(__FILE__))}/..",
                     :database_uri     => "sqlite3:///#{File.expand_path(File.dirname(__FILE__))}/../rdocinfo.db",
                     #:database_uri     => "sqlite3::memory:",

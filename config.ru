@@ -1,4 +1,8 @@
 $LOAD_PATH.unshift("#{File.dirname(__FILE__)}/lib")
+
+require 'sinatra'
+Sinatra::Base.environment = :production
+
 require "#{File.dirname(__FILE__)}/lib/rdoc_info"
 
 RdocInfo::Application.set :run, false

@@ -5,11 +5,13 @@ require 'rack/test'
 require 'mocha'
 require 'rspec_hpricot_matchers'
 
+require 'sinatra'
+Sinatra::Base.set :environment, :test
+
 $LOAD_PATH.unshift("#{File.dirname(__FILE__)}/../lib")
 require "#{File.dirname(__FILE__)}/../lib/rdoc_info"
 
 # set test environment
-RdocInfo::Application.set :environment, :test
 RdocInfo::Application.set :run, false
 RdocInfo::Application.set :raise_errors, true
 RdocInfo::Application.set :logging, false
