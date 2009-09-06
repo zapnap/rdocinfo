@@ -71,6 +71,17 @@ describe 'RdocInfo::DocBuilder' do
       @doc.generate(false)
       @doc.exists?.should be_true
     end
+
+    it 'should set status flag to created' do
+      @doc.generate(false)
+      @doc.project.status.should == 'created'
+    end
+
+    it 'should set status flag to failed' do
+      @doc.expects(:yardoc_command).returns('echo')
+      @doc.generate(false)
+      @doc.project.status.should == 'failed'
+    end
   end
 
   private

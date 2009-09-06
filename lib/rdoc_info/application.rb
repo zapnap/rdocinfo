@@ -31,6 +31,7 @@ module RdocInfo
         @title = 'Featured Projects'
         @pages, @projects = Project.paginated(:order => [:created_at.desc],
                                               :fields => [:owner, :name],
+                                              :status => 'created',
                                               :unique => true,
                                               :per_page => options.per_page,
                                               :page => (params[:page] || 1).to_i)
@@ -88,6 +89,7 @@ module RdocInfo
       @title = "Searching for [#{@search_params.join(' ')}]"
       @url = "/projects/search?q=#{URI.escape(@search_params.join(' '))}"
       @pages, @projects = Project.search(:fields => [:owner, :name],
+                                         :status => 'created',
                                          :terms => @search_params,
                                          :count => options.per_page,
                                          :page => (params[:page] || 1).to_i)
@@ -97,15 +99,16 @@ module RdocInfo
     # project rdoc container
     ['/projects/:owner/:name/blob/:commit_hash', '/projects/:owner/:name'].each do |action|
       get action do
-        conditions = { :owner => params[:owner], :name => params[:name] }
+        conditions = { :owner => params[:owner], :name => params[:name], :status => 'created' }
         params[:commit_hash] ? conditions[:commit_hash] = params[:commit_hash] : conditions[:order] = [:id.desc]
 
         if @project = Project.first(conditions)
+          @title = @project.name
           if @project.doc.exists?
-            @title = @project.name
             haml(:rdoc, :layout => false)
+          elsif @project.status == 'failed'
+            haml(:working_error)
           else
-            @title = @project.name
             haml(:working)
           end
         else
@@ -116,10 +119,18 @@ module RdocInfo
 
     # status inquiry
     get '/projects/:owner/:name/blob/:commit_hash/status' do
-      if (@project = Project.first(:owner => params[:owner], :name => params[:name], :commit_hash => params[:commit_hash])) && @project.doc.exists?
-        status(205) # reset content
+      if @project = Project.first(:owner => params[:owner], :name => params[:name], :commit_hash => params[:commit_hash])
+        case(@project.status)
+        when 'created'
+          status(205) # reset content
+        when 'failed'
+          # status(400)
+          status(205) # there was an error generating the docs
+        else
+          status(404) # work in progress, content not available yet
+        end
       else
-        status(404) # work in progress, content not available yet
+        status(404) # not found
       end
     end
 

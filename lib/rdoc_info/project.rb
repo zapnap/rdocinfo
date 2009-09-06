@@ -8,6 +8,7 @@ module RdocInfo
     property :name,        String, :index => true
     property :owner,       String, :index => true
     property :url,         String, :length => 255
+    property :status,      String
     property :description, String, :length => 255
     property :commit_hash, String
     property :created_at,  DateTime
@@ -20,9 +21,11 @@ module RdocInfo
     # validates_is_unique :url
     validates_is_unique :commit_hash
 
+    attr_reader :skip_regeneration
+
     # generate updated project docs
     after :save do
-      self.doc.generate
+      self.doc.generate unless skip_regeneration
     end
 
     # documentation builder for this project
@@ -49,6 +52,14 @@ module RdocInfo
 
     def commit_url
       commit_hash.nil? ? url : "#{url}/commit/#{commit_hash}"
+    end
+
+    # update the status of this project
+    # (initially nil, can be set to created or failed)
+    def update_status!(new_status)
+      @skip_regeneration = true
+      self.status = new_status
+      save
     end
 
     private

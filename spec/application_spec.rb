@@ -27,6 +27,7 @@ describe 'Application' do
     it 'should retrieve the second page of results' do
       RdocInfo::Project.expects(:paginated).with(:order => [:created_at.desc],
                                        :fields => [:owner, :name],
+                                       :status => 'created',
                                        :unique => true,                                          
                                        :per_page => @per_page,
                                        :page => 2).returns([3, [@project]])
@@ -159,6 +160,7 @@ describe 'Application' do
   describe 'show' do
     before(:each) do
       @project.save
+      RdocInfo::Project.stubs(:first).returns(@project)
     end
 
     it 'should display rdocs for the specified project' do
@@ -175,17 +177,26 @@ describe 'Application' do
       last_response.body.should have_tag('div.progress')
     end
 
+    it 'should display errors if something bad happened during doc generation' do
+      @project.doc.expects(:exists?).returns(false)
+      @project.expects(:status).returns('failed')
+      get '/projects/zapnap/simplepay'
+      last_response.should be_ok
+      last_response.body.should have_tag('p.error')
+    end
+
     it 'should display rdocs for the specified commit hash' do
       RdocInfo::Project.expects(:first).with(:name => 'simplepay', :owner => 'zapnap', :commit_hash => '0f115cd0b8608f677b676b861d3370ef2991eb5f')
       get '/projects/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f/status'
     end
 
     it 'should grab the latest commit if hash is unspecified' do
-      RdocInfo::Project.expects(:first).with(:name => 'simplepay', :owner => 'zapnap', :order => [:id.desc])
+      RdocInfo::Project.expects(:first).with(:name => 'simplepay', :owner => 'zapnap', :status => 'created', :order => [:id.desc])
       get '/projects/zapnap/simplepay'
     end
 
     it 'should return 404 if the project does not exist' do
+      RdocInfo::Project.stubs(:first).returns(nil)
       get '/projects/abcdefghijklmonop/qrstuvwxyz'
       last_response.status.should == 404
     end
@@ -193,17 +204,23 @@ describe 'Application' do
 
   describe 'build status' do
     before(:each) do
-      @project.save
+      RdocInfo::Project.stubs(:first).returns(@project)
     end
 
     it 'should return success if the project rdoc has been built'  do
-      @project.doc.expects(:exists?).returns(true)
+      @project.expects(:status).returns('created')
       get '/projects/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f/status'
       last_response.status.should == 205
     end
 
-    it 'should return 404 if the project rdocs do not exist' do
-      @project.doc.expects(:exists?).returns(false)
+    it 'should indicate that there was an error if the docs failed to generate'  do
+      @project.expects(:status).returns('failed')
+      get '/projects/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f/status'
+      last_response.status.should == 205 # 400
+    end
+
+    it 'should return 404 if the project rdocs do not exist yet' do
+      @project.expects(:status).returns(nil)
       get '/projects/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f/status'
       last_response.status.should == 404
     end

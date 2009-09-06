@@ -27,6 +27,12 @@ describe 'RdocInfo::Project' do
     @project.commit_url.should == 'http://github.com/zapnap/simplepay/commit/0f115cd0b8608f677b676b861d3370ef2991eb5f'
   end
 
+  it 'should update the status and avoid regeneration' do
+    @project.doc.expects(:regenerate).never
+    @project.update_status!('created')
+    @project.status.should == 'created'
+  end
+
   describe 'validations' do
     before(:each) do
       @project.stubs(:doc).returns(@doc = stub_everything('RdocInfo::DocBuilder'))

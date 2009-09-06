@@ -1,5 +1,7 @@
 module RdocInfo
   class DocBuilder
+    attr_reader :project, :output
+
     def initialize(project)
       @project = project
     end
@@ -39,9 +41,13 @@ module RdocInfo
     def run_yardoc
       clone_repo
 
-      logger.info yardoc_command
-      logger.info `#{yardoc_command}`
+      command = yardoc_command
+      @output  = `#{command}`
 
+      logger.info command
+      logger.info @output
+
+      check_status
       clean_repo
     end
     
@@ -99,6 +105,11 @@ module RdocInfo
 
     def clean_repo
       FileUtils.rm_rf(clone_dir)
+    end
+
+    def check_status
+      status = exists? ? 'created' : 'failed'
+      @project.update_status!(status)
     end
   end
 end
