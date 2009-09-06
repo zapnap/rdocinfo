@@ -99,7 +99,7 @@ module RdocInfo
     # project rdoc container
     ['/projects/:owner/:name/blob/:commit_hash', '/projects/:owner/:name'].each do |action|
       get action do
-        conditions = { :owner => params[:owner], :name => params[:name], :status => 'created' }
+        conditions = { :owner => params[:owner], :name => params[:name] }
         params[:commit_hash] ? conditions[:commit_hash] = params[:commit_hash] : conditions[:order] = [:id.desc]
 
         if @project = Project.first(conditions)
