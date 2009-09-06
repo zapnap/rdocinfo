@@ -77,7 +77,7 @@ module RdocInfo
     end
 
     def generate_readme_file
-      unless file = Dir[File.join(clone_dir, 'README.*')].first
+      unless file = Dir[File.join(clone_dir, 'README*')].last
         File.open(File.join(clone_dir, 'README'), 'w') {}
         file = 'README'
       end
