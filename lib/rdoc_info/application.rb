@@ -37,7 +37,7 @@ module RdocInfo
                                               :page => (params[:page] || 1).to_i)
 
         # TODO: temporary fix for dm-aggregates bug in 0.9.11
-        @pages = (Project.all(:fields => [:owner, :name], :unique => true).length.to_f / options.per_page.to_f).ceil
+        @pages = (Project.all(:fields => [:owner, :name], :status => 'created', :unique => true).length.to_f / options.per_page.to_f).ceil
         haml(:index)
       end
     end
