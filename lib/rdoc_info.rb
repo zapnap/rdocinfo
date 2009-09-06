@@ -7,6 +7,7 @@ require 'dm-validations'
 require 'dm-aggregates'
 require 'dm-is-paginated'
 require 'merb-pagination'
+require 'active_support'
 require 'json'
 require 'git'
 require 'rest_client'
@@ -35,7 +36,8 @@ module RdocInfo
     config = default_config.dup
 
     if File.exists?(config_file)
-      config.merge(YAML.load_file(config_file))
+      mash = Mash.new(YAML.load_file(config_file))
+      config.merge(mash.symbolize_keys)
     else
       config
     end
