@@ -82,6 +82,12 @@ describe 'RdocInfo::DocBuilder' do
       @doc.generate(false)
       @doc.project.status.should == 'failed'
     end
+
+    it 'should save generation output' do
+      @doc.expects(:yardoc_command).returns('echo out')
+      @doc.generate(false)
+      @doc.project.error_log.chomp.should == 'out'
+    end
   end
 
   private

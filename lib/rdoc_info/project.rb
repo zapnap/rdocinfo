@@ -9,6 +9,7 @@ module RdocInfo
     property :owner,       String, :index => true
     property :url,         String, :length => 255
     property :status,      String
+    property :error_log,   Text
     property :description, String, :length => 255
     property :commit_hash, String
     property :created_at,  DateTime
@@ -56,9 +57,10 @@ module RdocInfo
 
     # update the status of this project
     # (initially nil, can be set to created or failed)
-    def update_status!(new_status)
+    def update_status!(new_status, log_data = '')
       @skip_regeneration = true
       self.status = new_status
+      self.error_log = log_data
       save
     end
 
