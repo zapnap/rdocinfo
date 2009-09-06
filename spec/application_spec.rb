@@ -191,7 +191,7 @@ describe 'Application' do
     end
 
     it 'should grab the latest commit if hash is unspecified' do
-      RdocInfo::Project.expects(:first).with(:name => 'simplepay', :owner => 'zapnap', :status => 'created', :order => [:id.desc])
+      RdocInfo::Project.expects(:first).with(:name => 'simplepay', :owner => 'zapnap', :order => [:id.desc])
       get '/projects/zapnap/simplepay'
     end
 
