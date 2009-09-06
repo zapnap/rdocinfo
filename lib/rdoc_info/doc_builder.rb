@@ -42,7 +42,7 @@ module RdocInfo
       clone_repo
 
       command = yardoc_command
-      @output  = `#{command}`
+      @output  = `#{command} 2>&1`
 
       logger.info command
       logger.info @output
