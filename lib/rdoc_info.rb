@@ -21,7 +21,7 @@ require 'rdoc_info/project'
 require 'rdoc_info/doc_builder'
 
 module RdocInfo
-  VERSION     = '0.1'
+  VERSION     = '0.2'
 
   def self.environment
     @environment ||= (Sinatra::Base.environment || :development)
@@ -52,15 +52,11 @@ module RdocInfo
                     :database_uri     => "sqlite3:///#{File.expand_path(File.dirname(__FILE__))}/../rdocinfo.db",
                     #:database_uri     => "sqlite3::memory:",
                     :rdoc_url         => '/rdoc',
-                    :template         => 'github',
-                    :templates_dir    => "#{File.expand_path(File.dirname(__FILE__))}/../templates",
                     :rdoc_dir         => "#{File.expand_path(File.dirname(__FILE__))}/../rdoc",
                     :tmp_dir          => "#{File.expand_path(File.dirname(__FILE__))}/../tmp/projects",
                     :per_page         => 15,
                     :max_search_terms => 5,
                     :task_log         => "#{File.expand_path(File.dirname(__FILE__))}/../log/task.log",
-                    :github_doc_pages => 'git@github.com:docs/docs.github.com.git',
-                    :enable_push      => false
                   }
   end
 end

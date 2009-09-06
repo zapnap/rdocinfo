@@ -6,8 +6,7 @@ module RdocInfo
 
     # Generate RDocs for the project
     def generate(asynch = true)
-      FileUtils.rm_rf(rdoc_dir('default')) if File.exists?(rdoc_dir('default')) # clean first
-      FileUtils.rm_rf(rdoc_dir(RdocInfo.config[:template])) if File.exists?(rdoc_dir(RdocInfo.config[:template])) # clean first
+      FileUtils.rm_rf(rdoc_dir) if File.exists?(rdoc_dir) # clean first
       (!asynch || (Sinatra::Base.environment == :test)) ? run_yardoc : run_yardoc_asynch
     end
 
@@ -17,26 +16,17 @@ module RdocInfo
     end
     
     # Local directory where rdocs will be generated
-    def rdoc_dir(template)
+    def rdoc_dir(template = :default)
       "#{RdocInfo.config[:rdoc_dir]}/#{template}/#{@project.owner}/#{@project.name}/blob/#{@project.commit_hash}"
     end
     
-    # Local directory where the yard template is kept
-    def templates_dir
-     "#{RdocInfo.config[:templates_dir]}"
-    end
-    
-    def helpers_file
-      "#{templates_dir}/#{RdocInfo.config[:template]}/helpers.rb"
-    end
-
     def rdoc_url
       "#{RdocInfo.config[:rdoc_url]}/#{@project.owner}/#{@project.name}/blob/#{@project.commit_hash}"
     end
 
     # Does generated documentation exist?
     def exists?
-      File.exists?("#{rdoc_dir('default')}/index.html") && File.exists?("#{rdoc_dir(RdocInfo.config[:template])}/index.html")
+      File.exists?("#{rdoc_dir}/index.html")
     end
 
     # Generate RDocs for the specified project
@@ -47,29 +37,22 @@ module RdocInfo
     private
      
     def run_yardoc
-      #init_pages
       clone_repo
 
-      # Run it once with the default
-      command = yardoc_command('default')
-      logger.info command
-      logger.info `#{command}`
-      
-      # And once with the custom template
-      command = yardoc_command(RdocInfo.config[:template])
-      logger.info command
-      logger.info `#{command}`
+      logger.info yardoc_command
+      logger.info `#{yardoc_command}`
 
       clean_repo
-      push_pages if RdocInfo.config[:enable_push]
     end
     
-    def yardoc_command(template)
-      command = "cd #{clone_dir};"
-      command += " export GH_USER=#{@project.owner}; export GH_PROJECT=#{@project.name}; export GH_COMMIT=#{@project.commit_hash}; yardoc -q -o #{rdoc_dir(template)} -r #{readme_file}"
-      command += " -t #{template} -p #{templates_dir} -e #{helpers_file}" unless template == 'default'
-      command += " #{included_files}"
-      command
+    def yardoc_command
+      command = []
+      command << "cd" << clone_dir << ";"
+      command << "yardoc" << "-q"
+      command << "-o" << rdoc_dir
+      command << "-r" << readme_file
+      command << included_files
+      command.join(" ")
     end
 
     def run_yardoc_asynch
@@ -110,33 +93,12 @@ module RdocInfo
       @git
     end
 
-    def pages
-      if @pages
-        @pages
-      else
-        begin
-          @pages = Git.open(RdocInfo.config[:rdoc_dir] + '/github')
-        rescue ArgumentError
-          @pages = Git.init(RdocInfo.config[:rdoc_dir] + '/github')
-          @pages.add_remote('origin', RdocInfo.config[:github_doc_pages])
-        end
-        @pages
-      end
-    end
-
     def clone_repo
       git
     end
 
     def clean_repo
       FileUtils.rm_rf(clone_dir)
-    end
-    
-    def push_pages
-      pages.pull # origin master
-      pages.add('.')
-      pages.commit_all("Updating documentation for #{@project.owner}/#{@project.name} at revision #{@project.commit_hash}")
-      pages.push # origin master
     end
   end
 end

@@ -23,7 +23,6 @@ module RdocInfo
 
     helpers do
       include Merb::PaginationHelper
-      #include RdocInfo::Helpers::Urls
     end 
 
     # project index

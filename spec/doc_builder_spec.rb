@@ -4,7 +4,6 @@ describe 'RdocInfo::DocBuilder' do
   before(:each) do
     RdocInfo::Project.all.destroy!
 
-    Git.stubs(:open).returns(@github_pages = stub_everything('Git'))
     @project = Factory.build(:project)
     @doc = RdocInfo::DocBuilder.new(@project)
 
@@ -17,11 +16,7 @@ describe 'RdocInfo::DocBuilder' do
   end
 
   it 'should have an rdoc dir' do
-    @doc.rdoc_dir('default').should == "#{RdocInfo.config[:rdoc_dir]}/default/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
-  end
-
-  it 'should have an rdoc dir for github' do
-    @doc.rdoc_dir('github').should == "#{RdocInfo.config[:rdoc_dir]}/github/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
+    @doc.rdoc_dir.should == "#{RdocInfo.config[:rdoc_dir]}/default/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
   end
 
   it 'should have a clone dir' do
@@ -76,47 +71,7 @@ describe 'RdocInfo::DocBuilder' do
       @doc.generate(false)
       @doc.exists?.should be_true
     end
-
-    it 'should push updated pages to the remote' do
-      @github_pages.receives(:add_remote)
-      @github_pages.receives(:pull)
-      @github_pages.receives(:add)
-      @github_pages.receives(:commit)
-      @github_pages.receives(:push)
-      @doc.generate(false)
-    end
-    
   end
-
-  describe 'RDoc template' do
-    before(:each) do
-      FileUtils.rm_rf @rdoc_dir
-      FileUtils.rm_rf @tmp_dir      
-      @doc.generate(false)
-      @github_dir = @doc.rdoc_dir('github')
-    end
-    
-    it 'should use absolute links for namespaces' do
-      IO.read("#{@github_dir}/namespaces/index.html").should =~ /"\/zapnap\/simplepay\/blob\/0f115cd0b8608f677b676b861d3370ef2991eb5f\/Simplepay.html"/	
-    end
-    
-    it 'should use absolute links for methods' do
-      IO.read("#{@github_dir}/methods/index.html").should =~ /"\/zapnap\/simplepay\/blob\/0f115cd0b8608f677b676b861d3370ef2991eb5f\/Simplepay\/Authentication.html#authentic-3F-class_method"/	
-    end
-    
-    it 'should use absolute links for the namespaces link popup' do
-      IO.read("#{@github_dir}/namespaces/index.html").scan("var url=\"/\"+$(this).attr('rel')+\"/namespaces/\"").size == 1;                  
-    end
-    
-    it 'should use absolute links for the methods link popup' do
-      IO.read("#{@github_dir}/methods/index.html").scan("var url=\"/\"+$(this).attr('rel')+\"/methods/\"").size == 1;                  
-    end
-
-    it 'should generate a redirect page for the latest commit' do
-      IO.read("#{@github_dir}/../../index.html").scan("url=http://docs.github.com/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f").size == 1;                  
-    end
-
-  end  
 
   private
 

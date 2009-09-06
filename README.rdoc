@@ -13,9 +13,9 @@ There are a couple additional steps you'll need to take to get rdoc.info working
 
 Once you've done that you should be ready to rock.
 
-== GitHub Integration
+== GitHub Pages Integration
 
-Rdoc.info can now push GitHub-themed doc files directly to a GitHub account. Toggle the enable_push and github_doc_pages options in the yaml config to set this up and make sure the appropriate keys are in place. This support is still considered experimental :).
+GitHub Pages support has been removed from master as it was proving to be a bit unreliable. Check the github-pages branch.
 
 == Getting Started
 
