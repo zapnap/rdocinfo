@@ -22,6 +22,15 @@ GitHub Pages support has been removed from master as it was proving to be a bit 
   rake db:migrate
   ruby application.rb
 
+== Credit
+
+Rdoc.info is (c) 2009 Nick Plante. This code is distributed under the MIT license.
+
+The following individuals have contributed to the project:
+
+* Jeff Rafter
+* Brian Turnbull
+
 == Contribute
 
-All contributions are welcome. See GitHub project issues for a list of specific features that have been requested or discussed.
+Contributions are welcome and appreciated. See GitHub project issues for a list of specific features that have been requested or discussed.
