@@ -151,11 +151,15 @@ $(document).ready(function() {
   $(document).everyTime(500, function(i) {
     if ($('.progress div:hidden').length == 0) {
       $('.progress div').hide();
-      $.get(window.location + '/status', {},
-        function(data, status) {
-          window.location.reload();
+      $.ajax({
+        type: 'GET',
+        url: window.location + '/status',
+        complete: function (XMLHttpRequest, textStatus) {
+          if (XMLHttpRequest.status != 404) {
+            window.location.reload();
+          }
         }
-      );
+      });
     } else {
       $('.progress div:hidden:first').show();
     }

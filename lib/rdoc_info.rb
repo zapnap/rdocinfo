@@ -16,6 +16,7 @@ require 'yaml'
 require 'logger'
 
 require 'spork'
+require 'rack_hoptoad'
 
 require 'rdoc_info/project'
 require 'rdoc_info/doc_builder'

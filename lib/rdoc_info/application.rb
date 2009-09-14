@@ -1,18 +1,14 @@
 module RdocInfo
+  class DocBuilderError < StandardError; end
+
   class Application < Sinatra::Base
     configure do |app|
       app.enable :static
+      app.enable :raise_errors # allow errors to propagate
       app.set(RdocInfo.config)
+
+      use Rack::HoptoadNotifier, app.hoptoad_api_key unless app.hoptoad_api_key.empty?
       DataMapper.setup(:default, app.database_uri)
-    end 
-
-    error do
-      @error = request.env['sinatra.error']
-      Kernel.puts(@error.backtrace.join('\n'))
-
-      @title = 'Server Error'
-      status(500)
-      haml(:error)
     end 
 
     not_found do
@@ -124,8 +120,7 @@ module RdocInfo
         when 'created'
           status(205) # reset content
         when 'failed'
-          # status(400)
-          status(205) # there was an error generating the docs
+          raise DocBuilderError, @project.error_log # an error occurred! raise and log this with hoptoad
         else
           status(404) # work in progress, content not available yet
         end
