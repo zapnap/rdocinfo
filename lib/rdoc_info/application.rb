@@ -144,5 +144,129 @@ module RdocInfo
         end
       end
     end
+    
+    # ******************************** Gems ************************************    
+
+    # gem index
+    get '/gems' do
+      @title = 'Featured Gems'
+      @pages, @gems = Gem.paginated(:order => [:created_at.desc],
+                                    :fields => [:name],
+                                    :status => 'created',
+                                    :unique => true,
+                                    :per_page => options.per_page,
+                                    :page => (params[:page] || 1).to_i)
+
+      # TODO: temporary fix for dm-aggregates bug in 0.9.11
+      @pages = (Gem.all(:fields => [:name], :status => 'created', :unique => true).length.to_f / options.per_page.to_f).ceil
+      haml(:gems_index)
+    end
+
+    # new gem
+    get '/gems/new' do
+      @title = 'New Gem'
+      @gem = Gem.new
+      haml(:gems_new)
+    end
+
+    # create gem
+    post '/gems' do
+      @title = 'New Gem'
+      @gem = Gem.new(:name => params[:name], :version => params[:version], :url => "http://gemcutter.org/#{params[:name]}")
+      if @gem.save
+        redirect(params[:return] || @gem.doc_url)
+      else
+        # TODO: refactor target; trying to support both local and GH-pages workflows
+        if params[:return] && @gem.errors.on(:version)
+          redirect(params[:return])
+        else
+          haml(:gems_new)
+        end
+      end
+    end
+
+    # post-push for gemcutter
+    post '/gems/update' do
+      json = JSON.parse(params[:payload])
+      if @gem = Gem.first(:name => json['name'], :version => json['version'])
+        status(202)
+      else
+        # create gem
+        if (name = json['name']) && (version = repository['version'])
+          @gem = Gem.new(:name => name, :version => version, :url => "http://gemcutter.org/#{name}")
+          @gem.save ? status(202) : status(403)
+        else
+          status(403)
+        end
+      end
+    end
+
+    # gem search
+    get '/gems/search' do
+      redirect('/gems') unless params[:q]
+
+      @search_params = params[:q].gsub(/[^A-Za-z0-9\-_]/, ' ').split(/\s+/)[0, options.max_search_terms]
+      @title = "Searching for [#{@search_params.join(' ')}]"
+      @url = "/gems/search?q=#{URI.escape(@search_params.join(' '))}"
+      @pages, @gems = Gem.search(:fields => [:name],
+                                 :status => 'created',
+                                 :terms => @search_params,
+                                 :count => options.per_page,
+                                 :page => (params[:page] || 1).to_i)
+      haml(:gems_search)
+    end
+
+    # gem rdoc container
+    ['/gems/:name/versions/:version', '/gems/:name'].each do |action|
+      get action do
+        conditions = {:name => params[:name]}
+        params[:version] ? conditions[:version] = params[:version] : conditions[:order] = [:id.desc]
+
+        if @gem = Gem.first(conditions)
+          @title = @gem.name
+          if @gem.doc.exists?
+            haml(:gems_rdoc, :layout => false)
+          elsif @gem.status == 'failed'
+            haml(:working_error)
+          else
+            haml(:working)
+          end
+        else
+          status(404)
+        end
+      end
+    end
+
+    # gem status inquiry
+    get '/gems/:name/versions/:version/status' do
+      if @gem = Gem.first(:name => params[:name], :version => params[:version])
+        case(@gem.status)
+        when 'created'
+          status(205) # reset content
+        when 'failed'
+          raise DocBuilderError, @gem.error_log # an error occurred! raise and log this with hoptoad
+        else
+          status(404) # work in progress, content not available yet
+        end
+      else
+        status(404) # not found
+      end
+    end
+
+    # update pre-existing gem documentation
+    ['/gems/:name',
+     '/gems/:name/versions/:version'].each do |action|
+      put action do
+        if params[:version] && @gem = Gem.first(:order => [:id.desc], :name => params[:name], :version => params[:version])
+          @gem.update_attributes(:updated_at => Time.now) # touch and auto-generate
+          redirect @gem.doc_url
+        elsif @gem = Gem.first(:name => params[:name])
+          @gem.update_attributes(:updated_at => Time.now) # touch and auto-generate
+          redirect @gem.doc_url
+        else
+          status(404)
+        end
+      end
+    end
   end
 end

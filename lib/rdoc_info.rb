@@ -1,6 +1,19 @@
 $:.unshift File.expand_path(File.dirname(__FILE__))
 require 'rubygems'
 
+gem "dm-aggregates", "0.9.11"
+gem "dm-cli", "0.9.11"
+gem "dm-core", "0.9.11"
+gem "dm-is-paginated", "0.0.1"
+gem "dm-is-tree", "0.9.11"
+gem "dm-migrations", "0.9.11"
+gem "dm-observer", "0.9.11"
+gem "dm-serializer", "0.9.11"
+gem "dm-timestamps", "0.9.11"
+gem "dm-types", "0.9.11"
+gem "dm-validations", "0.9.11"
+gem "addressable", "2.0.2"
+
 require 'dm-core'
 require 'dm-timestamps'
 require 'dm-validations'
