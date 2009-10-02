@@ -1,8 +1,0 @@
-<h2>Update page</h2>
-
-<% form_for @page do |form| %>
-  <%= render :partial => '/spreadhead/pages/form', :object => form %>
-  <div class="submit">
-    <%= form.submit 'Update', :disable_with => 'Please wait...' %>
-  </div>  
-<% end %>
