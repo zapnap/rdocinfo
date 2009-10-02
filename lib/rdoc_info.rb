@@ -33,6 +33,8 @@ require 'rack_hoptoad'
 
 require 'rdoc_info/project'
 require 'rdoc_info/doc_builder'
+require 'rdoc_info/gem'
+require 'rdoc_info/gem_doc_builder'
 
 module RdocInfo
   VERSION     = '0.2'

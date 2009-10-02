@@ -9,3 +9,12 @@ Factory.define :project, :class => RdocInfo::Project do |f|
   f.created_at  Time.now
   f.updated_at  Time.now
 end
+
+Factory.define :gem, :class => RdocInfo::Gem do |f|
+  f.name        'spreadhead'
+  f.url         'http://gemcutter.org/gems/spreadhead'
+  f.version     '0.6.2'
+  f.status      'created'
+  f.created_at  Time.now
+  f.updated_at  Time.now
+end

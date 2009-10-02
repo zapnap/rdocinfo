@@ -29,7 +29,7 @@ module RdocInfo
 
     # documentation builder for this gem
     def doc
-      DocBuilder.new(self)
+      GemDocBuilder.new(self)
     end
 
     # Gemcutter URL for this gem
@@ -70,7 +70,7 @@ module RdocInfo
     end
 
     def check_gem_and_update_version
-      return true if name.blank?
+      return true if name.blank? || url.blank?
       remote = RestClient.get(url + '.json') 
       latest = JSON.parse(remote)
       self.version = latest['version'] if self.version.blank?

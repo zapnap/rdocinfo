@@ -1,0 +1,250 @@
+Before you can use Spreadhead you are going to need a few things, most importantly the spreadhead gem:
+
+<pre>
+<code>
+  sudo gem install jeffrafter-spreadhead --source=http://gems.github.com
+</code>
+</pre>
+
+By default this should install the RedCloth gem, the BlueCloth gem, and the rsl-stringex gem. These handle the text and url formatting. If you want to run the spreadhead-specific tests, you will need Thoughtbot's shoulda and factory_girl. Once you have all of the requisite gems, you need to configure your Rails application to use the gem. You can do this by adding a config.gem statement to your environment.rb (or to a specific environment). For example:
+
+<pre>
+<code>
+  Rails::Initializer.run do |config|
+    # Specify gems that this application depends on and have them installed with 
+    # rake gems:install
+    config.gem "jeffrafter-spreadhead",
+      :lib     => 'spreadhead',
+      :source  => 'http://gems.github.com'
+
+    # Skip frameworks you're not going to use. To use Rails without a database,
+    # you must remove the Active Record framework.
+    config.frameworks -= [ :active_resource ]
+
+    # Set Time.zone default to the specified zone and make Active Record 
+    # auto-convert to this zone. Run "rake -D time" for a list of tasks for 
+    # finding time zone names.
+    config.time_zone = 'UTC'
+  end
+</code>
+</pre>
+
+After you have done this, you can use the spreadhead generator from the console (while in the rails root).
+
+<pre>
+<code>
+  script/generate spreadhead
+</code>
+</pre>
+
+This will create (or update) a migration for the pages table, which is used to store all of the pages in your system. Additionally, it will create a Page model in your app/models folder. The model is blank except for an include statement to bring in all of the base functionality. By default the page creation and editing is completely disabled, you need to enable it in the @config/initializers/spreadhead.rb@ file.This is all you need to get started, you should be able to run the migration and restart your application and navigate to the "/pages" url. 
+
+h2. Security
+
+It is important to note that allowing users to create pages, especially pages that can contain &lt;script&gt; tags is just a bad idea. You need to trust the user, which is also a bad idea. Because of this, page creation, editing, deleting - _everything_ - is disabled when you install it into your application. This is a safety feature to protect your app from some accidental inclusion or deployment.
+
+To enable the application you need to modify initializer, where you can control which users get access to create, edit, destroy and update pages. To do this, you can add a before filter. If you are using a toolkit like Clearance, then you can use the something like the following:
+
+<pre>
+<code>
+   module Spreadhead
+     module PagesAuth
+       def self.filter(controller)
+         controller.send(:redirect_to, '/') unless controller.send(:signed_in?)
+       end
+     end  
+   end    
+</code>
+</pre>
+
+If you give everyone access, this is probably still a bad idea and you will want to check that the current user is an admin:
+
+<pre>
+<code>
+   module Spreadhead
+     module PagesAuth
+       def self.filter(controller)
+         controller.send(:redirect_to, '/') unless controller.send(:admin?)
+       end
+     end  
+   end    
+</code>
+</pre>
+
+Of course, you will probably want to add something to your application controller for checking if the current user is an admin:
+
+<pre>
+<code>
+  def admin?
+    signed_in? && current_user.admin?
+  end
+</code>
+</pre>
+
+Remember to protect that admin attribute in your user model so that it can't be mass assigned. 
+
+This same kind of methodology will work for authlogic, restful_authentication, or your favorite authorization toolkit or homegrown solution. This really isn't the place for security how-to, but just keep in mind that if the hackers get access to this, they will win.
+
+h2. What do I get?
+
+By default you will have the "/pages":http://localhost:3000/pages resource. This is where you make new pages:
+
+<div class="thumbnail"><a href="http://skitch.com/jeffrafter/b5anb/malachite.org-simpler-message-service"><img src="http://img.skitch.com/20090818-bfje6q835cdcnaf9hx2adj5qxx.preview.jpg" alt="Malachite.org - Simpler message service." /></a><br /><span style="font-family: Lucida Grande, Trebuchet, sans-serif, Helvetica, Arial; font-size: 10px; color: #808080">Uploaded with <a href="http://plasq.com/">plasq</a>'s <a href="http://skitch.com">Skitch</a>!</span></div>
+
+Once you have made a page you can access that by the created URL. If you title your page "Brachiosaurus or woozle!" and leave the URL blank it will be located at "/brachiosaurus-or-woozle" (notice that you don't need the leading "/"). If you wanted to get fancy you could set the URL yourself (or change it) to something like "2004/09/13/brachs-and-woo" and then you can access this full path from the root of your site.
+
+You can blank the URL out at any time and Spreadhead will generate a new one. If there is a conflict it will add "-1" to the end (or "-2" and so on).
+
+h2. Hey my routes aren't working
+
+Maybe you have some fancy routes already, maybe something using a glob? Maybe something like:
+
+<pre>
+<code>
+  map.connect '/:username/:project_name', :controller => 'projects', :action => 'show', :conditions => {:method => :put}
+</code>
+</pre>
+
+Well, that is going to catch anything before it gets to Spreadhead's routes (which have the lowest priority). You will probably want to redeclare the pages resource with a higher priority. Put this before the special route:
+
+<pre>
+<code>
+  map.resources :pages, :controller => 'spreadhead/pages'
+</code>
+</pre>
+
+h2. Adding some style
+
+The views for the admin interface are pretty plain:
+
+<div class="thumbnail"><a href="http://skitch.com/jeffrafter/b5ab9/malachite.org-simpler-message-service"><img src="http://img.skitch.com/20090818-rpcd6uqf9u678a68rc5r4ed1tu.preview.jpg" alt="Malachite.org - Simpler message service." /></a><br /><span style="font-family: Lucida Grande, Trebuchet, sans-serif, Helvetica, Arial; font-size: 10px; color: #808080">Uploaded with <a href="http://plasq.com/">plasq</a>'s <a href="http://skitch.com">Skitch</a>!</span></div>
+
+But you might want to dress them up. I wanted to just drop some basic CSS here for now, but updates are welcome:
+
+<pre>
+<code>
+div.checkbox, 
+div.text, 
+div.textarea, 
+div.select {
+  float:none;
+  clear:both;
+  padding-top:8px;
+}
+div.checkbox label, 
+div.text label, 
+div.textarea label, 
+div.select label {
+  padding-top:5px;
+  padding-right:15px;
+  display:block;
+  width:150px;
+  float:left;
+  text-align:right;
+}
+div.submit { 
+  margin-top:10px; 
+  padding-top:10px; 
+  width:90%; 
+  float:right; 
+  border-top:1px dotted silver;
+}
+div.optional {
+  color:gray;
+}
+div.required {
+}
+div.syntax {
+  background:#4C5E29;
+  padding:4px;
+  color:white;
+  margin-left:165px;
+  margin-top:-3px;
+  width:324px;
+  text-align:right;
+}
+div.syntax a {
+  color:white;
+}
+input { 
+  margin-top:4px; 
+}
+select { 
+  margin-top:4px; 
+}
+textarea { 
+  margin-top:4px; 
+}
+</code>
+</pre>
+
+And some basic table styling:
+
+<pre>
+<code>
+table.pages {
+  background:#FFFFFF none repeat scroll 0 0;
+  border-collapse:collapse;
+  margin-bottom:20px;
+  text-align:left;
+  -moz-background-clip:border;
+  -moz-background-inline-policy:continuous;
+  -moz-background-origin:padding;  
+}
+table.pages th {
+  border-bottom:2px solid #4C5E29;
+  font-family:"Helvetica Neue",Arial,Helvetica,Geneva,sans-serif;
+  color:#4C5E29;
+  font-weight:normal;
+  padding:10px 8px;
+}
+table.pages td {
+  border-bottom:1px solid silver;
+  padding:6px 8px;
+  background:#EAEAEA;
+}
+table.pages td.odd {
+}
+table.pages td.even {
+  background:#DBDBDB;
+}
+table.pages tr:hover td {
+  background:#F3F3F3;
+}
+table.pages td.published, th.published {
+  text-align:center;
+}
+table.pages td.commands {
+  text-align:right;  
+}
+</code>
+</pre>
+
+
+h2. Layouts and adding extension points to your site
+
+The pages should render using the default application layout just fine, but you can add a few things to make this better. Spreadhead wants to push content for the title, the description, and even keywords. This allows you to do some basic page-specific optimization. Add the following to the &lt;head&gt; section of your site:
+
+<pre>
+<code>
+    <title>Yoursite.org - <%= @title || yield(:title) -%></title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta name="Description" content="<%= yield :description -%>" />
+    <meta name="Keywords" content="<%= yield :keywords -%>" />
+</code>
+</pre>
+
+You can also create nice little extension points for your users to modify smaller areas of the site. For example, you might have a welcome page that needs to have various cover information, but you want your client to be able to modify the copy on the front. Simply do the following:
+
+<pre>
+<code>
+  <div id="blurb"><%= spreadhead "welcome" -%></div>
+</code>
+</pre>
+
+Then, the client simply needs to create a page with the URL "welcome" and Spreadhead will insert the content. This could be used for headers, footers (including links).
+
+
+h2. Importing and exporting
+
+Spreadhead comes with some basic rake tasks for importing and exporting the pages: @rake spreadhead:export@ and @rake spreadhead:import@. Exporting will dump a set of Yaml fixutres to the file @db/data/pages.yml@ in your rails root. Importing will erase all of the current pages and replace them with those in the @db/data/pages.yml@ file (or none if the file does not exist). 

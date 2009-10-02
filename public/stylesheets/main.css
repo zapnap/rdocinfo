@@ -108,26 +108,26 @@ a.commit-link {
 .container iframe {
   width: 100%;
 }
-ul.projects {
+ul.projects, ul.gems {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
-ul.projects li {
+ul.projects li, ul.gems li {
   display: block;
   border-bottom: 1px solid #CCC;
   padding: 0.5em 0 0.5em 0;
 }
-ul.projects li a {
+ul.projects li a, ul.gems li a {
   padding-left: 0.5em;
 }
-ul.projects li a:hover {
+ul.projects li a:hover, ul.gems li a:hover {
   text-decoration: none;
 }
-ul.projects li.highlight {
+ul.projects li.highlight, ul.gems li.highlight {
   background: #EEE;
 }
-ul.projects li.highlight a {
+ul.projects li.highlight a, ul.gems li.highlight a {
   color: #222;
 }
 .main .welcome {

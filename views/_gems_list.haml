@@ -1,0 +1,5 @@
+%ul.gems
+  - @gems.each do |gem|
+    %li.gem{:id => "gem-#{gem.name}"}
+      %a{:href => "/gems/#{gem.name}"}= "#{gem.name}"
+.clear

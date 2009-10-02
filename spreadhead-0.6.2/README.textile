@@ -1,0 +1,72 @@
+h1. Spreadhead
+
+<strong>spreadhead</strong> <em>noun</em> two facing pages of a book or other publication.
+
+Rails content management for pages that shouldn't be views.
+
+h2. Installation
+
+Spreadhead is a Rails engine. It works with versions of Rails greater than 2.3.
+
+In config/environment.rb:
+
+<pre>
+config.gem "jeffrafter-spreadhead",
+  :lib     => 'spreadhead',
+  :source  => 'http://gems.github.com'
+</pre>
+
+Vendor the gem:
+
+<pre>
+rake gems:install
+rake gems:unpack
+</pre>
+
+Make sure the development database exists and run the generator:
+
+<pre>
+script/generate spreadhead
+</pre>
+
+A number of files will be created and instructions will be printed.
+
+You may already have some of these files. Don't worry. You'll be asked if you want to overwrite them.
+
+Run the migration:
+
+<pre>
+rake db:migrate
+</pre>
+
+Modify the initializer in @config/initializers/spreadhead.rb@ to control access.
+
+h2. Routes
+
+Spreadhead installs default catch-all routes. These are given the lowest priority in your application. If your application is already catching these routes then you may not be able to access your spreadhead pages.
+
+h2. Tutorial
+
+Checkout the "tutorial":http://wiki.github.com/jeffrafter/spreadhead/tutorial.
+
+h2. Authors
+
+Spreadhead is based on the blog post "http://neverlet.be/2008/12/17/building-a-content-managment-system":http://neverlet.be/2008/12/17/building-a-content-managment-system by Jeff Rafter
+
+The engine implementation and gem was patterned after the Clearance gem by Thoughtbot.
+
+h2. Suggestions, Bugs, Refactoring?
+
+Fork away and create a "Github Issue":http://github.com/jeffrafter/spreadhead/issues. Please send pull requests.
+
+When you do: 
+
+* Fork the project.
+* Make your feature addition or bug fix.
+* Add tests for it. This is important so I don't break it in a future version unintentionally.
+* Commit, do not mess with rakefile, version, or history. (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Send me a pull request. Bonus points for topic branches.
+
+h2. Documentation
+
+Documentation is available at "http://rdoc.info/projects/jeffrafter/spreadhead":http://rdoc.info/jeffrafter/spreadhead

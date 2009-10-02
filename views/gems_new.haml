@@ -1,0 +1,25 @@
+.explanation
+  %p Are we missing documentation for your favorite Ruby gem? Use the following form to submit a request and we'll add it immediately. Note that we currently only support gems hosted on <a href='http://gemcutter.org'>Gemcutter</a>. By default, our documentation will automatically regenerate<sup><a href='#note'>1</a></sup> whenever new versions or new gems are pushed to Gemcutter.
+
+- unless @gem.errors.empty?
+  .errors
+    .title The following errors occurred!
+    %ul
+      - @gem.errors.full_messages.each do |error|
+        %li.error= error
+
+%form{:action => '/gems', :method => 'post'}
+  .name
+    .label
+      %label{:for => 'name'} Gem Name
+    .field
+      %input{:type => 'text', :name => 'name', :value => @gem.name}
+  .version
+    .label
+      %label{:for => 'version'} Version (optional, leave blank for current)
+    .field
+      %input{:type => 'text', :name => 'version', :value => @gem.version}
+  %input.button{:type => 'submit', :value => 'Submit'}
+
+.explanation.small
+  %p <a name='note'>1.</a> We proudly use Loren Segal's <a href='http://github.com/lsegal/yard'>YARD</a> library to generate documentation. This means that you can take advantage of meta <tt>@tags</tt> alongside regular code. If you'd like to customize the classes that we index, create a <tt>.document</tt> file and package it with your gem in the root folder. Each line of the file should contain a file or pattern to include (default: <tt>lib/**/*.rb</tt>).

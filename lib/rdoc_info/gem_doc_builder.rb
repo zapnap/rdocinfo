@@ -96,9 +96,8 @@ module RdocInfo
     end
 
     def fetch_and_unpack_gem
-      Dir.chdir(fetch_dir)
-      `gem fetch #{@gem.name} -v #{@gem.version} --source http://gemcutter.org`
-      `gem unpack #{@gem.name}-#{@gem.version}`
+      `cd #{fetch_dir}; gem fetch #{@gem.name} -v #{@gem.version} --source http://gemcutter.org`
+      `cd #{fetch_dir}; gem unpack #{@gem.name}-#{@gem.version}.gem`
     end
 
     def clean_gem

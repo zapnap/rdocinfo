@@ -1,0 +1,5 @@
+<% content_for(:title) do %><%= @page.title || '' %><% end %>
+<% content_for(:keywords) do %><%= @page.keywords || '' %><% end %>
+<% content_for(:description) do %><%= @page.description || '' %><% end %>
+<!-- Updated: <%= @page.updated_at %> -->
+<%= spreadhead @page %>

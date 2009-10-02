@@ -1,0 +1,5 @@
+= haml(:_gems_list, :layout => false)
+= paginate((params[:page] || 1).to_i, @pages, :default_css => false, :url => @url)
+= haml(:_sponsor, :layout => false)
+.new.button
+  %a{:href => '/gems/new'} New Gem

@@ -1,0 +1,24 @@
+
+*******************************************************************************
+
+Ok, enough fancy automatic stuff. Time for some old school monkey copy-pasting.
+
+By default, Spreadhead restricts access to page creation, updating and deleting. 
+To implement this you will need to modify
+
+  config/initializers/spreadhead.rb
+  
+If you want to define an extension point in a view simply add:
+
+  <%= spreadhead "PAGE_URL" %> or <%= spreadhead @page %>
+
+By default, Spreadhead tries to insert the content_for the title, description,
+and keywords on your page. You can make use of these by inserting the following
+into the head section in your application layout:
+
+  <title><%= yield :title %></title>
+  <meta name="Description" content="<%= yield :description %>" />
+  <meta name="Keywords" content="<%= yield :keywords %>" />
+ 
+
+*******************************************************************************

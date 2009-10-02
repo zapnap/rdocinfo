@@ -1,0 +1,6 @@
+h1. To-do
+
+* Include alternate views for the forms
+* Allow alternate layouts
+* Caching, clearing cache
+* Uploading images (basic)

@@ -1,0 +1,31 @@
+!!!
+%html{html_attrs}
+  %head
+    %title= "#{options.title} :: #{@title}"
+    %link{:href => '/stylesheets/main.css', :rel => 'stylesheet', :type => 'text/css'}
+  %body
+    .page
+      .header
+        .title
+          %a{:href => '/'} rdoc.info
+          %span.separator ::
+          %a{:href => @gem.doc_url}= @gem.name
+        .info
+          = "Generated at #{@gem.updated_at.strftime('%D %T %Z')}"
+          - unless @gem.version.nil?
+            = "from "
+            %a{:class => 'commit-link', :href => @gem.version_url}= @gem.version
+          %form.inline{:action => '/gems', :method => 'post'}
+            %input{:type => 'hidden', :name => 'name', :value => @gem.name}
+            %input{:type => 'hidden', :name => 'return', :value => @gem.doc_url(false)}
+            %input{:type => 'submit', :value => 'Update'}
+      .container
+        %iframe{:src => "#{@gem.doc.rdoc_url}/index.html", :height => '100%'}
+    %script{:type => 'text/javascript'}
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    %script{:type => 'text/javascript'}
+      try {
+      var pageTracker = _gat._getTracker("UA-2398620-12");
+      pageTracker._trackPageview();
+      } catch(err) {}

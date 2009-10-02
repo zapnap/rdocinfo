@@ -1,0 +1,24 @@
+h2. 0.6.0
+
+* Changed filter behavior, made editing disabled by default (Jeff Rafter)
+
+h2. 0.5.0 
+
+* Added tasks for importing and exporting (Jeff Rafter)
+
+h2. 0.4.0 
+
+* Removed to_param behavior for page resource (Jeff Rafter)
+* Allowed for "/" in urls (Jeff Rafter)
+
+h2. 0.3.0 
+
+* Added a view link (Jeff Rafter)
+
+h2. 0.2.0 (unreleased)
+
+* Support for URL editing and overriding (Jeff Rafter)
+
+h2. 0.1.0
+
+* Initial Release (Jeff Rafter)

@@ -1,26 +1,25 @@
 require "#{File.dirname(__FILE__)}/spec_helper"
 
-describe 'RdocInfo::DocBuilder' do
+describe 'RdocInfo::GemDocBuilder' do
   before(:each) do
-    RdocInfo::Project.all.destroy!
+    RdocInfo::Gem.all.destroy!
 
-    @project = Factory.build(:project)
-    @doc = RdocInfo::DocBuilder.new(@project)
-
-    @rdoc_dir = "#{RdocInfo.config[:rdoc_dir]}/default/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
-    @tmp_dir  = "#{RdocInfo.config[:tmp_dir]}/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
+    @gem = Factory.build(:gem)
+    @doc = RdocInfo::GemDocBuilder.new(@gem)
+    @rdoc_dir = "#{RdocInfo.config[:rdoc_dir]}/default/spreadhead/versions/0.6.2"
+    @tmp_dir  = "#{RdocInfo.config[:tmp_dir]}/spreadhead/versions/0.6.2"
   end
 
   it 'should have an rdoc url' do
-    @doc.rdoc_url.should == "#{RdocInfo.config[:rdoc_url]}/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
+    @doc.rdoc_url.should == "#{RdocInfo.config[:rdoc_url]}/spreadhead/versions/0.6.2"
   end
 
   it 'should have an rdoc dir' do
-    @doc.rdoc_dir.should == "#{RdocInfo.config[:rdoc_dir]}/default/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
+    @doc.rdoc_dir.should == "#{RdocInfo.config[:rdoc_dir]}/default/spreadhead/versions/0.6.2"
   end
 
-  it 'should have a clone dir' do
-    @doc.clone_dir.should == "#{RdocInfo.config[:tmp_dir]}/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
+  it 'should have a unpack dir' do
+    @doc.unpack_dir.should == "#{RdocInfo.config[:tmp_dir]}/spreadhead-0.6.2"
   end
 
   describe 'RDoc generation' do
@@ -74,19 +73,19 @@ describe 'RdocInfo::DocBuilder' do
 
     it 'should set status flag to created' do
       @doc.generate(false)
-      @doc.project.status.should == 'created'
+      @doc.gem.status.should == 'created'
     end
 
     it 'should set status flag to failed' do
       @doc.expects(:yardoc_command).returns('echo')
       @doc.generate(false)
-      @doc.project.status.should == 'failed'
+      @doc.gem.status.should == 'failed'
     end
 
     it 'should save generation output' do
       @doc.expects(:yardoc_command).returns('echo out')
       @doc.generate(false)
-      @doc.project.error_log.chomp.should == 'out'
+      @doc.gem.error_log.chomp.should == 'out'
     end
   end
 

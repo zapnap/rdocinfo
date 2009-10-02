@@ -1,0 +1,25 @@
+<h2>Pages</h2>
+
+<table class="pages">
+  <thead>
+    <tr>
+      <th class="title">Title</th>
+      <th class="path">Path</th>
+      <th class="published">Published</th>
+      <th class="commands"></th>
+    </tr>
+  </thead>
+  <tbody>  
+  <% for page in @pages %>
+    <tr class="<%= cycle("even","odd") -%>" >
+      <td class="title"><%= link_to page.title || 'No title', edit_page_url(page) %></td>
+      <td class="path"><%= page.url || 'No url' %></td>
+      <td class="published"><%=h page.published ? 'Y' : 'N' %></td>
+      <td class="commands"><%= link_to "View", page.url %> | <%= link_to 'Destroy', page_url(page), :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<div>
+  <%= link_to 'New page', new_page_url %>
+</div>
