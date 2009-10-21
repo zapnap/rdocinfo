@@ -195,10 +195,15 @@ describe 'Application' do
       get '/projects/zapnap/simplepay'
     end
 
-    it 'should return 404 if the project does not exist' do
+    it 'should return new template and a warning if the project does not exist' do
       RdocInfo::Project.stubs(:first).returns(nil)
       get '/projects/abcdefghijklmonop/qrstuvwxyz'
-      last_response.status.should == 404
+
+      last_response.should be_ok
+      last_response.body.should have_tag('div.errors')
+      last_response.body.should have_tag('form[@action=/projects]')
+
+      # last_response.status.should == 404
     end
   end
 

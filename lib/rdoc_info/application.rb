@@ -108,7 +108,11 @@ module RdocInfo
             haml(:working)
           end
         else
-          status(404)
+          @title = "Project Not Found"
+          @project = Project.new(:owner => params[:owner], :name => params[:name], :commit_hash => params[:commit_hash])
+          @project.errors.add(:name, "Sorry we couldn't find docs for that project. If you'd like to generate them, please check the information in the form below and press submit.")
+          haml(:new)
+          # status(404)
         end
       end
     end

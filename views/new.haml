@@ -7,7 +7,7 @@
 
 - unless @project.errors.empty?
   .errors
-    .title The following errors occurred!
+    .title Warning
     %ul
       - @project.errors.full_messages.each do |error|
         %li.error= error
