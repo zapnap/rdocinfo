@@ -39,6 +39,11 @@ module RdocInfo
       "git://github.com/#{owner}/#{name}.git"
     end
 
+    # URL for caliper metrics
+    def caliper_url
+      "http://devver.net/caliper/project?repo=#{CGI.escape(clone_url)}"
+    end
+
     # public URL where documentation for this project is viewable
     def doc_url(full = true)
       path = "/projects/#{owner}/#{name}"

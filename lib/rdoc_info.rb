@@ -14,6 +14,7 @@ require 'ostruct'
 require 'haml'
 require 'yaml'
 require 'logger'
+require 'cgi'
 
 require 'spork'
 require 'rack_hoptoad'

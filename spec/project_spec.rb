@@ -18,6 +18,10 @@ describe 'RdocInfo::Project' do
     @project.clone_url.should == 'git://github.com/zapnap/simplepay.git'
   end
 
+  it 'should have a caliper url' do
+    @project.caliper_url.should == 'http://devver.net/caliper/project?repo=git%3A%2F%2Fgithub.com%2Fzapnap%2Fsimplepay.git'
+  end
+
   it 'should have a truncated hash' do
     @project.commit_hash = '2ceae37d5ddb27afd6c970fbe13248e83b8b0c6f'
     @project.truncated_hash.should == '2ceae37d...'

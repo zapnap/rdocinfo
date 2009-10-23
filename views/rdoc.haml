@@ -11,10 +11,14 @@
           %span.separator ::
           %a{:href => @project.doc_url}= @project.name
         .info
+          %a{:class => 'info-link', :href => @project.url} Source
+          |
+          %a{:class => 'info-link', :href => @project.caliper_url} Metrics
+          |
           = "Generated at #{@project.updated_at.strftime('%D %T %Z')}"
           - unless @project.commit_hash.nil?
             = "from "
-            %a{:class => 'commit-link', :href => @project.commit_url}= @project.truncated_hash
+            %a{:class => 'info-link', :href => @project.commit_url}= @project.truncated_hash
           %form.inline{:action => '/projects', :method => 'post'}
             %input{:type => 'hidden', :name => 'owner', :value => @project.owner}
             %input{:type => 'hidden', :name => 'name', :value => @project.name}
