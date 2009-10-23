@@ -24,7 +24,7 @@ module RdocInfo
     # project index
     ['/', '/projects', '/page/:page'].each do |action|
       get action do
-        @title = 'Featured Projects'
+        @title = 'Recent Project Docs'
         @pages, @projects = Project.paginated(:order => [:created_at.desc],
                                               :fields => [:owner, :name],
                                               :status => 'created',
