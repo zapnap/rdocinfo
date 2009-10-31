@@ -26,7 +26,7 @@ module RdocInfo
   VERSION     = '0.2'
 
   def self.environment
-    @environment ||= (Sinatra::Base.environment || :development)
+    @environment ||= (ENV['RDOCINFO_ENV'] || Sinatra::Base.environment || :development)
   end
 
   def self.config
