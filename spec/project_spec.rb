@@ -133,7 +133,7 @@ describe 'RdocInfo::Project' do
 
     it 'should default to RdocInfo.config settings if :count kwarg not supplied' do
       RdocInfo::Project.expects(:paginated).with(:order => [:owner],
-                                       :fields => [:owner],
+                                       :fields => [:owner, :id],
                                        :conditions => ['(owner LIKE ?)', '%foo%'],
                                        :unique => true,
                                        :per_page => RdocInfo.config[:per_page],
@@ -143,7 +143,7 @@ describe 'RdocInfo::Project' do
 
     it 'should default to first page if :page kwarg not supplied' do
       RdocInfo::Project.expects(:paginated).with(:order => [:owner],
-                                       :fields => [:owner],
+                                       :fields => [:owner, :id],
                                        :conditions => ['(owner LIKE ?)', '%foo%'],
                                        :unique => true,
                                        :per_page => 10,
@@ -166,8 +166,7 @@ describe 'RdocInfo::Project' do
 
       it "should return page count and zapnap-simplepay searching fields #{fields} for #{terms} with pagination" do
         @project.save
-        args[:page] = 1
-        pages, projects = RdocInfo::Project.search(args)
+        pages, projects = RdocInfo::Project.search(args.merge(:page => 1))
         pages.should == 1
         projects.first.owner.should == 'zapnap'
       end
@@ -186,8 +185,7 @@ describe 'RdocInfo::Project' do
 
       it "should return zero page count and no projects searching fields #{fields} for #{terms} with pagination" do
         @project.save
-        args[:page] = 1
-        RdocInfo::Project.search(args).should == [0, []]
+        RdocInfo::Project.search(args.merge(:page => 1)).should == [0, []]
       end
     end
   end
