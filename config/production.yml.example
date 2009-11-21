@@ -1,5 +1,6 @@
 title:            'rdoc.info'
 rdoc_url:         '/rdoc'
+templates_dir:    '/Users/nap/dev/rdocinfo/templates'
 rdoc_dir:         '/Users/nap/dev/rdocinfo/rdoc'
 tmp_dir:          '/Users/nap/dev/rdocinfo/tmp/projects'
 url_base:         'http://localhost:4567/'

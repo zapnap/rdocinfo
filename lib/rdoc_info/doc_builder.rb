@@ -22,6 +22,11 @@ module RdocInfo
       "#{RdocInfo.config[:rdoc_dir]}/#{template}/#{@project.owner}/#{@project.name}/blob/#{@project.commit_hash}"
     end
     
+    # Local directory where templates live
+    def templates_dir
+      "#{RdocInfo.config[:templates_dir]}"
+    end
+    
     def rdoc_url
       "#{RdocInfo.config[:rdoc_url]}/#{@project.owner}/#{@project.name}/blob/#{@project.commit_hash}"
     end
@@ -57,6 +62,8 @@ module RdocInfo
       command << "yardoc" << "-q"
       command << "-o" << rdoc_dir
       command << "-r" << readme_file
+      command << "-t" << "default"
+      command << "-p" << templates_dir
       command << included_files
       command.join(" ")
     end

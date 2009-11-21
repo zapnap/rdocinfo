@@ -55,6 +55,7 @@ module RdocInfo
                     :database_uri     => "sqlite3:///#{File.expand_path(File.dirname(__FILE__))}/../rdocinfo.db",
                     #:database_uri     => "sqlite3::memory:",
                     :rdoc_url         => '/rdoc',
+                    :templates_dir    => "#{File.expand_path(File.dirname(__FILE__))}/../templates",
                     :rdoc_dir         => "#{File.expand_path(File.dirname(__FILE__))}/../rdoc",
                     :tmp_dir          => "#{File.expand_path(File.dirname(__FILE__))}/../tmp/projects",
                     :per_page         => 15,

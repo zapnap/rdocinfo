@@ -23,6 +23,10 @@ describe 'RdocInfo::DocBuilder' do
     @doc.clone_dir.should == "#{RdocInfo.config[:tmp_dir]}/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
   end
 
+  it 'should have a templates dir' do
+    @doc.templates_dir.should == "#{RdocInfo.config[:templates_dir]}"
+  end
+
   describe 'RDoc generation' do
     before(:each) do
       FileUtils.rm_rf @rdoc_dir
@@ -32,6 +36,11 @@ describe 'RdocInfo::DocBuilder' do
     it 'should place rdoc in public directory' do
       @doc.generate(false)
       File.exists?("#{@rdoc_dir}/index.html").should be_true
+    end
+
+    it 'should include yard.css and yard.js in the headers' do
+      @doc.generate(false)
+      File.open("#{@rdoc_dir}/index.html", 'r').grep(/yard.css/).should_not be_empty
     end
 
     it 'should clean clone directory after build' do
