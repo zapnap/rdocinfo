@@ -21,8 +21,9 @@ GitHub Pages support has been removed from master as it was proving to be a bit 
 
 == Getting Started
 
+  rake gems:install
   rake db:migrate
-  ruby application.rb
+  ruby bin/run.rb
 
 == Credit
 
