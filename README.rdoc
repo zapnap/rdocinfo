@@ -30,6 +30,7 @@ Rdoc.info is (c) 2009 Nick Plante. This code is distributed under the MIT licens
 
 The following individuals have contributed to the project:
 
+* Loren Segal (for YARD)
 * Jeff Rafter
 * Brian Turnbull
 
