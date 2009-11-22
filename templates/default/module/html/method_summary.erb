@@ -1,0 +1,8 @@
+<% if method_listing.size > 0 %>
+  <h2>Method Summary</h2>
+  <ul class="summary">
+    <% method_listing.each do |meth| %>
+      <%= yieldall :item => meth %>
+    <% end %>
+  </ul>
+<% end %>
