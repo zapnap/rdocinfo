@@ -1,3 +1,7 @@
+#search {
+  position:fixed !important;
+}
+
 #search a, #search a.active, #search a:visited, #search a:link {
   -moz-border-radius:0 !important;
   -webkit-border-radius:0 !important;
@@ -15,5 +19,6 @@
 }
 
 #search_frame {
-  border: 2px solid #222;
+  border:2px solid #222 !important;
+  position:fixed;
 }
