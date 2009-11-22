@@ -108,6 +108,7 @@ a.info-link {
 }
 .container iframe {
   width: 100%;
+  border: 0;
 }
 ul.projects {
   list-style-type: none;
