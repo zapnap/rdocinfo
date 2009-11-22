@@ -26,7 +26,7 @@ describe 'Application' do
 
     it 'should retrieve the second page of results' do
       RdocInfo::Project.expects(:paginated).with(:order => [:created_at.desc],
-                                       :fields => [:id, :owner, :name],
+                                       :fields => [:owner, :name],
                                        :status => 'created',
                                        :unique => true,                                          
                                        :per_page => @per_page,
@@ -76,7 +76,7 @@ describe 'Application' do
     
     it 'should retrieve the second page of results for search term: nap' do
       RdocInfo::Project.expects(:paginated).with(:order => [:owner, :name],
-                                       :fields => [:owner, :name, :id],
+                                       :fields => [:owner, :name],
                                        :conditions => ['(owner LIKE ? OR name LIKE ?)', '%nap%', '%nap%'],
                                        :unique => true,
                                        :per_page => @per_page,

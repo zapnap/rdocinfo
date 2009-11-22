@@ -133,7 +133,7 @@ describe 'RdocInfo::Project' do
 
     it 'should default to RdocInfo.config settings if :count kwarg not supplied' do
       RdocInfo::Project.expects(:paginated).with(:order => [:owner],
-                                       :fields => [:owner, :id],
+                                       :fields => [:owner],
                                        :conditions => ['(owner LIKE ?)', '%foo%'],
                                        :unique => true,
                                        :per_page => RdocInfo.config[:per_page],
@@ -143,7 +143,7 @@ describe 'RdocInfo::Project' do
 
     it 'should default to first page if :page kwarg not supplied' do
       RdocInfo::Project.expects(:paginated).with(:order => [:owner],
-                                       :fields => [:owner, :id],
+                                       :fields => [:owner],
                                        :conditions => ['(owner LIKE ?)', '%foo%'],
                                        :unique => true,
                                        :per_page => 10,
