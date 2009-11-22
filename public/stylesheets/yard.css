@@ -1,0 +1,12 @@
+#search a {
+  -moz-border-radius-topleft:0px !important;
+  -moz-border-radius-topright:0px !important;
+  background-color:#222 !important;
+  color:white !important; 
+}
+#search a:active {
+  -moz-border-radius-topleft:0px !important;
+  -moz-border-radius-topright:0px !important;
+  background-color:#222 !important;
+  color:white !important; 
+}
