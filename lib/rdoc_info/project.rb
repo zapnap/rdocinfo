@@ -107,10 +107,11 @@ module RdocInfo
     def self.search(kwargs = {})
       raise ArgumentError unless kwargs[:fields] && kwargs[:terms]
 
-      fields  = [kwargs[:fields]].flatten
-      terms   = kwargs[:terms].to_a
-      page    = kwargs[:page].to_i
-      count   = kwargs[:count].to_i
+      fields         = [kwargs[:fields]].flatten
+      terms          = kwargs[:terms].to_a
+      page           = kwargs[:page].to_i
+      count          = kwargs[:count].to_i
+      fields_with_id = fields + [:id]
 
       # construct the query predicate to pass to dm
       predicate = ['']
@@ -126,19 +127,19 @@ module RdocInfo
         count = RdocInfo.config[:per_page] if count == 0
 
         pages, projects = self.paginated(:order => fields,
-                                         :fields => fields,
+                                         :fields => fields_with_id,
                                          :conditions => predicate,
                                          :unique => true,
                                          :per_page => count,
                                          :page => page)
         # TODO: temporary fix for dm-aggregates bug in 0.9.11
-        pages = (self.all(:fields => fields,
+        pages = (self.all(:fields => fields_with_id,
                           :conditions => predicate,
                           :unique => true).length.to_f / RdocInfo.config[:per_page].to_f).ceil
         [pages, projects]
       else
         self.all(:order => fields,
-                 :fields => fields,
+                 :fields => fields_with_id,
                  :conditions => predicate,
                  :unique => true)
       end
