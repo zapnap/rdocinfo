@@ -155,6 +155,13 @@ describe 'Application' do
       post '/projects/update', :payload => '{}'
       last_response.status.should == 403
     end
+
+    it 'should refuse to generate docs for non-master pushes' do
+      lambda {
+        post '/projects/update', :payload => json_data.gsub(/refs\/heads\/master/, 'refs/heads/other')
+      }.should_not change(RdocInfo::Project, :count)
+      last_response.status.should == 202
+    end
   end
 
   describe 'show' do

@@ -64,8 +64,13 @@ module RdocInfo
     # post-receive hook for github
     post '/projects/update' do
       json = JSON.parse(params[:payload])
+
       if json['repository'] && @project = Project.first(:owner => json['repository']['owner']['name'], :name => json['repository']['name'], :commit_hash => json['commits'][0]['id'])
-        status(202)
+        status(202) # already exists
+
+      elsif json['refs'] && json['refs'] != 'refs/heads/master'
+        status(202) # ignored; non-master push
+
       else
         # create project
         if (repository = json['repository']) && (owner = repository['owner']) && (commit_hash = json['commits'][0]['id'])
