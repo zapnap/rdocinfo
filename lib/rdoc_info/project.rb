@@ -62,11 +62,9 @@ module RdocInfo
 
     # update the status of this project
     # (initially nil, can be set to created or failed)
-    def update_status!(new_status, log_data = '')
+    def self.update_status(id, new_status, log_data = '')
       @skip_regeneration = true
-      self.status = new_status
-      self.error_log = log_data
-      save
+      Project.get(id).update!(:status => new_status, :error_log => log_data)
     end
 
     private

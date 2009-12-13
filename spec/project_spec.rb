@@ -32,9 +32,10 @@ describe 'RdocInfo::Project' do
   end
 
   it 'should update the status and avoid regeneration' do
+    @project.save
     @project.doc.expects(:regenerate).never
-    @project.update_status!('created')
-    @project.status.should == 'created'
+    RdocInfo::Project.update_status(@project.id, 'created')
+    @project.reload.status.should == 'created'
   end
 
   describe 'validations' do

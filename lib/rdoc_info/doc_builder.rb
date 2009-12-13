@@ -116,7 +116,7 @@ module RdocInfo
 
     def check_status
       status = exists? ? 'created' : 'failed'
-      @project.update_status!(status, @output)
+      Project.update_status(@project.id, status, @output)
     end
   end
 end

@@ -4,7 +4,7 @@ describe 'RdocInfo::DocBuilder' do
   before(:each) do
     RdocInfo::Project.all.destroy!
 
-    @project = Factory.build(:project)
+    @project = Factory(:project)
     @doc = RdocInfo::DocBuilder.new(@project)
 
     @rdoc_dir = "#{RdocInfo.config[:rdoc_dir]}/default/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f"
@@ -89,13 +89,13 @@ describe 'RdocInfo::DocBuilder' do
     it 'should set status flag to failed' do
       @doc.expects(:yardoc_command).returns('echo')
       @doc.generate(false)
-      @doc.project.status.should == 'failed'
+      @doc.project.reload.status.should == 'failed'
     end
 
     it 'should save generation output' do
       @doc.expects(:yardoc_command).returns('echo out')
       @doc.generate(false)
-      @doc.project.error_log.chomp.should == 'out'
+      @doc.project.reload.error_log.chomp.should == 'out'
     end
   end
 
