@@ -17,7 +17,7 @@ require 'logger'
 require 'cgi'
 
 require 'spork'
-require 'rack_hoptoad'
+require 'rack/hoptoad'
 
 require 'rdoc_info/project'
 require 'rdoc_info/doc_builder'
