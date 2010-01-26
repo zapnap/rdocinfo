@@ -127,7 +127,7 @@ module RdocInfo
       if @project = Project.first(:owner => params[:owner], :name => params[:name], :commit_hash => params[:commit_hash])
         case(@project.status)
         when 'created'
-          status(205) # reset content
+          status(200) # reset content
         when 'failed'
           raise DocBuilderError, @project.error_log # an error occurred! raise and log this with hoptoad
         else

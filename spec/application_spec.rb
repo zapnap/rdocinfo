@@ -222,7 +222,7 @@ describe 'Application' do
     it 'should return success if the project rdoc has been built'  do
       @project.expects(:status).returns('created')
       get '/projects/zapnap/simplepay/blob/0f115cd0b8608f677b676b861d3370ef2991eb5f/status'
-      last_response.status.should == 205
+      last_response.status.should == 200
     end
 
     it 'should indicate that there was an error if the docs failed to generate'  do
