@@ -7,7 +7,7 @@ module RdocInfo
       app.enable :raise_errors # allow errors to propagate
       app.set(RdocInfo.config)
 
-      use Rack::HoptoadNotifier, app.hoptoad_api_key unless app.hoptoad_api_key.empty?
+      use Rack::Hoptoad, app.hoptoad_api_key unless app.hoptoad_api_key.empty?
       DataMapper.setup(:default, app.database_uri)
     end 
 
