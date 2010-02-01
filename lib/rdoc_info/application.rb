@@ -64,8 +64,11 @@ module RdocInfo
     # post-receive hook for github
     post '/projects/update' do
       json = JSON.parse(params[:payload])
+      repository = json['repository'] || {}
+      owner = repository['owner'] || {}
+      commit = (json['commits'] || [])[0] || {}
 
-      if json['repository'] && @project = Project.first(:owner => json['repository']['owner']['name'], :name => json['repository']['name'], :commit_hash => json['commits'][0]['id'])
+      if json['repository'] && @project = Project.first(:owner => owner['name'], :name => repository['name'], :commit_hash => commit['id'])
         status(202) # already exists
 
       elsif json['refs'] && json['refs'] != 'refs/heads/master'
@@ -73,12 +76,8 @@ module RdocInfo
 
       else
         # create project
-        if (repository = json['repository']) && (owner = repository['owner']) && (commit_hash = json['commits'][0]['id'])
-          @project = Project.new(:name => repository['name'], :owner => owner['name'], :commit_hash => commit_hash, :url => repository['url'])
-          @project.save ? status(202) : status(403)
-        else
-          status(403)
-        end
+        @project = Project.new(:name => repository['name'], :owner => owner['name'], :commit_hash => commit['id'], :url => repository['url'])
+        @project.save ? status(202) : status(403)
       end
     end
 
