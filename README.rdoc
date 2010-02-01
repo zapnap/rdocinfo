@@ -11,7 +11,8 @@ There are a couple additional steps you'll need to take to get rdoc.info working
 * Install the YARD gem -- see http://github.com/lsegal/yard
 * Create a symlink from /public/rdoc to ../rdoc/default
 
-Note that we currently use a customized version of YARD in production that filters potentially unsafe yardoc options such as --query. If you're running DataMapper 0.10.x you'll also need a non-mainline version of dm-is-paginated (check myabc's fork).
+Note that we currently use a customized version of YARD in production that
+filters potentially unsafe yardoc options such as --query.
 
 Once you've done that you should be ready to rock.
 
