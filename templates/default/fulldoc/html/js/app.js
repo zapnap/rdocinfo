@@ -1,5 +1,5 @@
 function createSourceLinks() {
-    $('#method_details .source_code, #constructor_details .source_code, #method_missing_details .source_code').
+    $('.method_details_list .source_code').
         before("<span class='showSource'>[<a href='#' class='toggleSource'>View source</a>]</span>");
     $('.toggleSource').toggle(function() {
        $(this).parent().next().slideDown(100);
@@ -79,10 +79,18 @@ function toggleSearchFrame(id, link) {
 
 function linkSummaries() {
   $('.summary_signature').click(function() {
-    window.parent.location = $(this).find('a').attr('href');
+    document.location = $(this).find('a').attr('href');
   });
 }
 
+function framesInit() {
+  if (window.top.frames.main) {
+    document.body.className = 'frames';
+    $('#menu .noframes a').attr('href', document.location);
+  }
+}
+
+$(framesInit);
 $(createSourceLinks);
 $(createDefineLinks);
 $(createFullTreeLinks);

@@ -21,8 +21,8 @@ def children
     @inner[0][1] << child if child.type == :module
     @inner[1][1] << child if child.type == :class
   end
+  @inner.map! {|v| [v[0], run_verifier(v[1].sort_by {|o| o.name.to_s })] }
   return if (@inner[0][1].size + @inner[1][1].size) == 0
-  @inner.map! {|v| [v[0], v[1].sort_by {|o| o.name.to_s }] }
   erb(:children)
 end
 
@@ -33,15 +33,17 @@ def methodmissing
 end
 
 def method_listing(include_specials = true)
-  return @smeths ||= method_listing.reject {|o| special_methods.include? o.name(true) } unless include_specials
+  return @smeths ||= method_listing.reject {|o| special_method?(o) } unless include_specials
   return @meths if @meths
   @meths = object.meths(:inherited => false, :included => false)
   @meths = sort_listing(prune_method_listing(@meths))
   @meths
 end
 
-def special_methods
-  ["#initialize", "#method_missing"]
+def special_method?(meth)
+  return true if meth.name(true) == '#method_missing'
+  return true if meth.constructor?
+  false
 end
 
 def attr_listing
@@ -64,7 +66,7 @@ def constant_listing
 end
 
 def sort_listing(list)
-  list.sort_by {|o| [o.scope, (options[:visibilities]||[]).index(o.visibility), o.name].join(":") }
+  list.sort_by {|o| [o.scope.to_s, o.name.to_s.downcase] }
 end
 
 def docstring_summary(obj)
@@ -80,4 +82,11 @@ def docstring_summary(obj)
   end
 
   docstring.summary
+end
+
+def scopes(list)
+  [:class, :instance].each do |scope|
+    items = list.select {|m| m.scope == scope }
+    yield(items, scope) unless items.empty?
+  end
 end

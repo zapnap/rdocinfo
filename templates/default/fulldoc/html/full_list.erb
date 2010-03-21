@@ -7,30 +7,28 @@
     <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
     <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/full_list.js"></script>
-    <base target="_parent" />
+    <base id="base_target" target="_parent" />
   </head>
   <body>
-    <h1 id="full_list_header"><%= @list_title %></h1>
-    <div id="search">Search: <input type="text" /></div>
-    <div class="clear"></div>
-    <ul id="full_list">
-      <% n = 1 %>
-      <% @items.each do |item| %>
-        <li class="r<%= n %> <%= item.is_a?(CodeObjects::Base) && item.has_tag?(:deprecated) ? 'deprecated' : '' %>">
-          <% if @file_list %>
-            <%= link_file item, File.basename(item).gsub(/\.[^.]+$/, '') %>
-          <% elsif item == Registry.root %>
-            <a href="top-level-namespace.html">Top Level Namespace</a>
-          <% else %>
-            <%= linkify item, item.name(true) %> 
-            <% if item.namespace && item.namespace != Registry.root %>
-              <small>(<%= item.namespace %>)</small>
-            <% end %>
-          <% end %>
-          <% n = n == 2 ? 1 : 2 %>
-        </li>
-      <% end %>
-    </ul>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) {
+        document.getElementById('base_target').target = 'main';
+        document.body.className = 'frames';
+      }
+    </script>
+    <div id="content">
+      <h1 id="full_list_header"><%= @list_title %></h1>
+      <div id="nav">
+        <a target="_self" href="class_list.html">Classes</a> | 
+        <a target="_self" href="method_list.html">Methods</a> |
+        <a target="_self" href="file_list.html">Files</a>
+      </div>
+      <div id="search">Search: <input type="text" /></div>
+
+      <ul id="full_list" class="<%= @list_type %>">
+        <%= erb "full_list_#{@list_type}" %>
+      </ul>
+    </div>
   </body>
 </html>
 
