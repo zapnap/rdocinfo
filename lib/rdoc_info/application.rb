@@ -25,15 +25,9 @@ module RdocInfo
     ['/', '/projects', '/page/:page'].each do |action|
       get action do
         @title = 'Recent Project Docs'
-        @pages, @projects = Project.paginated(:order => [:created_at.desc],
-                                              :fields => [:owner, :name],
-                                              :status => 'created',
-                                              :unique => true,
-                                              :per_page => options.per_page,
-                                              :page => (params[:page] || 1).to_i)
-
-        # TODO: temporary fix for dm-aggregates bug in 0.9.11
-        @pages = (Project.all(:fields => [:owner, :name], :status => 'created', :unique => true).length.to_f / options.per_page.to_f).ceil
+        @pages, @projects = Project.paginated_unique(:order => [:created_at.desc],
+                                                     :per_page => options.per_page,
+                                                     :page => (params[:page] || 1).to_i)
         haml(:index)
       end
     end

@@ -90,7 +90,6 @@ describe 'RdocInfo::Project' do
       @project.should_not be_valid
       @project.errors[:owner].should include("Owner contains disallowed characters")
     end
-
   end
 
   it 'should have a document builder' do
@@ -102,6 +101,18 @@ describe 'RdocInfo::Project' do
     @project.stubs(:doc).returns(@doc = stub_everything('RdocInfo::DocBuilder'))
     @doc.expects(:generate)
     @project.save
+  end
+
+  it 'should return unique projects' do
+    RdocInfo::Project.expects(:all).with(:unique => true, :fields => [:owner, :name], :status => 'created', :order => [:created_at.desc]).returns(projects = mock('Unique Projects'))
+    RdocInfo::Project.unique(:order => [:created_at.desc]).should == projects
+  end
+
+  it 'should return paginated unique projects' do
+    RdocInfo::Project.expects(:paginated).with(:unique => true, :fields => [:owner, :name], :status => 'created', :order => [:created_at.desc], :page => 1, :per_page => 5).returns([0, projects = mock('Unique Projects')])
+    RdocInfo::Project.expects(:count).with(:unique => true, :fields => [:owner, :name], :status => 'created', :order => [:created_at.desc]).returns(count = 10)
+
+    RdocInfo::Project.paginated_unique(:order => [:created_at.desc], :page => 1, :per_page => 5).should == [2, projects]
   end
 
   describe 'search' do

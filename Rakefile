@@ -28,10 +28,31 @@ end
 namespace :rdoc do
   desc 'Regenerate all projects'
   task :regenerate => :environment do
-    Project.all.each do |project|
+    RdocInfo::Project.all.each do |project|
       project.doc.generate(false)
     end
   end
+
+  desc 'Clean up old projects that have newer revisions'
+  task :clean => :environment do
+    max_age = 2592000 # 1 month
+    count = 0
+    RdocInfo::Project.unique.each do |master_project|
+      RdocInfo::Project.all(:owner => master_project.owner, 
+                            :name => master_project.name, 
+                            :order => [:created_at.desc]).each_with_index do |project, i|
+        if i == 0
+          next
+        elsif project.created_at.to_time < (Time.now - max_age)
+          project.destroy
+          count += 1
+        end
+      end
+    end
+
+    puts "#{count} projects were removed."
+  end
+
 end
 
 namespace :gems do

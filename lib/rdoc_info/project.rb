@@ -72,6 +72,34 @@ module RdocInfo
       Project.get(id).update!(:status => new_status, :error_log => log_data)
     end
 
+    # returns unique projects
+    def self.unique(options = {})
+      options[:fields] = [:owner, :name]
+      options[:status] = 'created'
+      options[:unique] = true
+
+      Project.all(options)
+    end
+
+    # returns unique projects, paginated
+    # (a hack to get around bug in dm-aggregates 0.9.11)
+    #
+    # ex: Project.paginated_unique(:page => 1, :per_page => 4)
+    #     => [3, [<RdocInfo::Project>, ...]]
+    def self.paginated_unique(options = {})
+      options[:fields] = [:owner, :name]
+      options[:status] = 'created'
+      options[:unique] = true
+
+      count_options = options.dup
+      count_options.delete_if { |k,v| (k == :per_page || k == :page) }
+
+      count = (Project.count(count_options).to_f / options[:per_page].to_f).ceil
+      records = Project.paginated(options).last
+
+      [count, records]
+    end
+
     private
 
     def reject_non_ascii_owner_chars
