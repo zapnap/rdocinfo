@@ -82,7 +82,7 @@ module RdocInfo
     end
 
     # returns unique projects, paginated
-    # (a hack to get around bug in dm-aggregates 0.9.11)
+    # (a hack to get around an annoying sql count bug in dm-aggregates)
     #
     # ex: Project.paginated_unique(:page => 1, :per_page => 4)
     #     => [3, [<RdocInfo::Project>, ...]]
@@ -94,7 +94,7 @@ module RdocInfo
       count_options = options.dup
       count_options.delete_if { |k,v| (k == :per_page || k == :page) }
 
-      count = (Project.count(count_options).to_f / options[:per_page].to_f).ceil
+      count = (Project.all(count_options).length.to_f / options[:per_page].to_f).ceil
       records = Project.paginated(options).last
 
       [count, records]

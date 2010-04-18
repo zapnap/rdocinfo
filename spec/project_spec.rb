@@ -110,7 +110,7 @@ describe 'RdocInfo::Project' do
 
   it 'should return paginated unique projects' do
     RdocInfo::Project.expects(:paginated).with(:unique => true, :fields => [:owner, :name], :status => 'created', :order => [:created_at.desc], :page => 1, :per_page => 5).returns([0, projects = mock('Unique Projects')])
-    RdocInfo::Project.expects(:count).with(:unique => true, :fields => [:owner, :name], :status => 'created', :order => [:created_at.desc]).returns(count = 10)
+    RdocInfo::Project.expects(:all).with(:unique => true, :fields => [:owner, :name], :status => 'created', :order => [:created_at.desc]).returns(Array.new(10, mock('Project')))
 
     RdocInfo::Project.paginated_unique(:order => [:created_at.desc], :page => 1, :per_page => 5).should == [2, projects]
   end
