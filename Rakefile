@@ -35,18 +35,21 @@ namespace :rdoc do
 
   desc 'Clean up old projects that have newer revisions'
   task :clean => :environment do
-    max_age = 2592000 # 1 month
+    max_age = 2592000*6 # 6 months
     count = 0
     RdocInfo::Project.unique.each do |master_project|
       RdocInfo::Project.all(:owner => master_project.owner, 
                             :name => master_project.name, 
                             :order => [:created_at.desc]).each_with_index do |project, i|
         if i == 0
+          puts "Skipping #{project.owner}/#{project.name} timestamped #{project.created_at.to_s}"
           next
         elsif project.created_at.to_time < (Time.now - max_age)
           puts "Removing #{project.owner}/#{project.name} timestamped #{project.created_at.to_s}"
           project.destroy
           count += 1
+        else
+          puts "Skipping #{project.owner}/#{project.name} timestamped #{project.created_at.to_s}"
         end
       end
     end
