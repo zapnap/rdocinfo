@@ -38,6 +38,11 @@ describe 'RdocInfo::Project' do
     @project.reload.status.should == 'created'
   end
 
+  it 'should clean up generated docs when a project is destroyed' do
+    @project.save && @project.destroy
+    File.exists?(@project.doc.rdoc_dir).should be_false
+  end
+
   describe 'validations' do
     before(:each) do
       @project.stubs(:doc).returns(@doc = stub_everything('RdocInfo::DocBuilder'))

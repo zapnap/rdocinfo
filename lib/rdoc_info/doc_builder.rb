@@ -8,7 +8,7 @@ module RdocInfo
 
     # Generate RDocs for the project
     def generate(asynch = true)
-      FileUtils.rm_rf(rdoc_dir) if File.exists?(rdoc_dir) # clean first
+      destroy # clean first
       (!asynch || (Sinatra::Base.environment == :test)) ? run_yardoc : run_yardoc_asynch
     end
 
@@ -34,6 +34,11 @@ module RdocInfo
     # Does generated documentation exist?
     def exists?
       File.exists?("#{rdoc_dir}/index.html")
+    end
+
+    # remove generated documentation
+    def destroy
+      FileUtils.rm_rf(rdoc_dir) if File.exists?(rdoc_dir)
     end
 
     # Generate RDocs for the specified project

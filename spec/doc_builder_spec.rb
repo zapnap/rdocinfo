@@ -99,6 +99,13 @@ describe 'RdocInfo::DocBuilder' do
     end
   end
 
+  it 'should remove generated doc directory' do
+    @doc.generate(false)
+
+    FileUtils.expects(:rm_rf).with(@doc.rdoc_dir)
+    @doc.destroy
+  end
+
   private
 
   def dot_document_data

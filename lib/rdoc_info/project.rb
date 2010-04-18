@@ -29,6 +29,11 @@ module RdocInfo
       self.doc.generate unless skip_regeneration
     end
 
+    # destroy generated docs after removal
+    after :destroy do
+      self.doc.destroy
+    end
+
     # documentation builder for this project
     def doc
       DocBuilder.new(self)
@@ -81,7 +86,7 @@ module RdocInfo
 
     def check_remote_and_update_hash
       return true if owner.blank? || name.blank?
-      remote = RestClient.get("http://github.com/api/v1/json/#{owner}/#{name}/commits/master") 
+      remote = RestClient.get("http://github.com/api/v1/json/#{owner}/#{name}/commits/master").body
       commits = JSON.parse(remote)
       commit = commits['commits'].first['id']
       self.commit_hash = commit if self.commit_hash.blank?
