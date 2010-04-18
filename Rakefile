@@ -44,6 +44,7 @@ namespace :rdoc do
         if i == 0
           next
         elsif project.created_at.to_time < (Time.now - max_age)
+          puts "Removing #{project.owner}/#{project.name} timestamped #{project.created_at.to_s}"
           project.destroy
           count += 1
         end
