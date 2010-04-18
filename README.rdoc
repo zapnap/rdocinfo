@@ -1,10 +1,15 @@
 = RdocInfo
 
-A simple Sinatra-based web service that generates and hosts rdocs for GitHub-based projects. Accepts updates from post-commit hooks and regenerates as needed. Public service is hosted at http://rdoc.info
+A simple Sinatra-based web service that generates and hosts rdocs (actually,
+yardocs) for GitHub-based projects. Accepts updates from post-commit hooks and
+regenerates as needed. Public service is hosted at http://rdoc.info or
+http://rubydoc.info
 
 == Configuration
 
-All configuration is done in the <tt>conf</tt> directory via environment yaml files. Copy <tt>development.yml.example</tt> to <tt>development.yml</tt> within that directory and alter the settings to match your local environment.
+All configuration is done in the <tt>conf</tt> directory via environment yaml
+files. Copy <tt>development.yml.example</tt> to <tt>development.yml</tt>
+within that directory and alter the settings to match your local environment.
 
 There are a couple additional steps you'll need to take to get rdoc.info working:
 
@@ -18,7 +23,9 @@ Once you've done that you should be ready to rock.
 
 == GitHub Pages Integration
 
-GitHub Pages support has been removed from master as it was proving to be a bit unreliable. Check the github-pages branch.
+GitHub Pages support has been removed from master as it was proving to be a
+bit unreliable. Check the github-pages branch if you're interested in this
+stuff.
 
 == Getting Started
 
@@ -28,7 +35,7 @@ GitHub Pages support has been removed from master as it was proving to be a bit 
 
 == Credit
 
-Rdoc.info is (c) 2009 Nick Plante. This code is distributed under the MIT license.
+Rdoc.info is (c) 2010 Nick Plante. This code is distributed under the MIT license.
 
 The following individuals have contributed to the project:
 
