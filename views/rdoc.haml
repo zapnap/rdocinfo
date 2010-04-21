@@ -13,8 +13,6 @@
         .info
           %a{:class => 'info-link', :href => @project.url} Source
           |
-          %a{:class => 'info-link', :href => @project.caliper_url} Metrics
-          |
           = "Generated at #{@project.updated_at.strftime('%D %T %Z')}"
           - unless @project.commit_hash.nil?
             = "from "
