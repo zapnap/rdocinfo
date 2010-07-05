@@ -1,9 +1,6 @@
 .explanation
-  %p Are we missing documentation for your favorite Ruby library? Use the following form to submit a request and we'll add it immediately. Note that we currently only support projects hosted on <a href='http://github.com'>GitHub</a>. Or if you're the project author, simply add the following post-commit hook:
-
-  %code http://rdoc.info/projects/update
-
-  %p By adding this hook, our documentation will automatically regenerate<sup><a href='#note'>1</a></sup> whenever you push updates to your code.
+  %p Are we missing documentation for your favorite Ruby library? Use the following form to submit a request and we'll add it immediately. Note that we currently only support projects hosted on <a href='http://github.com'>GitHub</a>.
+  %p If you're the project author, you can simply add the Rdoc.info service hook from your GitHub project admin page. By adding this hook, our documentation will be automatically regenerated<sup><a href='#note'>1</a></sup> whenever you push updates to your code.
 
 - unless @project.errors.empty?
   .errors
