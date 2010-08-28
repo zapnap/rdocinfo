@@ -64,7 +64,7 @@ namespace :gems do
   task :install do
     required_gems = %w{ yard dm-core dm-validations dm-aggregates dm-is-page-by-page sinatra 
                         merb-pagination haml rest-client json rack_hoptoad rack-test git
-                        mocha rspec rspec_hpricot_matchers thoughtbot-factory_girl vegas }
+                        mocha rspec rspec_hpricot_matchers factory_girl vegas }
     required_gems.each { |required_gem| system "gem install #{required_gem}" }
   end
 end
