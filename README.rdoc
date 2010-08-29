@@ -5,6 +5,10 @@ yardocs) for GitHub-based projects. Accepts updates from post-commit hooks and
 regenerates as needed. Public service is hosted at http://rdoc.info or
 http://rubydoc.info
 
+PLEASE NOTE: future development of this service has moved to the new
+rubydoc.info project. See http://github.com/lsegal/rubydoc.info for more
+information!!
+
 == Configuration
 
 All configuration is done in the <tt>conf</tt> directory via environment yaml
