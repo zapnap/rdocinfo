@@ -7,7 +7,7 @@ http://rubydoc.info
 
 PLEASE NOTE: future development of this service has moved to the new
 rubydoc.info project. See http://github.com/lsegal/rubydoc.info for more
-information!!
+information!! Thanks :)
 
 == Configuration
 
