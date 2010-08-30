@@ -46,7 +46,3 @@ The following individuals have contributed to the project:
 * Loren Segal (for YARD)
 * Jeff Rafter
 * Brian Turnbull
-
-== Contribute
-
-Contributions are welcome and appreciated. See GitHub project issues for a list of specific features that have been requested or discussed.
